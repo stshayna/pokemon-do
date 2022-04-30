@@ -1,0 +1,12 @@
+.form-actions {
+  color: white;
+  width: 140px;
+  border-radius: 4px;
+  background: #E6BA95;
+  transition: background 0.3s ease;
+}
+
+.form-actions:hover {
+  background: #E4E9BE;
+  color: white;
+}
