@@ -7,19 +7,26 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 puts "Releasing Pokemons to the wild"
+puts ''
 Pokemon.destroy_all
-temp_pokmeon_user_id = 1
 
 10.times do
+  @user = User.create!(
+    email: Faker::Internet.email,
+    username: Faker::Name.first_name,
+    password: '123456'
+  )
+  puts "Pokemon trainer #{@user.username} was born!"
+
   @pokemon = Pokemon.create!(
-    user_id: temp_pokmeon_user_id,
+    user_id: @user.id,
     name: "Pikachu",
     description: Faker::Games::Pokemon.move,
     location: Faker::Address.full_address,
     price: rand(100..200)
   )
-  puts "Just caught #{@pokemon.name}!"
-  temp_pokmeon_user_id += 1
+  puts "#{@user.username} just caught #{@pokemon.name}!"
 end
 
+puts ''
 puts "Finished catching pokemons :)"
