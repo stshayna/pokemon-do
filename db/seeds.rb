@@ -5,3 +5,12 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+Pokemon.destroy_all
+
+Pokemon.create!(
+  name: "Pikachu",
+  description: Faker::Games::Pokemon.move,
+  location: Faker::Address.full_address,
+  price: rand(100..200)
+)

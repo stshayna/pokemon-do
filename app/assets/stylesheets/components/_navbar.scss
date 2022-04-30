@@ -1,8 +1,11 @@
 .navbar-lewagon {
   justify-content: space-between;
-  background: white;
+  background: #E6BA95;
 }
-
+.fa-globe {
+  font-size: larger;
+  color: black;
+}
 .navbar-lewagon .navbar-collapse {
   flex-grow: 0;
 }
