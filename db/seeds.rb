@@ -20,7 +20,7 @@ Pokemon.destroy_all
 
   @pokemon = Pokemon.create!(
     user_id: @user.id,
-    name: "Pikachu",
+    name: Faker::Games::Pokemon.name,
     description: Faker::Games::Pokemon.move,
     location: Faker::Address.full_address,
     price: rand(100..200)
