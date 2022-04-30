@@ -1,15 +1,19 @@
-.navbar-lewagon {
+.navbar {
   justify-content: space-between;
-  background: #E6BA95;
+  background: white;
+  position: fixed;
+  top: 0;
+  width: 100%;
 }
 .fa-globe {
-  font-size: larger;
-  color: black;
+  color: $theme-green;
 }
-.navbar-lewagon .navbar-collapse {
+.navbar-collapse {
   flex-grow: 0;
 }
-
-.navbar-lewagon .navbar-brand img {
+.nav-link {
+  color: $theme-green;
+}
+.navbar-brand img {
   width: 40px;
 }
