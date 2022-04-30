@@ -6,11 +6,20 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+puts "Releasing Pokemons to the wild"
 Pokemon.destroy_all
+temp_pokmeon_user_id = 1
 
-Pokemon.create!(
-  name: "Pikachu",
-  description: Faker::Games::Pokemon.move,
-  location: Faker::Address.full_address,
-  price: rand(100..200)
-)
+10.times do
+  @pokemon = Pokemon.create!(
+    user_id: temp_pokmeon_user_id,
+    name: "Pikachu",
+    description: Faker::Games::Pokemon.move,
+    location: Faker::Address.full_address,
+    price: rand(100..200)
+  )
+  puts "Just caught #{@pokemon.name}!"
+  temp_pokmeon_user_id += 1
+end
+
+puts "Finished catching pokemons :)"
