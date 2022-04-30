@@ -6,13 +6,11 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-require 'faker'
-
 Pokemon.destroy_all
 
 Pokemon.create!(
   name: "Pikachu",
-  description: "Pikachu's special ability is Static, which can cause paralysis in battle if hit by a physical move.",
-  location: "Montreal",
-  price: 150
+  description: Faker::Games::Pokemon.move,
+  location: Faker::Address.full_address,
+  price: rand(100..200)
 )

@@ -1,6 +1,6 @@
 class PokemonsController < ApplicationController
   def index
-    @pokemon = Pokemon.all
+    @pokemons = Pokemon.all
   end
 
   def show
@@ -12,8 +12,8 @@ class PokemonsController < ApplicationController
   end
 
   def create
-    pokemon = Pokemon.new(pokemon_params)
-    pokemon.user = current_user
+    @pokemon = Pokemon.new(pokemon_params)
+    @pokemon.user = current_user
     if pokemon.save
       redirect_to pokemons_path
     else
@@ -26,7 +26,7 @@ class PokemonsController < ApplicationController
   private
 
   def pokemon_params
-    params.require(:pokemon). permit(:name, :description, :location, :price, :user_id)
+    params.require(:pokemon).permit(:name, :description, :location, :price)
   end
 
 
