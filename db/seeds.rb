@@ -13,7 +13,8 @@ Pokemon.destroy_all
 10.times do
   @user = User.create!(
     email: Faker::Internet.email,
-    username: Faker::Name.first_name,
+    # Faker first name used twice to have a higher chance at a unique username when seeding.
+    username: Faker::Name.first_name + Faker::Name.first_name,
     password: '123456'
   )
   puts "Pokemon trainer #{@user.username} was born!"
