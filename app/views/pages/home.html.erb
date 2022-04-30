@@ -1,2 +1,6 @@
 <h1>Pages#home</h1>
 <p>Find me in app/views/pages/home.html.erb</p>
+<p>this is a test, it will display the current signed in user's email</p>
+<% if user_signed_in? %>
+  <%= current_user.email %>
+<% end %>
