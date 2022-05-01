@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 2022_05_01_153541) do
     t.date "end_date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "status"
+    t.string "status", default: "Available"
     t.index ["pokemon_id"], name: "index_bookings_on_pokemon_id"
     t.index ["user_id"], name: "index_bookings_on_user_id"
   end
