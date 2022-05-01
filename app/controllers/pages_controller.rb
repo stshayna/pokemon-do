@@ -4,12 +4,12 @@ class PagesController < ApplicationController
   def home
   end
 
-  def my_bookings # who's pokemon am I renting
-    @my_bookings = current_user.bookings
-  end
-
   def my_pokemons # all the pokemon i own
     @owner_bookings = current_user.pokemons
+  end
+
+  def my_bookings # who's pokemon am I renting
+    @my_bookings = current_user.bookings
   end
 
   def owner_bookings # who's rented Pokemon I own
@@ -18,9 +18,7 @@ class PagesController < ApplicationController
   end
 
   def set_status
-    @owner_booking = Booking.find(params[:id])
-    @owner_booking.update(owner_booking_params)
-    redirect_to owner_bookings_path(@owner_booking)
+
   end
 
 end

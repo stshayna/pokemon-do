@@ -15,11 +15,11 @@ class BookingsController < ApplicationController
     end
   end
 
-  def destroy
-    @booking = Booking.find(params[:id])
-    @booking.destroy
-    redirect_to pokemon_path(@booking)
-  end
+  # def destroy
+  #   @booking = Booking.find(params[:id])
+  #   @booking.destroy
+  #   redirect_to pokemon_path(@bookings)
+  # end
 
   private
 
@@ -28,6 +28,6 @@ class BookingsController < ApplicationController
   end
 
   def booking_params
-    params.require(:booking).permit(:start_date, :end_date, :user_id, :pokemon_id)
+    params.require(:booking).permit(:start_date, :end_date)
   end
 end
