@@ -14,14 +14,13 @@ class PagesController < ApplicationController
   end
 
   def owner_bookings # Shows all owner pokemons who have have bookings
-    @pokemons_i_  rent = Pokemon.joins(:bookings).where(bookings: { user_id: current_user.id })
+    @pokemons_i_rent = Pokemon.joins(:bookings).where(bookings: { user_id: current_user.id })
     @booking_requests_received = Booking.joins(:pokemons).where(pokemons: { user_id: current_user.id })
   end
 
   def set_status
 
   end
-
 end
 
 Pokemon.all do |pokemon|
