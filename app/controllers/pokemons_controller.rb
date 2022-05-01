@@ -1,10 +1,14 @@
 class PokemonsController < ApplicationController
+  skip_before_action :authenticate_user!, only: %i[index show]
+
+
+
   def index
     @pokemons = Pokemon.all
   end
 
   def show
-    @pokemon = Pokemon.find[params[:id]]
+    @pokemon = Pokemon.find([params[:id]])
   end
 
   def new
