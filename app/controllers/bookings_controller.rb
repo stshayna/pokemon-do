@@ -1,5 +1,10 @@
 class BookingsController < ApplicationController
   before_action :find_pokemon, only: [ :new, :create ]
+  before_action :find_booking, only: [:show, :edit, :update]
+
+  def index
+    @bookings = Booking.all
+  end
 
   def new
     @booking = Booking.new
@@ -15,6 +20,16 @@ class BookingsController < ApplicationController
     end
   end
 
+  def show; end
+
+  def edit; end
+
+  def update
+    @booking.update(booking_params)
+
+    redirect_to booking_path(@booking)
+  end
+
   # def destroy
   #   @booking = Booking.find(params[:id])
   #   @booking.destroy
@@ -22,6 +37,10 @@ class BookingsController < ApplicationController
   # end
 
   private
+
+  def find_booking
+    @booking = Booking.find(params[:id])
+  end
 
   def find_pokemon
     @pokemon = Pokemon.find(params[:pokemon_id])
