@@ -8,15 +8,19 @@ class PagesController < ApplicationController
     @my_bookings = current_user.bookings
   end
 
-  def owner_bookings # who's rented Pokemon I own
-    # puts current_user.pokemons.bookings
-    @pokemons_i_rent = Pokemon.joins(:bookings).where(bookings: { user_id: current_user.id })
-    @booking_requests_received = Booking.joins(:pokemons).where(pokemons: { user_id: current_user.id })
-    # render "bookings"
+  def my_pokemons # all the pokemon i own
+    @owner_bookings = current_user.pokemons
   end
 
-  def my_pokemons
-    @owner_bookings = current_user.pokemons # all the pokemon i own
+  def owner_bookings # who's rented Pokemon I own
+    @pokemons_i_rent = Pokemon.joins(:bookings).where(bookings: { user_id: current_user.id })
+    @booking_requests_received = Booking.joins(:pokemons).where(pokemons: { user_id: current_user.id })
+  end
+
+  def set_status
+    @owner_booking = Booking.find(params[:id])
+    @owner_booking.update(owner_booking_params)
+    redirect_to owner_bookings_path(@owner_booking)
   end
 
 end

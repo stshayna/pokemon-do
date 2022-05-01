@@ -1,8 +1,6 @@
 class BookingsController < ApplicationController
   before_action :find_pokemon, only: [ :new, :create ]
 
-
-
   def new
     @booking = Booking.new
   end
