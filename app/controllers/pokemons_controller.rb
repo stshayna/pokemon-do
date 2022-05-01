@@ -1,6 +1,6 @@
 class PokemonsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
-
+  before_action :find_pokemon, only: [:show, :edit, :update]
 
 
   def index
@@ -25,9 +25,23 @@ class PokemonsController < ApplicationController
     end
   end
 
+  def show; end
+
+  def edit; end
+
+  def update
+    @pokemon.update(pokemon_params)
+
+    redirect_to pokemon_path(@pokemon)
+  end
+
   # add edit, update and destroy
 
   private
+
+  def find_pokemon
+    @pokemon = Pokemon.find(params[:id])
+  end
 
   def pokemon_params
     params.require(:pokemon).permit(:name, :description, :location, :price)
