@@ -27,7 +27,17 @@ Pokemon.destroy_all
     price: rand(100..200)
   )
   puts "#{@user.username} just caught #{@pokemon.name}!"
+
 end
+
+puts "Creating bookings"
+@booking = Booking.create!(
+  user_id: User.first.id,
+  pokemon_id: Pokemon.second.id,
+  start_date: "2022-05-03",
+  end_date: "2022-05-05"
+)
+puts "#{User.first.username} just booked #{Pokemon.second.name}!"
 
 puts ''
 puts "Finished catching pokemons :)"
