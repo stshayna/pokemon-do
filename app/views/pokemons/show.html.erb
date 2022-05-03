@@ -1,1 +1,49 @@
 <h1>See all Pokemon</h1>
+
+<div class="container pt-3">
+  <div class="row">
+
+    <div class="col-12 col-lg-8">
+      <img src=<%= @pokemon.image_url %> alt="Pokemon" class="w-100"/>
+      <h1 class="my-3"><%= @pokemon.name %></h1>
+      <p>Location: <%= @pokemon.location %></p>
+      <p>Special skill: <%= @pokemon.description %></p>
+      <p>Price per day $<%= @pokemon.price %></p>
+    </div>
+
+    <div class="col-12 col-lg-4">
+      <div class="border p-4 rounded">
+        <h2>Book Me</h2>
+
+        <form action="/">
+
+          <div class="mb-3">
+            <label for="message" class="form-label">Message</label>
+            <input type="text" id="message" class="form-control">
+          </div>
+
+          <div class="mb-3">
+            <label for="from_date" class="form-label">From</label>
+            <input type="date" id="from_date" class="form-control">
+          </div>
+
+          <div class="mb-3">
+            <label for="to_date" class="form-label">To</label>
+            <input type="date" id="to_date" class="form-control">
+          </div>
+
+          <%# <div class="mb-3">
+            To - From * @pokemon.price
+          </div> %>
+
+          <input type="submit" value="Book" class="btn btn-primary w-100">
+
+        </form>
+
+      </div>
+    </div>
+    <div>
+     <%= link_to "Back", pokemons_path %>
+    </div>
+  </div>
+</div>
