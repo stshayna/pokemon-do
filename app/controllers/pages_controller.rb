@@ -35,7 +35,6 @@ class PagesController < ApplicationController
         to: Booking.joins(pokemon: :user).where(pokemons: { user: current_user }).where("end_date < ?", Time.now.to_date).order(end_date: :desc)
       }
     }
-    raise
   end
 end
 
