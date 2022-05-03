@@ -9,10 +9,10 @@
     Rented from : <%= booking.pokemon.user.username %>
     From: <%= booking.start_date %>
     To: <%= booking.end_date %>
-    Price: $ <%= booking.price.to_i.to_s %>
+    <%# Price: $ <%= booking.price.to_i.to_s %> %>
   <% end %>
 <% else %>
-  <p>There's no upcoming bookings from potential renters.</p>
+  <p>You don't have any futre bookings for your Pokémon.</p>
 <% end %>
 
 <!-- Upcoming bookings from owners to renters-->
@@ -22,10 +22,10 @@
     Rented to : <%= booking.user.username %>
     From: <%= booking.start_date %>
     To: <%= booking.end_date %>
-    Price: $ <%= booking.price.to_i.to_s %>
+    <%# Price: $ <%= booking.price.to_i.to_s %> %>
   <% end %>
 <% else %>
-  <p>There's no upcoming bookings from owners.</p>
+  <p>No future Pokémon booked.</p>
 <% end %>
 
 
@@ -36,10 +36,10 @@
     Rented from : <%= booking.pokemon.user.username %>
     From: <%= booking.start_date %>
     To: <%= booking.end_date %>
-    Price: $ <%= booking.price.to_i.to_s %>
+    <%# Price: $ <%= booking.price.to_i.to_s %> %>
   <% end %>
 <% else %>
-  <p>There's no present bookings from potential renters.</p>
+  <p>Your Pokémon aren't booked at the moment.</p>
 <% end %>
 
 <!-- Present bookings from owners to renters-->
@@ -49,10 +49,10 @@
     Rented to : <%= booking.user.username %>
     From: <%= booking.start_date %>
     To: <%= booking.end_date %>
-    Price: $ <%= booking.price.to_i.to_s %>
+    <%# Price: $ <%= booking.price.to_i.to_s %> %>
   <% end %>
 <% else %>
-  <p>There's no present bookings from owners.</p>
+  <p>No active Pokémon booked.</p>
 <% end %>
 
 <!-- Past bookings from renters to owners-->
@@ -62,10 +62,10 @@
     Rented from : <%= booking.pokemon.user.username %>
     From: <%= booking.start_date %>
     To: <%= booking.end_date %>
-    Price: $ <%= booking.price.to_i.to_s %>
+    <%# Price: $ <%= booking.price.to_i.to_s %> %>
   <% end %>
 <% else %>
-  <p>There's no existing bookings.</p>
+  <p>You've nevere rented Pokémon to someone else.</p>
 <% end %>
 
 <!-- Past bookings from owners to renters-->
@@ -75,8 +75,8 @@
     Rented to : <%= booking.user.username %>
     From: <%= booking.start_date %>
     To: <%= booking.end_date %>
-    Price: $ <%= booking.price.to_i.to_s %>
+    <%# Price: $ <%= booking.price.to_i.to_s %> %>
   <% end %>
 <% else %>
-  <p>There's no existing bookings.</p>
+  <p>You've never booked a Pokémon.</p>
 <% end %>

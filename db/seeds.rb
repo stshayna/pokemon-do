@@ -9,9 +9,10 @@
 # Wipes database
 puts "Releasing Pokemons to the wild and clearing the database".red.blink
 puts ''
+# Make dependence later
+Booking.destroy_all
 Pokemon.destroy_all
 User.destroy_all
-Booking.destroy_all
 
 # Main user for demo (owner and renter)
 demo_user = User.create!(
