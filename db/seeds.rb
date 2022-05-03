@@ -9,6 +9,7 @@
 # Wipes database
 puts "Releasing Pokemons to the wild and clearing the database".red.blink
 puts ''
+
 # Make dependence later
 Booking.destroy_all
 Pokemon.destroy_all
@@ -29,9 +30,11 @@ puts "Demo user: #{demo_user.username.light_cyan} created:"
     user_id: demo_user.id,
     name: pokemon_name,
     description: Faker::Games::Pokemon.move,
-    location: Faker::Address.full_address,
+    location: Faker::Address.state,
+    # latitude: Faker::Address.latitude,
+    # longitude: Faker::Address.longitude,
     price: rand(100..200),
-  image_url: "https://img.pokemondb.net/artwork/large/#{pokemon_name.downcase}.jpg"
+    image_url: "https://img.pokemondb.net/artwork/large/#{pokemon_name.downcase}.jpg"
   )
 end
 3.times do
@@ -40,9 +43,11 @@ end
     user_id: demo_user.id,
     name: pokemon_name,
     description: Faker::Games::Pokemon.move,
-    location: Faker::Address.full_address,
+    location: Faker::Address.state,
+    # latitude: Faker::Address.latitude,
+    # longitude: Faker::Address.longitude,
     price: rand(100..200),
-  image_url: "https://img.pokemondb.net/artwork/large/#{pokemon_name.downcase}.jpg"
+    image_url: "https://img.pokemondb.net/artwork/large/#{pokemon_name.downcase}.jpg"
   )
   renter = User.create!(
     email: Faker::Internet.email,
@@ -70,9 +75,11 @@ puts "#{demo_user.username.light_cyan} has 6 pokemons now, 3 with bookings"
     user_id: pokemon_owner.id,
     name: pokemon_name,
     description: Faker::Games::Pokemon.move,
-    location: Faker::Address.full_address,
+    location: Faker::Address.state,
+    # latitude: Faker::Address.latitude,
+    # longitude: Faker::Address.longitude,
     price: rand(100..200),
-  image_url: "https://img.pokemondb.net/artwork/large/#{pokemon_name.downcase}.jpg"
+    image_url: "https://img.pokemondb.net/artwork/large/#{pokemon_name.downcase}.jpg"
   )
   booking = Booking.create!(
     pokemon_id: pokemon.id,
@@ -84,8 +91,8 @@ end
 puts "#{demo_user.username.light_cyan} has 3 bookings of their own now!"
 puts '--------------------------------------------------'.light_black
 
-# Seed database with 20 pokemons, users and bookings
-30.times do
+# Seed database with pokemons, users and bookings
+10.times do
   pokemon_owner = User.create!(
     email: Faker::Internet.email,
     # Faker first name used twice for username to have a higher chance at a unique username with no spaces.
@@ -99,7 +106,9 @@ puts '--------------------------------------------------'.light_black
     user_id: pokemon_owner.id,
     name: pokemon_name,
     description: Faker::Games::Pokemon.move,
-    location: Faker::Address.full_address,
+    location: Faker::Address.state,
+    # latitude: Faker::Address.latitude,
+    # longitude: Faker::Address.longitude,
     price: rand(100..200),
     image_url: "https://img.pokemondb.net/artwork/large/#{pokemon_name.downcase}.jpg"
   )
