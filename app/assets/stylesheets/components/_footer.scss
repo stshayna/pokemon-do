@@ -7,11 +7,13 @@
   padding: 0px 50px;
   color: rgba(0,0,0,0.3);
   width: 100%;
+  position: absolute;
   bottom: 0;
 }
 .footer-links {
   display: flex;
   align-items: center;
+  margin: auto;
 }
 .footer-links a {
   color: black;
