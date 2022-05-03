@@ -10,7 +10,7 @@
     </div>
   </form>
 
-  <div class="cards index">
+  <div class="cards pokemons">
     <% @pokemons.each do |pokemon| %>
       <div class="card-pokemon shadow rounded">
         <%# <%= image_tag pokemon.photo, alt: pokemon.name, class: "card-pokemon-img rounded-top" %>
@@ -22,7 +22,7 @@
           </div>
           <div class="text-end">
             <h5>From $<%= pokemon.price %> / day<h5>
-            <%= link_to "Request", new_pokemon_booking_path(pokemon), class: "btn btn-sm btn-dark rounded" %>
+            <%= link_to "View", pokemon_path(pokemon), class: "btn btn-sm btn-dark rounded" %>
           </div>
         </div>
       </div>
