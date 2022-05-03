@@ -1,1 +1,28 @@
-<h1>All the Pokémons I own</h1>
+<div class="container py-5">
+  <h3 class="card-heading ps-1 pt-4 pb-3">My Pokémons (<%= @owner_pokemons.count %>)</h3>
+
+  <div class="cards pokemons">
+    <% if @owner_pokemons.exists? %>
+      <% @owner_pokemons.each do |pokemon| %>
+        <div class="card-pokemon shadow rounded">
+          <%# <%= image_tag pokemon.photo, alt: pokemon.name, class: "card-pokemon-img rounded-top" %>
+          <img src="https://images.unsplash.com/photo-1605979399824-542335ee35d5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80" alt="">
+          <div class="card-pokemon-details p-3">
+            <div class="mt-1">
+              <h4><%= pokemon.name %></h4>
+              <p>Special skill: <%= pokemon.description %></p>
+            </div>
+            <div class="text-end">
+              <h5>$<%= pokemon.price %> / day<h5>
+              <%= link_to "Edit", "#", class: "btn btn-sm btn-dark rounded" %>
+              <%= link_to "Delete", "#", class: "btn btn-sm btn-dark rounded" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <p class="text-muted">You have not listed any Pokémons. ☹️</p>
+    <% end %>
+  </div>
+
+</div>

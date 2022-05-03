@@ -37,13 +37,3 @@ class PagesController < ApplicationController
     }
   end
 end
-
-Pokemon.all do |pokemon|
-  pokemon.bookings.where(user: current_user)
-end
-
-def find_owner_boookings
- Pokemon.all do |pokemon|
-    pokemon.bookings.where(user: current_user)
-  end
-end
