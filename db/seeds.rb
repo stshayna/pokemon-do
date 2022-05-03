@@ -60,7 +60,7 @@ start_dates = [20220501, 20220502, 20220503, 20220504, 20220505]
 end_dates = [20220506, 20220507, 20220508, 20220509, 20220510]
 
 # Seed database with 20 pokemons, users and bookings
-20.times do
+30.times do
   pokemon_owner = User.create!(
     email: Faker::Internet.email,
     # Faker first name used twice for username to have a higher chance at a unique username with no spaces.
@@ -95,6 +95,7 @@ end_dates = [20220506, 20220507, 20220508, 20220509, 20220510]
   )
 
   puts "#{pokemon_renter.username} just rented #{pokemon_owner.username}'s pokemon: #{pokemon.name}"
+  puts '--------------------------------------------------'
   puts ''
 end
 puts "Finished catching pokemons :)"
