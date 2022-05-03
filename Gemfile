@@ -3,7 +3,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.0.3'
 
-# Adds color to strings
+# Adds geocoder
+gem 'geocoder'
+# Adds color to strings (for seeding in terminal)
 gem 'colorize'
 # Adds faker
 gem 'faker'
@@ -41,7 +43,7 @@ gem 'simple_form', github: 'heartcombo/simple_form'
 group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
-  gem 'dotenv-rails'
+  gem 'dotenv-rails', groups: [:development, :test]
 
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
