@@ -2,10 +2,13 @@
 
 <div class="container pt-3">
   <div class="row">
+
     <div class="col-12 col-lg-8">
-      <img src=<%= @pokemon.image_url %> alt="Pokemon" class="w-100" />
+      <img src=<%= @pokemon.image_url %> alt="Pokemon" class="w-100"/>
       <h1 class="my-3"><%= @pokemon.name %></h1>
-      <p><%= @pokemon.description %></p>
+      <p>Location: <%= @pokemon.location %></p>
+      <p>Special skill: <%= @pokemon.description %></p>
+      <p>Price per day $<%= @pokemon.price %></p>
     </div>
 
     <div class="col-12 col-lg-4">
@@ -33,12 +36,14 @@
             To - From * @pokemon.price
           </div> %>
 
-          <input type="submit" class="btn btn-primary w-100">
+          <input type="submit" value="Book" class="btn btn-primary w-100">
 
         </form>
 
       </div>
     </div>
+    <div>
+     <%= link_to "Back", pokemons_path %>
+    </div>
   </div>
 </div>
-<%= link_to "Back", pokemons_path %>
