@@ -10,6 +10,8 @@ require 'open-uri'
 puts "Releasing Pokemons to the wild"
 puts ''
 Pokemon.destroy_all
+Booking.destroy_all
+User.destroy_all
 
 10.times do
   @user = User.create!(
@@ -32,17 +34,7 @@ end
     image_url: "https://img.pokemondb.net/artwork/large/#{pokemon_name.downcase}.jpg"
   )
   puts "#{@user.username} just caught #{@pokemon.name}!"
-
 end
-
-puts "Creating bookings"
-@booking = Booking.create!(
-  user_id: User.first.id,
-  pokemon_id: Pokemon.second.id,
-  start_date: "2022-05-03",
-  end_date: "2022-05-05"
-)
-puts "#{User.first.username} just booked #{Pokemon.second.name}!"
 
 puts ''
 puts "Finished catching pokemons :)"
