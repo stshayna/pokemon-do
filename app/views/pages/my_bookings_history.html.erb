@@ -1,0 +1,82 @@
+<h2>My Bookings</h2>
+
+<!-- We should create a tab to switch from bookings as a owner to bookings as a renter-->
+
+<!-- Upcoming bookings from renters to owners-->
+<% if @bookings[:upcoming][:from].present? %>
+  <% @bookings[:upcoming][:from].each do |booking| %>
+    <%= booking.pokemon.name %>
+    Rented from : <%= booking.pokemon.user.username %>
+    From: <%= booking.start_date %>
+    To: <%= booking.end_date %>
+    <%# Price: $ <%= booking.price.to_i.to_s %> %>
+  <% end %>
+<% else %>
+  <p>You don't have any futre bookings for your Pokémon.</p>
+<% end %>
+
+<!-- Upcoming bookings from owners to renters-->
+<% if @bookings[:upcoming][:to].present? %>
+  <% @bookings[:upcoming][:to].each do |booking| %>
+    <%= booking.pokemon.name %>
+    Rented to : <%= booking.user.username %>
+    From: <%= booking.start_date %>
+    To: <%= booking.end_date %>
+    <%# Price: $ <%= booking.price.to_i.to_s %> %>
+  <% end %>
+<% else %>
+  <p>No future Pokémon booked.</p>
+<% end %>
+
+
+<!-- Present bookings from renters to owners-->
+<% if @bookings[:present][:from].present? %>
+  <% @bookings[:present][:from].each do |booking| %>
+    <%= booking.pokemon.name %>
+    Rented from : <%= booking.pokemon.user.username %>
+    From: <%= booking.start_date %>
+    To: <%= booking.end_date %>
+    <%# Price: $ <%= booking.price.to_i.to_s %> %>
+  <% end %>
+<% else %>
+  <p>Your Pokémon aren't booked at the moment.</p>
+<% end %>
+
+<!-- Present bookings from owners to renters-->
+<% if @bookings[:present][:to].present? %>
+  <% @bookings[:present][:to].each do |booking| %>
+    <%= booking.pokemon.name %>
+    Rented to : <%= booking.user.username %>
+    From: <%= booking.start_date %>
+    To: <%= booking.end_date %>
+    <%# Price: $ <%= booking.price.to_i.to_s %> %>
+  <% end %>
+<% else %>
+  <p>No active Pokémon booked.</p>
+<% end %>
+
+<!-- Past bookings from renters to owners-->
+<% if @bookings[:past][:from].present? %>
+  <% @bookings[:past][:from].each do |booking| %>
+    <%= booking.pokemon.name %>
+    Rented from : <%= booking.pokemon.user.username %>
+    From: <%= booking.start_date %>
+    To: <%= booking.end_date %>
+    <%# Price: $ <%= booking.price.to_i.to_s %> %>
+  <% end %>
+<% else %>
+  <p>You've nevere rented Pokémon to someone else.</p>
+<% end %>
+
+<!-- Past bookings from owners to renters-->
+<% if @bookings[:past][:to].present? %>
+  <% @bookings[:past][:to].each do |booking| %>
+    <%= booking.pokemon.name %>
+    Rented to : <%= booking.user.username %>
+    From: <%= booking.start_date %>
+    To: <%= booking.end_date %>
+    <%# Price: $ <%= booking.price.to_i.to_s %> %>
+  <% end %>
+<% else %>
+  <p>You've never booked a Pokémon.</p>
+<% end %>

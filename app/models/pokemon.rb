@@ -2,8 +2,9 @@ class Pokemon < ApplicationRecord
   has_many :bookings
   belongs_to :user
 
-  validates_presence_of :name, :description, :location, :price
+  has_one_attached :photo
 
+  validates_presence_of :name, :description, :location, :price
 end
 
 # Validate uniqueness of pokemon later
