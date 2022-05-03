@@ -25,7 +25,7 @@
     padding: 13px 13px 0;
     height: 200px;
     width: 100%;
-    object-fit: cover;
+    object-fit: contain;
   }
 }
 
@@ -54,6 +54,45 @@
   font-weight: bold;
 }
 
+.card-booking {
+  overflow: hidden;
+  height: 120px;
+  background: white;
+  display: flex;
+  align-items: center;
+  width: 60%;
+  margin-bottom: 8px;
+  &.from-renter {
+    border: 3px solid $theme-beige;
+  }
+  &.to-renter {
+    border: 3px solid $theme-light-green;
+  }
+
+  .card-booking-img {
+    height: 100%;
+    width: 120px;
+    object-fit: contain;
+  }
+
+  .card-booking-info {
+    padding: 16px;
+  }
+
+  h2 {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0;
+  }
+
+  p {
+    font-size: 12px;
+    line-height: 1.4;
+    opacity: 0.7;
+    margin-bottom: 0;
+    margin-top: 8px;
+  }
+}
 // Smallest device
 @media (min-width: 100px) and (max-width: 575px) {
   .cards {

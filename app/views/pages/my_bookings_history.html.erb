@@ -1,82 +1,117 @@
-<h2>My Bookings</h2>
+<div class="container my-5 pt-4">
+  <h2 class="card-heading pt-4 pb-3">My Bookings</h2>
 
-<!-- We should create a tab to switch from bookings as a owner to bookings as a renter-->
-
-<!-- Upcoming bookings from renters to owners-->
-<% if @bookings[:upcoming][:from].present? %>
-  <% @bookings[:upcoming][:from].each do |booking| %>
-    <%= booking.pokemon.name %>
-    Rented from : <%= booking.pokemon.user.username %>
-    From: <%= booking.start_date %>
-    To: <%= booking.end_date %>
-    <%# Price: $ <%= booking.price.to_i.to_s %> %>
+  <!-- We should create a tab to switch from bookings as a owner to bookings as a renter-->
+  <p></p>
+  <h4>Upcoming bookings</h4>
+  <!-- Upcoming bookings from renters to owners-->
+  <% if @bookings[:upcoming][:from].present? %>
+    <% @bookings[:upcoming][:from].each do |booking| %>
+      <div class="card-booking shadow from-renter">
+        <%= image_tag booking.pokemon.image_url, class: "card-booking-img" %>
+        <div class="card-booking-info">
+          <h2>Pokemon: <%= booking.pokemon.name %></h2>
+          <p>Rented from : <%= booking.pokemon.user.username %></p>
+          <p>From: <%= booking.start_date %></p>
+          <p>To: <%= booking.end_date %></p>
+          <%# Price: $ <%= booking.price.to_i.to_s %>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <p>You haven't booked any future Pokémons.</p>
   <% end %>
-<% else %>
-  <p>You don't have any futre bookings for your Pokémon.</p>
-<% end %>
-
-<!-- Upcoming bookings from owners to renters-->
-<% if @bookings[:upcoming][:to].present? %>
-  <% @bookings[:upcoming][:to].each do |booking| %>
-    <%= booking.pokemon.name %>
-    Rented to : <%= booking.user.username %>
-    From: <%= booking.start_date %>
-    To: <%= booking.end_date %>
-    <%# Price: $ <%= booking.price.to_i.to_s %> %>
+  <!-- Upcoming bookings from owners to renters-->
+  <% if @bookings[:upcoming][:to].present? %>
+    <% @bookings[:upcoming][:to].each do |booking| %>
+      <div class="card-booking shadow to-renter">
+        <%= image_tag booking.pokemon.image_url, class: "card-booking-img" %>
+        <div class="card-booking-info">
+          <h2>Pokemon: <%= booking.pokemon.name %></h2>
+          <p>Rented to: <%= booking.user.username %></p>
+          <p>From: <%= booking.start_date %></p>
+          <p>To: <%= booking.end_date %></p>
+          <%# Price: $ <%= booking.price.to_i.to_s %>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <p>You don't have any future bookings for your Pokémons.</p>
   <% end %>
-<% else %>
-  <p>No future Pokémon booked.</p>
-<% end %>
 
-
-<!-- Present bookings from renters to owners-->
-<% if @bookings[:present][:from].present? %>
-  <% @bookings[:present][:from].each do |booking| %>
-    <%= booking.pokemon.name %>
-    Rented from : <%= booking.pokemon.user.username %>
-    From: <%= booking.start_date %>
-    To: <%= booking.end_date %>
-    <%# Price: $ <%= booking.price.to_i.to_s %> %>
+  <p></p>
+  <h4>Present bookings</h4>
+  <!-- Present bookings from renters to owners-->
+  <% if @bookings[:present][:from].present? %>
+    <% @bookings[:present][:from].each do |booking| %>
+      <div class="card-booking shadow from-renter">
+        <%= image_tag booking.pokemon.image_url, class: "card-booking-img" %>
+        <div class="card-booking-info">
+          <h2>Pokemon: <%= booking.pokemon.name %></h2>
+          <p>Rented from : <%= booking.pokemon.user.username %></p>
+          <p>From: <%= booking.start_date %></p>
+          <p>To: <%= booking.end_date %></p>
+          <%# Price: $ <%= booking.price.to_i.to_s %>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <p>You're not booking any Pokémons.</p>
   <% end %>
-<% else %>
-  <p>Your Pokémon aren't booked at the moment.</p>
-<% end %>
 
-<!-- Present bookings from owners to renters-->
-<% if @bookings[:present][:to].present? %>
-  <% @bookings[:present][:to].each do |booking| %>
-    <%= booking.pokemon.name %>
-    Rented to : <%= booking.user.username %>
-    From: <%= booking.start_date %>
-    To: <%= booking.end_date %>
-    <%# Price: $ <%= booking.price.to_i.to_s %> %>
+  <!-- Present bookings from owners to renters-->
+  <% if @bookings[:present][:to].present? %>
+    <% @bookings[:present][:to].each do |booking| %>
+      <div class="card-booking shadow to-renter">
+        <%= image_tag booking.pokemon.image_url, class: "card-booking-img" %>
+        <div class="card-booking-info">
+          <h2>Pokemon: <%= booking.pokemon.name %></h2>
+          <p>Rented to: <%= booking.user.username %></p>
+          <p>From: <%= booking.start_date %></p>
+          <p>To: <%= booking.end_date %></p>
+          <%# Price: $ <%= booking.price.to_i.to_s %>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <p>None of your Pokémon(s) is booked at the moment.</p>
   <% end %>
-<% else %>
-  <p>No active Pokémon booked.</p>
-<% end %>
 
-<!-- Past bookings from renters to owners-->
-<% if @bookings[:past][:from].present? %>
-  <% @bookings[:past][:from].each do |booking| %>
-    <%= booking.pokemon.name %>
-    Rented from : <%= booking.pokemon.user.username %>
-    From: <%= booking.start_date %>
-    To: <%= booking.end_date %>
-    <%# Price: $ <%= booking.price.to_i.to_s %> %>
+  <p></p>
+  <h4>History bookings</h4>
+  <!-- Past bookings from renters to owners-->
+  <% if @bookings[:past][:from].present? %>
+    <% @bookings[:past][:from].each do |booking| %>
+      <div class="card-booking shadow from-renter">
+        <%= image_tag booking.pokemon.image_url, class: "card-booking-img" %>
+        <div class="card-booking-info">
+          <h2>Pokemon: <%= booking.pokemon.name %></h2>
+          <p>Rented from : <%= booking.pokemon.user.username %></p>
+          <p>From: <%= booking.start_date %></p>
+          <p>To: <%= booking.end_date %></p>
+          <%# Price: $ <%= booking.price.to_i.to_s %>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <p>You've never booked a Pokémon.</p>
   <% end %>
-<% else %>
-  <p>You've nevere rented Pokémon to someone else.</p>
-<% end %>
-
-<!-- Past bookings from owners to renters-->
-<% if @bookings[:past][:to].present? %>
-  <% @bookings[:past][:to].each do |booking| %>
-    <%= booking.pokemon.name %>
-    Rented to : <%= booking.user.username %>
-    From: <%= booking.start_date %>
-    To: <%= booking.end_date %>
-    <%# Price: $ <%= booking.price.to_i.to_s %> %>
+  <p></p>
+  <!-- Past bookings from owners to renters-->
+  <% if @bookings[:past][:to].present? %>
+    <% @bookings[:past][:to].each do |booking| %>
+      <div class="card-booking shadow to-renter">
+        <%= image_tag booking.pokemon.image_url, class: "card-booking-img" %>
+        <div class="card-booking-info">
+          <h2>Pokemon: <%= booking.pokemon.name %></h2>
+          <p>Rented to: <%= booking.user.username %></p>
+          <p>From: <%= booking.start_date %></p>
+          <p>To: <%= booking.end_date %></p>
+          <%# Price: $ <%= booking.price.to_i.to_s %>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <p>You've never rented out a Pokémon to anyone.</p>
   <% end %>
-<% else %>
-  <p>You've never booked a Pokémon.</p>
-<% end %>
+</div>
