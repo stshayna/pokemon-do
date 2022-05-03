@@ -22,7 +22,7 @@ demo_user = User.create!(
 )
 puts "Demo user: #{demo_user.username.light_cyan} created:"
 
-# Creates a total of 6 pokemons for demo user, 3 with bookings.
+# Creates a total of 6 pokemons for demo user, 6 with bookings.
 3.times do
   pokemon_name = Faker::Games::Pokemon.name
   pokemon = Pokemon.create!(
@@ -49,14 +49,24 @@ end
     username: Faker::Name.first_name + Faker::Name.first_name,
     password: '123456'
   )
+
+  puts "Creating upcoming bookings"
   booking = Booking.create!(
     pokemon_id: pokemon.id,
     user_id: renter.id,
     start_date: Faker::Date.between(from: 3.days.from_now, to: 5.days.from_now),
     end_date: Faker::Date.between(from: 5.days.from_now, to: 10.days.from_now)
   )
+
+  puts "Creating past bookings"
+  booking = Booking.create!(
+    pokemon_id: pokemon.id,
+    user_id: demo_user.id,
+    start_date: Faker::Date.between(from: 15.days.ago, to: 10.days.ago),
+    end_date: Faker::Date.between(from: 10.days.ago, to: 2.days.ago)
+  )
 end
-puts "#{demo_user.username.light_cyan} has 6 pokemons now, 3 with bookings"
+puts "#{demo_user.username.light_cyan} has 6 pokemons now, 6 with bookings"
 
 # Creates 3 bookings for the demo user (from a renter perspective)
 3.times do
@@ -74,14 +84,23 @@ puts "#{demo_user.username.light_cyan} has 6 pokemons now, 3 with bookings"
     price: rand(100..200),
   image_url: "https://img.pokemondb.net/artwork/large/#{pokemon_name.downcase}.jpg"
   )
+  puts "Creating upcoming bookings"
   booking = Booking.create!(
     pokemon_id: pokemon.id,
     user_id: demo_user.id,
     start_date: Faker::Date.between(from: 3.days.from_now, to: 5.days.from_now),
     end_date: Faker::Date.between(from: 5.days.from_now, to: 10.days.from_now)
   )
+
+  puts "Creating past bookings"
+  booking = Booking.create!(
+    pokemon_id: pokemon.id,
+    user_id: demo_user.id,
+    start_date: Faker::Date.between(from: 15.days.ago, to: 10.days.ago),
+    end_date: Faker::Date.between(from: 10.days.ago, to: 2.days.ago)
+  )
 end
-puts "#{demo_user.username.light_cyan} has 3 bookings of their own now!"
+puts "#{demo_user.username.light_cyan} has 6 bookings of their own now!"
 puts '--------------------------------------------------'.light_black
 
 # Seed database with 20 pokemons, users and bookings
