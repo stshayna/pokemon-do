@@ -5,7 +5,6 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-require 'open-uri'
 
 # Wipes database
 puts "Releasing Pokemons to the wild and clearing the database".red.blink
