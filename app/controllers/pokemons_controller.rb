@@ -7,6 +7,13 @@ class PokemonsController < ApplicationController
       @pokemons = Pokemon.where("name ILIKE ?", "%#{params[:query]}%")
     else
       @pokemons = Pokemon.all
+      # Use this if you'd like to use a map using Geocoder gem
+      # @markers = @pokemons.geocoded.map do |pokemon|
+      #   {
+      #     lat: pokemon.latitude,
+      #     lng: pokemon.longitude
+      #   }
+      # end
     end
   end
 
