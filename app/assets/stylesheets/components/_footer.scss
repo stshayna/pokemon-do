@@ -1,18 +1,12 @@
 .footer {
-  background: #a2b388;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 100px;
-  padding: 0px 50px;
-  color: rgba(0,0,0,0.3);
+  background: $theme-green;
   width: 100%;
-  bottom: 0;
+  height: 64px;
 }
 .footer-links {
   display: flex;
-  align-items: center;
-  margin: 8px 650px;
+  padding-top: 15px;
+  justify-content: center;
 }
 .footer-links a {
   color: black;
@@ -23,5 +17,4 @@
 }
 .footer-links a:hover {
   opacity: 1;
-  color: #F0F9FF;
 }
