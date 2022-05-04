@@ -12,12 +12,15 @@ class BookingsController < ApplicationController
 
   def create
     @booking = Booking.new(booking_params)
-    @booking.pokemon = @pokemon
+    @booking.pokemon = Pokemon.find(params[:pokemon_id])
+    @booking.user = current_user
     if @booking.save
       redirect_to pokemon_path(@pokemon)
     else
       redirect_to pokemon_path(@pokemon)
     end
+    authorize @booking
+
   end
 
   def show; end

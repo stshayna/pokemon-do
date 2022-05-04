@@ -9,38 +9,50 @@
       <p>Location: <%= @pokemon.location %></p>
       <p>Special skill: <%= @pokemon.description %></p>
       <p>Price per day $<%= @pokemon.price %></p>
+      <p>Owner: <%= @pokemon.user.username.capitalize %></p>
     </div>
 
     <div class="col-12 col-lg-4">
       <div class="border p-4 rounded">
+       <p><b>Status</b> : <% if @pokemon.status %> Available </p>
+          <% else %>
+            Not available
+          <% end %>
         <h2>Book Me</h2>
 
-        <form method="get" action="/my-bookings-history">
+        <% if current_user.id != @pokemon.user_id  %>
+          <form method="get" action="/my-bookings-history">
 
-          <div class="mb-3">
-            <label for="message" class="form-label">Message</label>
-            <input type="text" id="message" class="form-control">
-          </div>
+            <div class="mb-3">
+              <label for="message" class="form-label">Message</label>
+              <input type="text" id="message" class="form-control">
+            </div>
 
-          <div class="mb-3">
-            <label for="from_date" class="form-label">From</label>
-            <input type="date" id="from_date" class="form-control">
-          </div>
+            <div class="mb-3">
+              <label for="from_date" class="form-label">From</label>
+              <input type="date" id="from_date" class="form-control">
+            </div>
 
-          <div class="mb-3">
-            <label for="to_date" class="form-label">To</label>
-            <input type="date" id="to_date" class="form-control">
-          </div>
+            <div class="mb-3">
+              <label for="to_date" class="form-label">To</label>
+              <input type="date" id="to_date" class="form-control">
+            </div>
 
-          <%# <div class="mb-3">
-            To - From * @pokemon.price
-          </div> %>
+            <%# <div class="mb-3">
+              To - From * @pokemon.price
+            </div> %>
 
-          <input type="submit" value="Book" class="btn btn-primary w-100">
+            <input type="submit" value="Book" class="btn btn-primary w-100">
 
-        </form>
+          </form>
+
+        <% else %>
+          <p>You can't rent your own Pokemon!</p>
+          <%= link_to 'See all Pokemon', pokemons_path, class: 'btn btn-primary' %>
+        <% end %>
 
       </div>
+
     </div>
     <div>
      <%= link_to "Back", pokemons_path %>

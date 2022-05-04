@@ -14,6 +14,8 @@
           <p>Rented from : <%= booking.pokemon.user.username %></p>
           <p>From: <%= booking.start_date %></p>
           <p>To: <%= booking.end_date %></p>
+          <p>Booking status: <%= booking.status %></p>
+
           <p>Price: $ <%= (booking.end_date - booking.start_date) * booking.pokemon.price %></p>
         </div>
       </div>
