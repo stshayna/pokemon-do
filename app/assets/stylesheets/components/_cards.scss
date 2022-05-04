@@ -29,7 +29,7 @@
     width: 100%;
     object-fit: contain;
   }
-  }
+}
 
 // .card-pokemon-img {
 // }
@@ -55,15 +55,25 @@
   opacity: 0.7;
   font-weight: bold;
 }
-
+.card-bookings {
+  background: rgba(255, 255, 255, 0.785);
+  width: 48%;
+  padding: 20px;
+  border-radius: 25px;
+  h5 {
+    text-align: center;
+    margin: 15px auto;
+  }
+}
 .card-booking {
   overflow: hidden;
-  height: 120px;
+  height: 140px;
   background: white;
   display: flex;
   align-items: center;
-  width: 60%;
+  width: 99.5%;
   margin-bottom: 8px;
+  border-radius: 20px;
   &.from-renter {
     border: 3px solid $theme-beige;
   }
@@ -72,9 +82,10 @@
   }
 
   .card-booking-img {
-    height: 100%;
-    width: 120px;
+    height: 95%;
+    width: 140px;
     object-fit: contain;
+    margin-left: 10px;
   }
 
   .card-booking-info {
@@ -82,13 +93,13 @@
   }
 
   h2 {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: bold;
     margin: 0;
   }
 
   p {
-    font-size: 12px;
+    font-size: 14px;
     line-height: 1.4;
     opacity: 0.7;
     margin-bottom: 0;
