@@ -1,3 +1,13 @@
+# !!! CERTAIN POKEMONS DON'T HAVE PICTURES such as Mr.Mine and Nidoran !!!
+@bad_pokemon_names_for_api = ['nidoran', 'mr. mime', "farfetch'd"]
+
+# Prevents pokemon with no image from seeding
+def valid_pokemon_names_only
+  name = Faker::Games::Pokemon.name
+  name = Faker::Games::Pokemon.name while @bad_pokemon_names_for_api.include?(name.downcase)
+  return name
+end
+
 # Wipes database
 puts "Releasing Pokemons to the wild and clearing the database".red.blink
 puts ''
@@ -33,7 +43,7 @@ puts '-'.light_black
 
 # Creates x amount of pokemon for demo_user Gary (to own) with no bookings.
 3.times do
-  pokemon_name = Faker::Games::Pokemon.name
+  pokemon_name = valid_pokemon_names_only
   pokemon = Pokemon.create!(
     user_id: demo_owner.id,
     name: pokemon_name,
@@ -51,7 +61,7 @@ end
 # Creates x amount of current bookings. Each booking will have a generated renter and pokemon.
 # The owner of the pokemons in the bookings will be Gary, the demo owner user.
 3.times do
-  pokemon_name = Faker::Games::Pokemon.name
+  pokemon_name = valid_pokemon_names_only
   pokemon = Pokemon.create!(
     user_id: demo_owner.id,
     name: pokemon_name,
@@ -84,7 +94,7 @@ end
     password: '123456'
   )
 
-  pokemon_name = Faker::Games::Pokemon.name
+  pokemon_name = valid_pokemon_names_only
   pokemon = Pokemon.create!(
     user_id: renter.id,
     name: pokemon_name,
@@ -112,7 +122,7 @@ puts '-'.light_black
 # Creates x amount of upcoming bookings. Each booking will have a generated renter and pokemon.
 # The owner of the pokemons in the bookings will be Gary, the demo owner user.
 3.times do
-  pokemon_name = Faker::Games::Pokemon.name
+  pokemon_name = valid_pokemon_names_only
   pokemon = Pokemon.create!(
     user_id: demo_owner.id,
     name: pokemon_name,
@@ -145,7 +155,7 @@ end
     password: '123456'
   )
 
-  pokemon_name = Faker::Games::Pokemon.name
+  pokemon_name = valid_pokemon_names_only
   pokemon = Pokemon.create!(
     user_id: renter.id,
     name: pokemon_name,
@@ -173,7 +183,7 @@ puts '-'.light_black
 # Creates x amount of past bookings. Each booking will have a generated renter and pokemon.
 # The owner of the pokemons in the bookings will be Gary, the demo owner user.
 5.times do
-  pokemon_name = Faker::Games::Pokemon.name
+  pokemon_name = valid_pokemon_names_only
   pokemon = Pokemon.create!(
     user_id: demo_owner.id,
     name: pokemon_name,
@@ -206,7 +216,7 @@ end
     password: '123456'
   )
 
-  pokemon_name = Faker::Games::Pokemon.name
+  pokemon_name = valid_pokemon_names_only
   pokemon = Pokemon.create!(
     user_id: renter.id,
     name: pokemon_name,
@@ -232,7 +242,7 @@ puts '-'.light_black
 #############################################################################
 
 # Seed database with x amount of pokemons and their owner.
-30.times do
+50.times do
   pokemon_owner = User.create!(
     email: Faker::Internet.email,
     username: Faker::Name.first_name + Faker::Name.first_name,
@@ -240,7 +250,7 @@ puts '-'.light_black
   )
   puts "Pokemon trainer #{pokemon_owner.username.cyan} was born!"
 
-  pokemon_name = Faker::Games::Pokemon.name
+  pokemon_name = valid_pokemon_names_only
   pokemon = Pokemon.create!(
     user_id: pokemon_owner.id,
     name: pokemon_name,
@@ -255,3 +265,7 @@ puts '-'.light_black
   puts ''
 end
 puts "Finished catching pokemons :)"
+
+# Use the line below to create a booking for the live demo (for me: Denzel)
+#                 Gary's pokemon       renter Jerry             Friday               Sunday
+# Booking.create!(pokemon_id: 3, user_id: User.first.id, start_date: 20220506, end_date: 20220508)
