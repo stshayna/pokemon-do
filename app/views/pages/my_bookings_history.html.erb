@@ -42,6 +42,7 @@
                 <p>From: <%= booking.start_date %></p>
                 <p>To: <%= booking.end_date %></p>
                 <p>Price: $ <%= (booking.end_date - booking.start_date) * booking.pokemon.price %></p>
+                <p>Booking status: <%= booking.status %></p>
               </div>
               <div class="card-booking-status">
                 <% if booking.status == "Pending" %>
