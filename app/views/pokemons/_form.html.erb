@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-6">
+
+      <%= simple_form_for @pokemon do |f| %>
+        <%= f.input :name %>
+        <%= f.input :description %>
+        <%= f.input :location %>
+        <%= f.input :price %>
+         <div class="btn btn-primary">
+          <%= f.submit %>
+         </div>
+      <% end %>
+
+    </div>
+  </div>
+</div>
