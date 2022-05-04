@@ -1,6 +1,6 @@
 class BookingsController < ApplicationController
   before_action :find_pokemon, only: [ :new, :create ]
-  before_action :find_booking, only: [:show, :edit, :update]
+  before_action :find_booking, only: [:show, :edit, :update, :accept, :reject]
 
   def index
     @bookings = Booking.all
@@ -35,6 +35,16 @@ class BookingsController < ApplicationController
   #   @booking.destroy
   #   redirect_to pokemon_path(@bookings)
   # end
+
+  def accept
+    @booking.update(status: "Accepted")
+    redirect_to my_bookings_history_path
+  end
+
+  def reject
+    @booking.update(status: "Rejected")
+    redirect_to my_bookings_history_path
+  end
 
   private
 
