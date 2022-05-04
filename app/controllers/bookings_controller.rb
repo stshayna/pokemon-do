@@ -37,7 +37,6 @@ class BookingsController < ApplicationController
   # end
 
   def accept
-    p 'accept booking'
     @booking.update(status: "Accepted")
     redirect_to my_bookings_history_path
   end
