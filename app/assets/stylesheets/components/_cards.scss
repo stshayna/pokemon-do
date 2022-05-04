@@ -10,11 +10,12 @@
 }
 
 .card-category{
-  color: #A2B38B;;
+  color: #A2B38B;
   padding-left: 8px;
-  object-fit: cover;
-  background-size: cover;
+  background-size: contain;
+  background-repeat: no-repeat;
   background-position: center;
+  background-color: white;
   box-shadow: 0 0 8px rgba(0,0,0,0.2);
 }
 
@@ -28,7 +29,7 @@
     width: 100%;
     object-fit: contain;
   }
-}
+  }
 
 // .card-pokemon-img {
 // }
