@@ -40,12 +40,11 @@
           <%= link_to "Refuse", booking_reject_path(booking),
                         data: { confirm: "Are you sure you want to refuse this booking?"} %>
         <% else %>
+
         <% end %>
       </div>
-    <% end %>
-  <% else %>
-    <p>You don't have any future bookings for your Pokémons.</p>
-  <% end %>
+    </div>
+  </div>
 
   <p></p>
   <h4>Present bookings</h4>
@@ -62,10 +61,6 @@
           <p>Price: $ <%= (booking.end_date - booking.start_date) * booking.pokemon.price %></p>
         </div>
       </div>
-    <% end %>
-  <% else %>
-    <p>You're not booking any Pokémons.</p>
-  <% end %>
 
   <!-- Present bookings from owners to renters-->
   <% if @bookings[:present][:to].present? %>
@@ -80,10 +75,8 @@
           <p>Price: $ <%= (booking.end_date - booking.start_date) * booking.pokemon.price %></p>
         </div>
       </div>
-    <% end %>
-  <% else %>
-    <p>None of your Pokémon(s) is booked at the moment.</p>
-  <% end %>
+    </div>
+  </div>
 
   <p></p>
   <h4>History bookings</h4>
@@ -118,8 +111,6 @@
           <p>Price: $ <%= (booking.end_date - booking.start_date) * booking.pokemon.price %></p>
         </div>
       </div>
-    <% end %>
-  <% else %>
-    <p>You've never rented out a Pokémon to anyone.</p>
-  <% end %>
+    </div>
+  </div>
 </div>
