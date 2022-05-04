@@ -19,6 +19,7 @@ class PokemonsController < ApplicationController
   def create
     @pokemon = Pokemon.new(pokemon_params)
     @pokemon.user = current_user
+    @pokemon.image_url = "https://img.pokemondb.net/artwork/large/#{@pokemon.name.downcase}.jpg"
     if @pokemon.save
       redirect_to pokemon_path(@pokemon)
     else
