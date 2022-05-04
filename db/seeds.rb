@@ -268,4 +268,4 @@ puts "Finished catching pokemons :)"
 
 # Use the line below to create a booking for the live demo (for me: Denzel)
 #                 Gary's pokemon       renter Jerry             Friday               Sunday
-# Booking.create!(pokemon_id: 3, user_id: User.first.id, start_date: 20220506, end_date: 20220508)
+# Booking.create!(pokemon_id: 2, user_id: User.first.id, start_date: 20220506, end_date: 20220508)

@@ -17,7 +17,7 @@
                 <p>Renting from : <%= booking.pokemon.user.username %></p>
                 <p>From: <%= booking.start_date %></p>
                 <p>To: <%= booking.end_date %></p>
-                <p>Price: $ <%= (booking.end_date - booking.start_date) * booking.pokemon.price %></p>
+                <p>Total cost: $ <%= (booking.end_date - booking.start_date).to_i * booking.pokemon.price %></p>
               </div>
               <div>
                 <p>Booking status: <%= booking.status %></p>
@@ -41,7 +41,7 @@
                 <p>Renting to: <%= booking.user.username %></p>
                 <p>From: <%= booking.start_date %></p>
                 <p>To: <%= booking.end_date %></p>
-                <p>Price: $ <%= (booking.end_date - booking.start_date) * booking.pokemon.price %></p>
+                <p>Total cost: $ <%= (booking.end_date - booking.start_date).to_i * booking.pokemon.price %></p>
                 <p>Booking status: <%= booking.status %></p>
               </div>
               <div class="card-booking-status">
@@ -75,7 +75,7 @@
                 <p>Renting from : <%= booking.pokemon.user.username %></p>
                 <p>From: <%= booking.start_date %></p>
                 <p>To: <%= booking.end_date %></p>
-                <p>Price: $ <%= (booking.end_date - booking.start_date) * booking.pokemon.price %></p>
+                <p>Total cost: $ <%= (booking.end_date - booking.start_date).to_i * booking.pokemon.price %></p>
               </div>
             </div>
           <% end %>
@@ -96,7 +96,7 @@
                 <p>Renting to: <%= booking.user.username %></p>
                 <p>From: <%= booking.start_date %></p>
                 <p>To: <%= booking.end_date %></p>
-                <p>Price: $ <%= (booking.end_date - booking.start_date) * booking.pokemon.price %></p>
+                <p>Total cost: $ <%= (booking.end_date - booking.start_date).to_i * booking.pokemon.price %></p>
               </div>
             </div>
           <% end %>
@@ -123,7 +123,7 @@
                 <p>Rented from : <%= booking.pokemon.user.username %></p>
                 <p>From: <%= booking.start_date %></p>
                 <p>To: <%= booking.end_date %></p>
-                <p>Price: $ <%= (booking.end_date - booking.start_date) * booking.pokemon.price %></p>
+                <p>Total cost: $ <%= (booking.end_date - booking.start_date).to_i * booking.pokemon.price %></p>
               </div>
             </div>
           <% end %>
@@ -144,7 +144,7 @@
                 <p>Rented to: <%= booking.user.username %></p>
                 <p>From: <%= booking.start_date %></p>
                 <p>To: <%= booking.end_date %></p>
-                <p>Price: $ <%= (booking.end_date - booking.start_date) * booking.pokemon.price %></p>
+                <p>Total cost: $ <%= (booking.end_date - booking.start_date).to_i * booking.pokemon.price %></p>
               </div>
             </div>
           <% end %>
