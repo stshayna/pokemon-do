@@ -18,7 +18,6 @@
         </div>
       </div>
     <% end %>
-  <% else %>
     <p>You haven't booked any future Pokémons.</p>
   <% end %>
   <!-- Upcoming bookings from owners to renters-->
@@ -39,12 +38,13 @@
                         data: { confirm: "Do you want to accept this booking?"} %>
           <%= link_to "Refuse", booking_reject_path(booking),
                         data: { confirm: "Are you sure you want to refuse this booking?"} %>
-        <% else %>
-
         <% end %>
+       </div>
       </div>
-    </div>
-  </div>
+    <% end %>
+  <% else %>
+    <p>You don't have any future bookings for your Pokémons.</p>
+  <% end %>
 
   <p></p>
   <h4>Present bookings</h4>
@@ -59,9 +59,12 @@
           <p>From: <%= booking.start_date %></p>
           <p>To: <%= booking.end_date %></p>
           <p>Price: $ <%= (booking.end_date - booking.start_date) * booking.pokemon.price %></p>
-        </div>
+         </div>
       </div>
-
+    <% end %>
+  <% else %>
+    <p>You're not booking any Pokémons.</p>
+  <% end %>
   <!-- Present bookings from owners to renters-->
   <% if @bookings[:present][:to].present? %>
     <% @bookings[:present][:to].each do |booking| %>
@@ -75,8 +78,10 @@
           <p>Price: $ <%= (booking.end_date - booking.start_date) * booking.pokemon.price %></p>
         </div>
       </div>
-    </div>
-  </div>
+    <% end %>
+  <% else %>
+    <p>None of your Pokémon(s) is booked at the moment.</p>
+  <% end %>
 
   <p></p>
   <h4>History bookings</h4>
@@ -109,8 +114,9 @@
           <p>From: <%= booking.start_date %></p>
           <p>To: <%= booking.end_date %></p>
           <p>Price: $ <%= (booking.end_date - booking.start_date) * booking.pokemon.price %></p>
-        </div>
+       </div>
       </div>
-    </div>
-  </div>
-</div>
+    <% end %>
+  <% else %>
+    <p>You've never rented out a Pokémon to anyone.</p>
+  <% end %>
