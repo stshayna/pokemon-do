@@ -10,9 +10,7 @@ class PokemonsController < ApplicationController
     end
   end
 
-  def show
-    @pokemon = Pokemon.find([params[:id]])
-  end
+  def show; end
 
   def new
     @pokemon = Pokemon.new
@@ -22,13 +20,11 @@ class PokemonsController < ApplicationController
     @pokemon = Pokemon.new(pokemon_params)
     @pokemon.user = current_user
     if @pokemon.save
-      redirect_to pokemons_path
+      redirect_to pokemon_path(@pokemon)
     else
       render :new
     end
   end
-
-  def show; end
 
   def edit; end
 
