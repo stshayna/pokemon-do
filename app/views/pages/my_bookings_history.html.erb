@@ -19,6 +19,9 @@
                 <p>To: <%= booking.end_date %></p>
                 <p>Price: $ <%= (booking.end_date - booking.start_date) * booking.pokemon.price %></p>
               </div>
+              <div>
+                <p>Booking status: <%= booking.status %></p>
+              </div>
             </div>
           <% end %>
         <% else %>
