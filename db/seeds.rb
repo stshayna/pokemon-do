@@ -54,6 +54,16 @@ puts '-'.light_black
   )
 end
 
+# Creates specific pokemon to make a booking with duriong demo, owner is Gary (pokemon_id: 5)
+pokemon = Pokemon.create!(
+  user_id: demo_owner.id,
+  name: 'graveler',
+  description: 'Great for demolition!',
+  location: 'Pallet town, near that bush.',
+  price: 24,
+image_url: "https://img.pokemondb.net/artwork/large/graveler.jpg"
+)
+
 #############################################################################
 #-----------------------------CURRENT BOOKINGS------------------------------#
 #############################################################################
@@ -241,6 +251,16 @@ puts '-'.light_black
 #--------------------------SEEDING DB WITH POKEMONS-------------------------#
 #############################################################################
 
+# Creates a 'graveler' pokemon with a high price, to compare with Gary's pokemon during demo day
+pokemon = Pokemon.create!(
+  user_id: 20,
+  name: 'graveler',
+  description: 'Can break rocks better than you can!',
+  location: 'Viridian town, near the river.',
+  price: 74,
+image_url: "https://img.pokemondb.net/artwork/large/graveler.jpg"
+)
+
 # Seed database with x amount of pokemons and their owner.
 50.times do
   pokemon_owner = User.create!(
@@ -264,8 +284,19 @@ puts '-'.light_black
   puts '--------------------------------------------------'.light_black
   puts ''
 end
+
+# Creates a 'graveler' pokemon with a far location, to compare with Gary's pokemon during demo day
+pokemon = Pokemon.create!(
+  user_id: 18,
+  name: 'graveler',
+  description: 'Can be used as a wheel!',
+  location: 'Nowherenearyou street.',
+  price: 28,
+image_url: "https://img.pokemondb.net/artwork/large/graveler.jpg"
+)
+
 puts "Finished catching pokemons :)"
 
 # Use the line below to create a booking for the live demo (for me: Denzel)
-#                 Gary's pokemon       renter Jerry             Friday               Sunday
-# Booking.create!(pokemon_id: 2, user_id: User.first.id, start_date: 20220506, end_date: 20220508)
+#               Jerry's renting    Gary's pokemon     Friday            Sunday
+Booking.create!(user_id: 1, pokemon_id: 4, start_date: 20220506, end_date: 20220508)
