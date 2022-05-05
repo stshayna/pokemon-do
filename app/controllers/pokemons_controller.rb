@@ -10,9 +10,7 @@ class PokemonsController < ApplicationController
     end
   end
 
-  def show
-    @pokemon = Pokemon.find([params[:id]])
-  end
+  def show; end
 
   def new
     @pokemon = Pokemon.new
@@ -21,14 +19,13 @@ class PokemonsController < ApplicationController
   def create
     @pokemon = Pokemon.new(pokemon_params)
     @pokemon.user = current_user
+    @pokemon.image_url = "https://img.pokemondb.net/artwork/large/#{@pokemon.name.downcase}.jpg"
     if @pokemon.save
-      redirect_to pokemons_path
+      redirect_to pokemon_path(@pokemon)
     else
       render :new
     end
   end
-
-  def show; end
 
   def edit; end
 
