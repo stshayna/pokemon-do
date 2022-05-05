@@ -67,7 +67,7 @@
 }
 .card-booking {
   overflow: hidden;
-  height: 150px;
+  height: 160px;
   background: white;
   display: flex;
   align-items: center;
@@ -82,28 +82,41 @@
   }
 
   .card-booking-img {
-    height: 95%;
-    width: 150px;
+    height: 80%;
+    width: 120px;
     object-fit: contain;
     margin-left: 10px;
   }
 
   .card-booking-info {
-    padding: 16px;
+    padding: 10px;
+    flex-grow: 1;
+    h2 {
+      font-size: 18px;
+      font-weight: bold;
+      margin: 0;
+    }
+    p {
+      font-size: 14px;
+      line-height: 1.4;
+      opacity: 0.7;
+      margin: 0;
+      margin-top: 1px;
+    }
   }
 
-  h2 {
-    font-size: 18px;
-    font-weight: bold;
-    margin: 0;
-  }
-
-  p {
-    font-size: 14px;
-    line-height: 1.4;
-    opacity: 0.7;
-    margin-bottom: 0;
-    margin-top: 8px;
+  .card-booking-status {
+    margin-right: 15px;
+    .status {
+      text-decoration: none;
+      font-size: small;
+      &.approve {
+        color: green;
+      }
+      &.refuse {
+        color: red;
+      }
+    }
   }
 }
 // Smallest device

@@ -14,13 +14,11 @@
               <%= image_tag booking.pokemon.image_url, class: "card-booking-img" %>
               <div class="card-booking-info">
                 <h2><%= booking.pokemon.name %></h2>
-                <p>Renting from : <%= booking.pokemon.user.username %></p>
+                <p>Rented from: <%= booking.pokemon.user.username %></p>
                 <p>From: <%= booking.start_date %></p>
                 <p>To: <%= booking.end_date %></p>
                 <p>Total cost: $ <%= (booking.end_date - booking.start_date).to_i * booking.pokemon.price %></p>
-              </div>
-              <div>
-                <p>Booking status: <%= booking.status %></p>
+                <p>Booking status: <span class="fst-italic"><%= booking.status %></span></p>
               </div>
             </div>
           <% end %>
@@ -42,12 +40,14 @@
                 <p>From: <%= booking.start_date %></p>
                 <p>To: <%= booking.end_date %></p>
                 <p>Total cost: $ <%= (booking.end_date - booking.start_date).to_i * booking.pokemon.price %></p>
-                <p>Booking status: <%= booking.status %></p>
+                <p>Booking status: <span class="fst-italic"><%= booking.status %></span></p>
               </div>
               <div class="card-booking-status">
                 <% if booking.status == "Pending" %>
-                  <%= link_to "Approve", booking_accept_path(booking), data: { confirm: "Do you want to accept this booking?"} %>
-                  <%= link_to "Refuse", booking_reject_path(booking), data: { confirm: "Are you sure you want to refuse this booking?"} %>
+                  <span>
+                    <%= link_to "Approve", booking_accept_path(booking), data: { confirm: "Do you want to accept this booking ✅ ?"}, class: "status approve" %> /
+                    <%= link_to "Refuse", booking_reject_path(booking), data: { confirm: "Are you sure you want to refuse this booking ❌ ?"}, class: "status refuse" %>
+                  </span>
                 <% end %>
               </div>
             </div>
@@ -60,7 +60,7 @@
   </div>
 
   <p></p>
-  <div>
+  <div class="my-5">
     <h2 class="text-center">Present bookings</h2>
     <div class="d-flex justify-content-between my-4">
       <!-- present bookings from renters to owners-->
@@ -72,7 +72,7 @@
               <%= image_tag booking.pokemon.image_url, class: "card-booking-img" %>
               <div class="card-booking-info">
                 <h2><%= booking.pokemon.name %></h2>
-                <p>Renting from : <%= booking.pokemon.user.username %></p>
+                <p>Rented from: <%= booking.pokemon.user.username %></p>
                 <p>From: <%= booking.start_date %></p>
                 <p>To: <%= booking.end_date %></p>
                 <p>Total cost: $ <%= (booking.end_date - booking.start_date).to_i * booking.pokemon.price %></p>
@@ -120,7 +120,7 @@
               <%= image_tag booking.pokemon.image_url, class: "card-booking-img" %>
               <div class="card-booking-info">
                 <h2><%= booking.pokemon.name %></h2>
-                <p>Rented from : <%= booking.pokemon.user.username %></p>
+                <p>Rented from: <%= booking.pokemon.user.username %></p>
                 <p>From: <%= booking.start_date %></p>
                 <p>To: <%= booking.end_date %></p>
                 <p>Total cost: $ <%= (booking.end_date - booking.start_date).to_i * booking.pokemon.price %></p>
