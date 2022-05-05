@@ -1,6 +1,11 @@
 .avatar {
-  height: 40px;
+  height: 38px;
   border-radius: 50%;
+
+  &:hover {
+    height: 43px;
+    cursor: pointer;
+  }
 }
 .avatar-large {
   width: 56px;

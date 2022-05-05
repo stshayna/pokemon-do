@@ -1,6 +1,6 @@
 class BookingsController < ApplicationController
   before_action :find_pokemon, only: [ :new, :create ]
-  before_action :find_booking, only: [:show, :edit, :update]
+  before_action :find_booking, only: [:show, :edit, :update, :accept, :reject]
 
   def index
     @bookings = Booking.all
@@ -12,12 +12,16 @@ class BookingsController < ApplicationController
 
   def create
     @booking = Booking.new(booking_params)
-    @booking.pokemon = @pokemon
+    @booking.pokemon = Pokemon.find(params[:pokemon_id])
+    @booking.pokemon.image_url = "https://img.pokemondb.net/artwork/large/#{@booking.pokemon.name.downcase}.jpg"
+    @booking.user = current_user
     if @booking.save
       redirect_to pokemon_path(@pokemon)
     else
       redirect_to pokemon_path(@pokemon)
     end
+    authorize @booking
+
   end
 
   def show; end
@@ -35,6 +39,16 @@ class BookingsController < ApplicationController
   #   @booking.destroy
   #   redirect_to pokemon_path(@bookings)
   # end
+
+  def accept
+    @booking.update(status: "Accepted")
+    redirect_to my_bookings_history_path
+  end
+
+  def reject
+    @booking.update(status: "Rejected")
+    redirect_to my_bookings_history_path
+  end
 
   private
 

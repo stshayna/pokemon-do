@@ -29,7 +29,7 @@
     width: 100%;
     object-fit: contain;
   }
-  }
+}
 
 // .card-pokemon-img {
 // }
@@ -55,15 +55,25 @@
   opacity: 0.7;
   font-weight: bold;
 }
-
+.card-bookings {
+  background: rgba(255, 255, 255, 0.785);
+  width: 48%;
+  padding: 20px;
+  border-radius: 25px;
+  h5 {
+    text-align: center;
+    margin: 15px auto;
+  }
+}
 .card-booking {
   overflow: hidden;
-  height: 120px;
+  height: 160px;
   background: white;
   display: flex;
   align-items: center;
-  width: 60%;
+  width: 99.5%;
   margin-bottom: 8px;
+  border-radius: 20px;
   &.from-renter {
     border: 3px solid $theme-beige;
   }
@@ -72,27 +82,41 @@
   }
 
   .card-booking-img {
-    height: 100%;
+    height: 80%;
     width: 120px;
     object-fit: contain;
+    margin-left: 10px;
   }
 
   .card-booking-info {
-    padding: 16px;
+    padding: 10px;
+    flex-grow: 1;
+    h2 {
+      font-size: 18px;
+      font-weight: bold;
+      margin: 0;
+    }
+    p {
+      font-size: 14px;
+      line-height: 1.4;
+      opacity: 0.7;
+      margin: 0;
+      margin-top: 1px;
+    }
   }
 
-  h2 {
-    font-size: 16px;
-    font-weight: bold;
-    margin: 0;
-  }
-
-  p {
-    font-size: 12px;
-    line-height: 1.4;
-    opacity: 0.7;
-    margin-bottom: 0;
-    margin-top: 8px;
+  .card-booking-status {
+    margin-right: 15px;
+    .status {
+      text-decoration: none;
+      font-size: small;
+      &.approve {
+        color: green;
+      }
+      &.refuse {
+        color: red;
+      }
+    }
   }
 }
 // Smallest device

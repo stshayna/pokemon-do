@@ -1,147 +1,302 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+# !!! CERTAIN POKEMONS DON'T HAVE PICTURES such as Mr.Mine and Nidoran !!!
+@bad_pokemon_names_for_api = ['nidoran', 'mr. mime', "farfetch'd"]
+
+# Prevents pokemon with no image from seeding
+def valid_pokemon_names_only
+  name = Faker::Games::Pokemon.name
+  name = Faker::Games::Pokemon.name while @bad_pokemon_names_for_api.include?(name.downcase)
+  return name
+end
 
 # Wipes database
 puts "Releasing Pokemons to the wild and clearing the database".red.blink
 puts ''
-# Make dependence later
 Booking.destroy_all
 Pokemon.destroy_all
 User.destroy_all
 
-# Main user for demo (owner and renter)
-demo_user = User.create!(
-  email: 'pokemondo@lewagon.com',
+#############################################################################
+#--------------------------------RENTER-------------------------------------#
+#############################################################################
+
+# First demo user Jerry (renter).
+demo_renter = User.create!(
+  email: 'renter@pokemon.do',
   username: 'Jerry',
   password: '123456'
 )
-puts "Demo user: #{demo_user.username.light_cyan} created:"
+puts "Demo renter: #{demo_renter.username.light_cyan} is ready to rent pokemons:"
+puts '-'.light_black
 
-# Creates a total of 6 pokemons for demo user, 6 with bookings.
+#############################################################################
+#---------------------------------OWNER-------------------------------------#
+#############################################################################
+
+# Second demo user Gary (owner).
+demo_owner = User.create!(
+  email: 'owner@pokemon.do',
+  username: 'Gary',
+  password: '123456'
+)
+puts "Demo owner: #{demo_owner.username.light_cyan} is ready to rent out his pokemons:"
+puts '-'.light_black
+
+# Creates x amount of pokemon for demo_user Gary (to own) with no bookings.
 3.times do
-  pokemon_name = Faker::Games::Pokemon.name
+  pokemon_name = valid_pokemon_names_only
   pokemon = Pokemon.create!(
-    user_id: demo_user.id,
+    user_id: demo_owner.id,
     name: pokemon_name,
     description: Faker::Games::Pokemon.move,
     location: Faker::Address.full_address,
-    price: rand(100..200),
+    price: rand(25..65),
   image_url: "https://img.pokemondb.net/artwork/large/#{pokemon_name.downcase}.jpg"
   )
 end
+
+# Creates specific pokemon to make a booking with duriong demo, owner is Gary (pokemon_id: 5)
+pokemon = Pokemon.create!(
+  user_id: demo_owner.id,
+  name: 'graveler',
+  description: 'Great for demolition!',
+  location: 'Pallet town, near that bush.',
+  price: 24,
+image_url: "https://img.pokemondb.net/artwork/large/graveler.jpg"
+)
+
+#############################################################################
+#-----------------------------CURRENT BOOKINGS------------------------------#
+#############################################################################
+
+# Creates x amount of current bookings. Each booking will have a generated renter and pokemon.
+# The owner of the pokemons in the bookings will be Gary, the demo owner user.
 3.times do
-  pokemon_name = Faker::Games::Pokemon.name
+  pokemon_name = valid_pokemon_names_only
   pokemon = Pokemon.create!(
-    user_id: demo_user.id,
+    user_id: demo_owner.id,
     name: pokemon_name,
     description: Faker::Games::Pokemon.move,
     location: Faker::Address.full_address,
-    price: rand(100..200),
-  image_url: "https://img.pokemondb.net/artwork/large/#{pokemon_name.downcase}.jpg"
+    price: rand(25..65),
+    image_url: "https://img.pokemondb.net/artwork/large/#{pokemon_name.downcase}.jpg"
   )
+
   renter = User.create!(
     email: Faker::Internet.email,
     username: Faker::Name.first_name + Faker::Name.first_name,
     password: '123456'
   )
 
-  puts "Creating upcoming bookings"
-  booking = Booking.create!(
+  Booking.create!(
+    pokemon_id: pokemon.id,
+    user_id: renter.id,
+    start_date: Faker::Date.between(from: 3.days.ago, to: 2.days.ago),
+    end_date: Faker::Date.between(from: 2.days.from_now, to: 3.days.from_now)
+  )
+end
+
+# Creates x amount of current bookings. Each booking, Gary is RENTING the pokemon.
+# The owner of the pokemons in the bookings will be a new generated renter.
+1.times do
+  renter = User.create!(
+    email: Faker::Internet.email,
+    username: Faker::Name.first_name + Faker::Name.first_name,
+    password: '123456'
+  )
+
+  pokemon_name = valid_pokemon_names_only
+  pokemon = Pokemon.create!(
+    user_id: renter.id,
+    name: pokemon_name,
+    description: Faker::Games::Pokemon.move,
+    location: Faker::Address.full_address,
+    price: rand(25..65),
+    image_url: "https://img.pokemondb.net/artwork/large/#{pokemon_name.downcase}.jpg"
+  )
+
+  Booking.create!(
+    pokemon_id: pokemon.id,
+    user_id: demo_owner.id,
+    start_date: Faker::Date.between(from: 3.days.ago, to: 2.days.ago),
+    end_date: Faker::Date.between(from: 2.days.from_now, to: 3.days.from_now)
+  )
+end
+
+puts "#{demo_owner.username.light_cyan}'s current bookings are ready."
+puts '-'.light_black
+
+#############################################################################
+#----------------------------UPCOMING BOOKINGS------------------------------#
+#############################################################################
+
+# Creates x amount of upcoming bookings. Each booking will have a generated renter and pokemon.
+# The owner of the pokemons in the bookings will be Gary, the demo owner user.
+3.times do
+  pokemon_name = valid_pokemon_names_only
+  pokemon = Pokemon.create!(
+    user_id: demo_owner.id,
+    name: pokemon_name,
+    description: Faker::Games::Pokemon.move,
+    location: Faker::Address.full_address,
+    price: rand(25..65),
+    image_url: "https://img.pokemondb.net/artwork/large/#{pokemon_name.downcase}.jpg"
+  )
+
+  renter = User.create!(
+    email: Faker::Internet.email,
+    username: Faker::Name.first_name + Faker::Name.first_name,
+    password: '123456'
+  )
+
+  Booking.create!(
     pokemon_id: pokemon.id,
     user_id: renter.id,
     start_date: Faker::Date.between(from: 3.days.from_now, to: 5.days.from_now),
     end_date: Faker::Date.between(from: 5.days.from_now, to: 10.days.from_now)
   )
-
-  puts "Creating past bookings"
-  booking = Booking.create!(
-    pokemon_id: pokemon.id,
-    user_id: demo_user.id,
-    start_date: Faker::Date.between(from: 15.days.ago, to: 10.days.ago),
-    end_date: Faker::Date.between(from: 10.days.ago, to: 2.days.ago)
-  )
 end
-puts "#{demo_user.username.light_cyan} has 6 pokemons now, 6 with bookings"
 
-# Creates 3 bookings for the demo user (from a renter perspective)
-3.times do
-  pokemon_owner = User.create!(
+# Creates x amount of upcoming bookings. Each booking, Gary is RENTING the pokemon.
+# The owner of the pokemons in the bookings will be a new generated renter.
+2.times do
+  renter = User.create!(
     email: Faker::Internet.email,
     username: Faker::Name.first_name + Faker::Name.first_name,
     password: '123456'
   )
-  pokemon_name = Faker::Games::Pokemon.name
+
+  pokemon_name = valid_pokemon_names_only
   pokemon = Pokemon.create!(
-    user_id: pokemon_owner.id,
+    user_id: renter.id,
     name: pokemon_name,
     description: Faker::Games::Pokemon.move,
     location: Faker::Address.full_address,
-    price: rand(100..200),
-  image_url: "https://img.pokemondb.net/artwork/large/#{pokemon_name.downcase}.jpg"
+    price: rand(25..65),
+    image_url: "https://img.pokemondb.net/artwork/large/#{pokemon_name.downcase}.jpg"
   )
-  puts "Creating upcoming bookings"
-  booking = Booking.create!(
+
+  Booking.create!(
     pokemon_id: pokemon.id,
-    user_id: demo_user.id,
+    user_id: demo_owner.id,
     start_date: Faker::Date.between(from: 3.days.from_now, to: 5.days.from_now),
     end_date: Faker::Date.between(from: 5.days.from_now, to: 10.days.from_now)
   )
+end
 
-  puts "Creating past bookings"
-  booking = Booking.create!(
+puts "#{demo_owner.username.light_cyan}'s upcoming bookings are ready."
+puts '-'.light_black
+
+#############################################################################
+#------------------------------PAST BOOKINGS--------------------------------#
+#############################################################################
+
+# Creates x amount of past bookings. Each booking will have a generated renter and pokemon.
+# The owner of the pokemons in the bookings will be Gary, the demo owner user.
+5.times do
+  pokemon_name = valid_pokemon_names_only
+  pokemon = Pokemon.create!(
+    user_id: demo_owner.id,
+    name: pokemon_name,
+    description: Faker::Games::Pokemon.move,
+    location: Faker::Address.full_address,
+    price: rand(25..65),
+    image_url: "https://img.pokemondb.net/artwork/large/#{pokemon_name.downcase}.jpg"
+  )
+
+  renter = User.create!(
+    email: Faker::Internet.email,
+    username: Faker::Name.first_name + Faker::Name.first_name,
+    password: '123456'
+  )
+
+  Booking.create!(
     pokemon_id: pokemon.id,
-    user_id: demo_user.id,
+    user_id: renter.id,
     start_date: Faker::Date.between(from: 15.days.ago, to: 10.days.ago),
     end_date: Faker::Date.between(from: 10.days.ago, to: 2.days.ago)
   )
 end
-puts "#{demo_user.username.light_cyan} has 6 bookings of their own now!"
-puts '--------------------------------------------------'.light_black
 
-# Seed database with 20 pokemons, users and bookings
-30.times do
+# Creates x amount of past bookings. Each booking, Gary RENTED the pokemon.
+# The owner of the pokemons in the bookings will be a new generated renter.
+8.times do
+  renter = User.create!(
+    email: Faker::Internet.email,
+    username: Faker::Name.first_name + Faker::Name.first_name,
+    password: '123456'
+  )
+
+  pokemon_name = valid_pokemon_names_only
+  pokemon = Pokemon.create!(
+    user_id: renter.id,
+    name: pokemon_name,
+    description: Faker::Games::Pokemon.move,
+    location: Faker::Address.full_address,
+    price: rand(25..65),
+    image_url: "https://img.pokemondb.net/artwork/large/#{pokemon_name.downcase}.jpg"
+  )
+
+  Booking.create!(
+    pokemon_id: pokemon.id,
+    user_id: demo_owner.id,
+    start_date: Faker::Date.between(from: 15.days.ago, to: 10.days.ago),
+    end_date: Faker::Date.between(from: 10.days.ago, to: 2.days.ago)
+  )
+end
+
+puts "#{demo_owner.username.light_cyan}'s past bookings are ready."
+puts '-'.light_black
+
+#############################################################################
+#--------------------------SEEDING DB WITH POKEMONS-------------------------#
+#############################################################################
+
+# Creates a 'graveler' pokemon with a high price, to compare with Gary's pokemon during demo day
+pokemon = Pokemon.create!(
+  user_id: 20,
+  name: 'graveler',
+  description: 'Can break rocks better than you can!',
+  location: 'Viridian town, near the river.',
+  price: 74,
+image_url: "https://img.pokemondb.net/artwork/large/graveler.jpg"
+)
+
+# Seed database with x amount of pokemons and their owner.
+50.times do
   pokemon_owner = User.create!(
     email: Faker::Internet.email,
-    # Faker first name used twice for username to have a higher chance at a unique username with no spaces.
     username: Faker::Name.first_name + Faker::Name.first_name,
     password: '123456'
   )
   puts "Pokemon trainer #{pokemon_owner.username.cyan} was born!"
 
-  pokemon_name = Faker::Games::Pokemon.name
+  pokemon_name = valid_pokemon_names_only
   pokemon = Pokemon.create!(
     user_id: pokemon_owner.id,
     name: pokemon_name,
     description: Faker::Games::Pokemon.move,
     location: Faker::Address.full_address,
-    price: rand(100..200),
+    price: rand(25..65),
     image_url: "https://img.pokemondb.net/artwork/large/#{pokemon_name.downcase}.jpg"
   )
   puts "#{pokemon_owner.username.cyan} just caught #{pokemon.name.light_yellow}!"
   puts ''
-
-  pokemon_renter = User.create!(
-    email: Faker::Internet.email,
-    username: Faker::Name.first_name + Faker::Name.first_name,
-    password: '123456'
-  )
-  puts "#{pokemon_renter.username.light_green} just signed up to rent pokemons"
-
-  # Owner booking gets created same time as client booking
-  Booking.create!(
-    pokemon_id: pokemon.id,
-    user_id: pokemon_renter.id,
-    start_date: Faker::Date.between(from: 3.days.from_now, to: 5.days.from_now),
-    end_date: Faker::Date.between(from: 5.days.from_now, to: 10.days.from_now)
-  )
-
-  puts "#{pokemon_renter.username.light_green} just rented #{pokemon_owner.username.cyan}'s pokemon: #{pokemon.name.light_yellow}"
   puts '--------------------------------------------------'.light_black
   puts ''
 end
+
+# Creates a 'graveler' pokemon with a far location, to compare with Gary's pokemon during demo day
+pokemon = Pokemon.create!(
+  user_id: 18,
+  name: 'graveler',
+  description: 'Can be used as a wheel!',
+  location: 'Nowherenearyou street.',
+  price: 28,
+image_url: "https://img.pokemondb.net/artwork/large/graveler.jpg"
+)
+
 puts "Finished catching pokemons :)"
+
+# Use the line below to create a booking for the live demo (for me: Denzel)
+#               Jerry's renting    Gary's pokemon     Friday            Sunday
+Booking.create!(user_id: 1, pokemon_id: 4, start_date: 20220506, end_date: 20220508)
