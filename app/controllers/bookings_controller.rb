@@ -16,12 +16,10 @@ class BookingsController < ApplicationController
     @booking.pokemon.image_url = "https://img.pokemondb.net/artwork/large/#{@booking.pokemon.name.downcase}.jpg"
     @booking.user = current_user
     if @booking.save
-      redirect_to pokemon_path(@pokemon)
+      redirect_to my_bookings_history_path
     else
-      redirect_to pokemon_path(@pokemon)
+      render "/pokemons/show"
     end
-    authorize @booking
-
   end
 
   def show; end

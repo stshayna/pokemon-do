@@ -21,31 +21,11 @@
         <h2>Book Me</h2>
 
         <% if current_user.id != @pokemon.user_id  %>
-          <form method="get" action="/my-bookings-history">
-
-            <div class="mb-3">
-              <label for="message" class="form-label">Message</label>
-              <input type="text" id="message" class="form-control">
-            </div>
-
-            <div class="mb-3">
-              <label for="from_date" class="form-label">From</label>
-              <input type="date" id="from_date" class="form-control">
-            </div>
-
-            <div class="mb-3">
-              <label for="to_date" class="form-label">To</label>
-              <input type="date" id="to_date" class="form-control">
-            </div>
-
-            <%# <div class="mb-3">
-              To - From * @pokemon.price
-            </div> %>
-
-            <input type="submit" value="Book" class="btn btn-primary w-100">
-
-          </form>
-
+          <%= simple_form_for [@pokemon, @booking] do |f| %>
+            <%= f.input :start_date %>
+            <%= f.input :end_date %>
+            <%= f.submit class: 'btn-submit-movie mt-3' %>
+          <% end %>
         <% else %>
           <p>You can't rent your own Pokemon!</p>
           <%= link_to 'See all Pokemon', pokemons_path, class: 'btn btn-primary' %>
