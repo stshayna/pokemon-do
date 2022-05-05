@@ -46,8 +46,12 @@
               </div>
               <div class="card-booking-status">
                 <% if booking.status == "Pending" %>
-                  <%= link_to "Approve", booking_accept_path(booking), data: { confirm: "Do you want to accept this booking?"} %>
-                  <%= link_to "Refuse", booking_reject_path(booking), data: { confirm: "Are you sure you want to refuse this booking?"} %>
+                  <%= link_to "Approve", booking_accept_path(booking),
+                              # method: :patch,
+                              data: { confirm: "Do you want to accept this booking?"} %>
+                  <%= link_to "Refuse", booking_reject_path(booking),
+                              # method: :patch,
+                              data: { confirm: "Are you sure you want to refuse this booking?"} %>
                 <% end %>
               </div>
             </div>
