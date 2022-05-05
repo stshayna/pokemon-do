@@ -15,7 +15,10 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  overflow: none;
 }
 .content {
   flex-grow: 1;
+  position: relative;
+  border: 1px solid red;
 }
