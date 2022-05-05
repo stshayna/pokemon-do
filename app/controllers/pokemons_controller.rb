@@ -10,7 +10,9 @@ class PokemonsController < ApplicationController
     end
   end
 
-  def show; end
+  def show
+    @booking = Booking.new
+  end
 
   def new
     @pokemon = Pokemon.new
