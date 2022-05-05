@@ -14,7 +14,7 @@
               <%= image_tag booking.pokemon.image_url, class: "card-booking-img" %>
               <div class="card-booking-info">
                 <h2><%= booking.pokemon.name %></h2>
-                <p>Renting from : <%= booking.pokemon.user.username %></p>
+                <p>Rented from : <%= booking.pokemon.user.username %></p>
                 <p>From: <%= booking.start_date %></p>
                 <p>To: <%= booking.end_date %></p>
                 <p>Total cost: $ <%= (booking.end_date - booking.start_date).to_i * booking.pokemon.price %></p>
@@ -74,7 +74,7 @@
               <%= image_tag booking.pokemon.image_url, class: "card-booking-img" %>
               <div class="card-booking-info">
                 <h2><%= booking.pokemon.name %></h2>
-                <p>Renting from : <%= booking.pokemon.user.username %></p>
+                <p>Rented from : <%= booking.pokemon.user.username %></p>
                 <p>From: <%= booking.start_date %></p>
                 <p>To: <%= booking.end_date %></p>
                 <p>Total cost: $ <%= (booking.end_date - booking.start_date).to_i * booking.pokemon.price %></p>
