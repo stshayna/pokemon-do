@@ -296,7 +296,3 @@ image_url: "https://img.pokemondb.net/artwork/large/graveler.jpg"
 )
 
 puts "Finished catching pokemons :)"
-
-# Use the line below to create a booking for the live demo (for me: Denzel)
-#               Jerry's renting    Gary's pokemon     Friday            Sunday
-Booking.create!(user_id: 1, pokemon_id: 4, start_date: 20220506, end_date: 20220508)
