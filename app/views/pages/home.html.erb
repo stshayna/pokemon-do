@@ -9,19 +9,23 @@
 </div>
 
 <div class="container mt-5">
-  <h4 style="opacity: 0.8">Popular Pokémons</h4>
+  <h4 style="opacity: 0.8">Our latest Pokémons</h4>
   <p class="mb-4"></p>
   <div class="cards">
-    <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://img.pokemondb.net/artwork/large/jigglypuff.jpg); height: 300px">
-      Jigglypuff
-    </div>
-
-    <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://img.pokemondb.net/artwork/large/venusaur.jpg); height: 300px">
-      Venusaur
-    </div>
-
-    <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://img.pokemondb.net/artwork/large/persian.jpg); height: 300px">
-      Persian
-    </div>
+    <% @recent_pokemons.each do |pokemon| %>
+      <% if current_user %>
+        <%= link_to pokemon_path(pokemon), class: "text-decoration-none" do %>
+          <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= pokemon.image_url %>); height: 300px;">
+            <span><%= pokemon.name.capitalize %></span>
+            <p><%= pokemon.description %></p>
+          </div>
+        <% end %>
+      <% else %>
+        <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= pokemon.image_url %>); height: 300px;">
+          <span><%= pokemon.name.capitalize %></span>
+          <p><%= pokemon.description %></p>
+        </div>
+      <% end %>
+    <% end %>
   </div>
 </div>
