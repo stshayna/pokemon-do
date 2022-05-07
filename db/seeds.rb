@@ -1,10 +1,10 @@
 # !!! CERTAIN POKEMONS DON'T HAVE PICTURES such as Mr.Mine and Nidoran !!!
-@bad_pokemon_names_for_api = ['nidoran', 'mr. mime', "farfetch'd"]
+@bad_pokemon_species_for_api = ['nidoran', 'mr. mime', "farfetch'd"]
 
 # Prevents pokemon with no image from seeding
-def valid_pokemon_names_only
+def valid_species_only
   name = Faker::Games::Pokemon.name
-  name = Faker::Games::Pokemon.name while @bad_pokemon_names_for_api.include?(name.downcase)
+  name = Faker::Games::Pokemon.name while @bad_pokemon_species_for_api.include?(name.downcase)
   return name
 end
 
@@ -43,21 +43,23 @@ puts '-'.light_black
 
 # Creates x amount of pokemon for demo_user Gary (to own) with no bookings.
 3.times do
-  pokemon_name = valid_pokemon_names_only
-  pokemon = Pokemon.create!(
+  species = valid_species_only
+  Pokemon.create!(
     user_id: demo_owner.id,
-    name: pokemon_name,
+    name: Faker::Creature::Dog.name,
+    species: species,
     description: Faker::Games::Pokemon.move,
     location: Faker::Address.full_address,
     price: rand(25..65),
-  image_url: "https://img.pokemondb.net/artwork/large/#{pokemon_name.downcase}.jpg"
+  image_url: "https://img.pokemondb.net/artwork/large/#{species.downcase}.jpg"
   )
 end
 
 # Creates specific pokemon to make a booking with duriong demo, owner is Gary (pokemon_id: 5)
-pokemon = Pokemon.create!(
+Pokemon.create!(
   user_id: demo_owner.id,
-  name: 'graveler',
+  name: Faker::Creature::Dog.name,
+  species: 'Graveler',
   description: 'Great for demolition!',
   location: 'Pallet town, near that bush.',
   price: 24,
@@ -71,14 +73,15 @@ image_url: "https://img.pokemondb.net/artwork/large/graveler.jpg"
 # Creates x amount of current bookings. Each booking will have a generated renter and pokemon.
 # The owner of the pokemons in the bookings will be Gary, the demo owner user.
 3.times do
-  pokemon_name = valid_pokemon_names_only
+  species = valid_species_only
   pokemon = Pokemon.create!(
     user_id: demo_owner.id,
-    name: pokemon_name,
+    name: Faker::Creature::Dog.name,
+    species: species,
     description: Faker::Games::Pokemon.move,
     location: Faker::Address.full_address,
     price: rand(25..65),
-    image_url: "https://img.pokemondb.net/artwork/large/#{pokemon_name.downcase}.jpg"
+    image_url: "https://img.pokemondb.net/artwork/large/#{species.downcase}.jpg"
   )
 
   renter = User.create!(
@@ -104,14 +107,15 @@ end
     password: '123456'
   )
 
-  pokemon_name = valid_pokemon_names_only
+  species = valid_species_only
   pokemon = Pokemon.create!(
     user_id: renter.id,
-    name: pokemon_name,
+    name: Faker::Creature::Dog.name,
+    species: species,
     description: Faker::Games::Pokemon.move,
     location: Faker::Address.full_address,
     price: rand(25..65),
-    image_url: "https://img.pokemondb.net/artwork/large/#{pokemon_name.downcase}.jpg"
+    image_url: "https://img.pokemondb.net/artwork/large/#{species.downcase}.jpg"
   )
 
   Booking.create!(
@@ -132,14 +136,15 @@ puts '-'.light_black
 # Creates x amount of upcoming bookings. Each booking will have a generated renter and pokemon.
 # The owner of the pokemons in the bookings will be Gary, the demo owner user.
 3.times do
-  pokemon_name = valid_pokemon_names_only
+  species = valid_species_only
   pokemon = Pokemon.create!(
     user_id: demo_owner.id,
-    name: pokemon_name,
+    name: Faker::Creature::Dog.name,
+    species: species,
     description: Faker::Games::Pokemon.move,
     location: Faker::Address.full_address,
     price: rand(25..65),
-    image_url: "https://img.pokemondb.net/artwork/large/#{pokemon_name.downcase}.jpg"
+    image_url: "https://img.pokemondb.net/artwork/large/#{species.downcase}.jpg"
   )
 
   renter = User.create!(
@@ -165,14 +170,15 @@ end
     password: '123456'
   )
 
-  pokemon_name = valid_pokemon_names_only
+  species = valid_species_only
   pokemon = Pokemon.create!(
     user_id: renter.id,
-    name: pokemon_name,
+    name: Faker::Creature::Dog.name,
+    species: species,
     description: Faker::Games::Pokemon.move,
     location: Faker::Address.full_address,
     price: rand(25..65),
-    image_url: "https://img.pokemondb.net/artwork/large/#{pokemon_name.downcase}.jpg"
+    image_url: "https://img.pokemondb.net/artwork/large/#{species.downcase}.jpg"
   )
 
   Booking.create!(
@@ -193,14 +199,15 @@ puts '-'.light_black
 # Creates x amount of past bookings. Each booking will have a generated renter and pokemon.
 # The owner of the pokemons in the bookings will be Gary, the demo owner user.
 5.times do
-  pokemon_name = valid_pokemon_names_only
+  species = valid_species_only
   pokemon = Pokemon.create!(
     user_id: demo_owner.id,
-    name: pokemon_name,
+    name: Faker::Creature::Dog.name,
+    species: species,
     description: Faker::Games::Pokemon.move,
     location: Faker::Address.full_address,
     price: rand(25..65),
-    image_url: "https://img.pokemondb.net/artwork/large/#{pokemon_name.downcase}.jpg"
+    image_url: "https://img.pokemondb.net/artwork/large/#{species.downcase}.jpg"
   )
 
   renter = User.create!(
@@ -226,14 +233,15 @@ end
     password: '123456'
   )
 
-  pokemon_name = valid_pokemon_names_only
+  species = valid_species_only
   pokemon = Pokemon.create!(
     user_id: renter.id,
-    name: pokemon_name,
+    name: Faker::Creature::Dog.name,
+    species: species,
     description: Faker::Games::Pokemon.move,
     location: Faker::Address.full_address,
     price: rand(25..65),
-    image_url: "https://img.pokemondb.net/artwork/large/#{pokemon_name.downcase}.jpg"
+    image_url: "https://img.pokemondb.net/artwork/large/#{species.downcase}.jpg"
   )
 
   Booking.create!(
@@ -252,7 +260,7 @@ puts '-'.light_black
 #############################################################################
 
 # Creates a 'graveler' pokemon with a high price, to compare with Gary's pokemon during demo day
-pokemon = Pokemon.create!(
+Pokemon.create!(
   user_id: 20,
   name: 'graveler',
   description: 'Can break rocks better than you can!',
@@ -270,14 +278,15 @@ image_url: "https://img.pokemondb.net/artwork/large/graveler.jpg"
   )
   puts "Pokemon trainer #{pokemon_owner.username.cyan} was born!"
 
-  pokemon_name = valid_pokemon_names_only
+  species = valid_species_only
   pokemon = Pokemon.create!(
     user_id: pokemon_owner.id,
-    name: pokemon_name,
+    name: Faker::Creature::Dog.name,
+    species: species,
     description: Faker::Games::Pokemon.move,
     location: Faker::Address.full_address,
     price: rand(25..65),
-    image_url: "https://img.pokemondb.net/artwork/large/#{pokemon_name.downcase}.jpg"
+    image_url: "https://img.pokemondb.net/artwork/large/#{species.downcase}.jpg"
   )
   puts "#{pokemon_owner.username.cyan} just caught #{pokemon.name.light_yellow}!"
   puts ''
@@ -286,7 +295,7 @@ image_url: "https://img.pokemondb.net/artwork/large/graveler.jpg"
 end
 
 # Creates a 'graveler' pokemon with a far location, to compare with Gary's pokemon during demo day
-pokemon = Pokemon.create!(
+Pokemon.create!(
   user_id: 18,
   name: 'graveler',
   description: 'Can be used as a wheel!',
