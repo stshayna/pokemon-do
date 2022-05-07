@@ -9,7 +9,7 @@
       <p>Location: <%= @pokemon.location %></p>
       <p>Special skill: <%= @pokemon.description %></p>
       <p>Price per day $<%= @pokemon.price %></p>
-      <p>Owner: <%= @pokemon.user.username.capitalize %></p>
+      <%# <p>Owner: <%= @pokemon.user.username.capitalize %></p> %>
     </div>
 
     <div class="col-12 col-lg-4">
@@ -32,6 +32,17 @@
         <% end %>
 
       </div>
+
+      <% if (@pokemon_reviews.blank?) %>
+        <h3><%= @pokemon.name %> hasn't received any reviews.</h3>
+      <% else %>
+        <h3><%= @pokemon.name %>'s reviews</h3>
+      <% end %>
+      <% @pokemon_reviews.each do |p_review| %>
+              <%= p_review.booking.user.username.capitalize %>
+              <%= p_review.created_at.to_s.split(' ')[0] %>
+              <%= p_review.content %>
+        <% end %>
 
     </div>
     <div>

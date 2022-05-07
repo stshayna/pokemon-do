@@ -129,6 +129,7 @@
                 <p>To: <%= booking.end_date %></p>
                 <p>Total cost: $ <%= (booking.end_date - booking.start_date).to_i * booking.pokemon.price %></p>
               </div>
+              <%= link_to 'Write review', new_booking_pokemon_review_path(booking), class:'btn btn-primary' %>
             </div>
           <% end %>
         <% else %>

@@ -1,5 +1,7 @@
 class Pokemon < ApplicationRecord
   has_many :bookings
+  has_many :pokemon_reviews, through: :bookings
+
   belongs_to :user
 
   has_one_attached :photo

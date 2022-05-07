@@ -12,6 +12,7 @@ class PokemonsController < ApplicationController
 
   def show
     @booking = Booking.new
+    @pokemon_reviews = @pokemon.pokemon_reviews
   end
 
   def new
@@ -48,6 +49,4 @@ class PokemonsController < ApplicationController
   def pokemon_params
     params.require(:pokemon).permit(:name, :description, :location, :price, :image_url)
   end
-
-
 end
