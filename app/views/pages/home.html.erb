@@ -4,7 +4,11 @@
     <p></p>
     <h3 class="typed-js" data-controller="typed-js"></h3>
     <p></p>
-    <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-success btn-lg" %>
+    <% if current_user %>
+      <%= link_to "Browse", pokemons_path, class: "btn btn-success btn-lg" %>
+    <% else %>
+      <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-success btn-lg" %>
+    <% end %>
   </div>
 </div>
 
