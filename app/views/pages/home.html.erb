@@ -12,17 +12,13 @@
   <h4 style="opacity: 0.8">Our latest Pokémons</h4>
   <p class="mb-4"></p>
   <div class="cards">
-    <div id="recent-pokemons">
-     <% @recent_pokemons.each do |pokemon| %>
-      <div class="card" style="width: 18rem;">
-        <img src="<%= pokemon.image_url %>" alt="<%= pokemon.name %> picture">
-        <div class="card-body text-center">
-          <h4><%=pokemon.name%></h4>
-          <p><%=pokemon.description%></p>
-          <%= link_to 'View', pokemon_path(pokemon), class: 'btn btn-primary' %>
+    <% @recent_pokemons.each do |pokemon| %>
+      <%= link_to pokemon_path(pokemon), class: "text-decoration-none" do %>
+        <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= pokemon.image_url %>); height: 300px;">
+          <span><%= pokemon.name.capitalize %></span>
+          <p><%= pokemon.description %></p>
         </div>
-      </div>
+      <% end %>
     <% end %>
-    </div>
   </div>
 </div>
