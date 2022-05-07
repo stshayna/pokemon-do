@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   patch '/bookings/:id/accept', to: 'bookings#accept', as: :booking_accept
   patch '/bookings/:id/reject', to: 'bookings#reject', as: :booking_reject
 
-  resources :pokemons, only: [ :index, :show, :new, :create, :edit, :update ] do
+  resources :pokemons do
     # we need to nest our bookings inside pokemon
     resources :bookings, only: [ :show, :new, :create ]
   end
