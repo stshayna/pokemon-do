@@ -1,9 +1,14 @@
+<% file_path = File.join(Rails.root, 'app', 'assets', 'species.json') %>
+<% file = File.read(file_path) %>
+<% species_list = JSON.parse(file) %>
+
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-6">
 
       <%= simple_form_for @pokemon do |f| %>
         <%= f.input :name %>
+        <%= f.select :species, collection: species_list %>
         <%= f.input :description %>
         <%= f.input :location %>
         <%= f.input :price %>
@@ -11,7 +16,8 @@
           <%= f.submit %>
          </div>
       <% end %>
-
+      <p></p>
+      <%= link_to "Back", my_pokemons_path %>
     </div>
   </div>
 </div>

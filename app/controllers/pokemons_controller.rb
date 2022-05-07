@@ -1,12 +1,12 @@
 class PokemonsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
-  before_action :find_pokemon, only: [:show, :edit, :update]
+  before_action :find_pokemon, only: [:show, :edit, :update, :destroy]
 
   def index
     if params[:query].present?
       @pokemons = Pokemon.where("name ILIKE ?", "%#{params[:query]}%")
     else
-      @pokemons = Pokemon.all
+      @pokemons = Pokemon.all.order(id: :desc)
     end
   end
 
@@ -22,7 +22,7 @@ class PokemonsController < ApplicationController
   def create
     @pokemon = Pokemon.new(pokemon_params)
     @pokemon.user = current_user
-    @pokemon.image_url = "https://img.pokemondb.net/artwork/large/#{@pokemon.name.downcase}.jpg"
+    @pokemon.image_url = "https://img.pokemondb.net/artwork/large/#{@pokemon.species.downcase}.jpg"
     if @pokemon.save
       redirect_to pokemon_path(@pokemon)
     else
@@ -38,7 +38,10 @@ class PokemonsController < ApplicationController
     redirect_to pokemon_path(@pokemon)
   end
 
-  # add edit, update and destroy
+  def destroy
+    @pokemon.destroy
+    redirect_to my_pokemons_path
+  end
 
   private
 
@@ -47,6 +50,6 @@ class PokemonsController < ApplicationController
   end
 
   def pokemon_params
-    params.require(:pokemon).permit(:name, :description, :location, :price, :image_url)
+    params.require(:pokemon).permit(:name, :species, :description, :location, :price, :image_url)
   end
 end
