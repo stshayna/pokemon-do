@@ -14,7 +14,6 @@
     <% @pokemons.each do |pokemon| %>
       <div class="card-pokemon shadow rounded">
       <% if pokemon.image_url.present? %>
-
         <div class="white">
           <img src="<%= pokemon.image_url %>" alt="<%= pokemon.name %> picture">
         </div>
@@ -23,9 +22,9 @@
       <% end %>
         <div class="card-pokemon-details p-3">
           <div class="mt-1">
-            <h4><%= pokemon.name %></h4>
+            <h4><%= pokemon.name.capitalize %></h4>
             <h6>Special skill: <%= pokemon.description %></h6>
-            <p>Owner: <%= pokemon.user.username.capitalize %></p>
+            <p>Owned by <%= pokemon.user.username.capitalize %></p>
           </div>
 
           <div class="text-end">
