@@ -2,8 +2,20 @@
     <h2>Leave a review for <%=@booking.pokemon.name%></h2>
     <img src=<%= @booking.pokemon.image_url %> alt="Pokemon" class="w-100"/>
     <p><strong>Owner:</strong> <%=@booking.pokemon.user.username.capitalize%></p>
+    <p><strong>Start date:</strong> <%= @booking.start_date %></p>
+    <p><strong>End date:</strong> <%= @booking.end_date %></p>
 
-    <%= f.input :content %>
-    <%= f.input :rating %>
-    <%= f.submit %>
+    <strong><%= f.input :content %></strong>
+    <div class="pb-3">
+      <p><strong>Rating</strong>
+      <abbr title="required">*</abbr>
+      <br />
+      <span id="rateMe"  class="empty-stars">
+        <% 5.times do |i| %>
+          <i class="far fa-star" id="star<%=i+1%>" %></i>
+        <% end %>
+      </span>
+      <%= f.input :rating, :as => :hidden, :input_html => { :value => "0" } %>
+    </div>
+    <%= f.submit class: 'btn btn-primary' %>
 <% end %>

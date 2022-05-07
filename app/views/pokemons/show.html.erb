@@ -38,6 +38,8 @@
         <h3><%= @pokemon.name %> hasn't received any reviews.</h3>
       <% else %>
         <h3><%= @pokemon.name %>'s reviews</h3>
+        <%= render '/shared/rating' %>
+
       <% end %>
       <% @pokemon_reviews.each do |p_review| %>
               <%= p_review.booking.user.username.capitalize %>
