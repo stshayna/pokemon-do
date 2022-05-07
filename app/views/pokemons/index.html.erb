@@ -30,6 +30,7 @@
 
           <div class="text-end">
             <h5>From $<%= pokemon.price %> / day<h5>
+            <%= pokemon.average_rating %>
             <%= link_to "View", pokemon_path(pokemon), class: "btn btn-sm btn-dark rounded" %>
           </div>
         </div>

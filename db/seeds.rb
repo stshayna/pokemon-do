@@ -15,6 +15,7 @@ puts ''
 Booking.destroy_all
 Pokemon.destroy_all
 User.destroy_all
+PokemonReview.destroy_all
 
 #############################################################################
 #--------------------------------RENTER-------------------------------------#
@@ -318,3 +319,15 @@ image_url: "https://img.pokemondb.net/artwork/large/graveler.jpg"
 )
 
 puts "Finished catching pokemons :)".light_green.blink
+
+Booking.all.each do |booking|
+  review = PokemonReview.create!(
+    content: ['Da BEST Pokémon ever!', 'Worst Pokémon to exist. They should go extinct!', 'Meh. Not my favorite, but they are ok'].sample,
+    rating: Faker::Number.between(from: 0, to: 5),
+    booking: booking,
+    user: booking.user
+  )
+  review.save!
+end
+
+puts "Adding review!"

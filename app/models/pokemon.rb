@@ -11,6 +11,16 @@ class Pokemon < ApplicationRecord
   def self.recent(max = 3)
     limit(max).order(created_at: :desc)
   end
+
+  def average_rating
+    return nil if pokemon_reviews.blank?
+
+    total = 0
+    pokemon_reviews.each do |p_review|
+      total += p_review.rating
+    end
+    total / pokemon_reviews.length
+  end
 end
 
 # Validate uniqueness of pokemon later
