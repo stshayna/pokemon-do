@@ -1,9 +1,12 @@
+<% require_relative '../../../db/seeds' %>
+
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-6">
 
       <%= simple_form_for @pokemon do |f| %>
         <%= f.input :name %>
+        <%= f.select :species, collection: SPECIES_FOR_FORM %>
         <%= f.input :description %>
         <%= f.input :location %>
         <%= f.input :price %>

@@ -8,7 +8,8 @@ def valid_species_only
   return name
 end
 
-# Wipes database
+# Clears screen and wipes database
+system('clear')
 puts "Releasing Pokemons to the wild and clearing the database".red.blink
 puts ''
 Booking.destroy_all
@@ -25,7 +26,7 @@ demo_renter = User.create!(
   username: 'Jerry',
   password: '123456'
 )
-puts "Demo renter: #{demo_renter.username.light_cyan} is ready to rent pokemons:"
+puts "#{'✓'.green} Demo renter: #{demo_renter.username.light_cyan} is ready to rent pokemons:"
 puts '-'.light_black
 
 #############################################################################
@@ -38,7 +39,7 @@ demo_owner = User.create!(
   username: 'Gary',
   password: '123456'
 )
-puts "Demo owner: #{demo_owner.username.light_cyan} is ready to rent out his pokemons:"
+puts "#{'✓'.green} Demo owner: #{demo_owner.username.light_cyan} is ready to rent out his pokemons:"
 puts '-'.light_black
 
 # Creates x amount of pokemon for demo_user Gary (to own) with no bookings.
@@ -126,7 +127,7 @@ end
   )
 end
 
-puts "#{demo_owner.username.light_cyan}'s current bookings are ready."
+puts "#{'✓'.green} #{demo_owner.username.light_cyan}'s current bookings are ready."
 puts '-'.light_black
 
 #############################################################################
@@ -189,7 +190,7 @@ end
   )
 end
 
-puts "#{demo_owner.username.light_cyan}'s upcoming bookings are ready."
+puts "#{'✓'.green} #{demo_owner.username.light_cyan}'s upcoming bookings are ready."
 puts '-'.light_black
 
 #############################################################################
@@ -252,16 +253,22 @@ end
   )
 end
 
-puts "#{demo_owner.username.light_cyan}'s past bookings are ready."
+puts "#{'✓'.green} #{demo_owner.username.light_cyan}'s past bookings are ready."
 puts '-'.light_black
 
 #############################################################################
 #--------------------------SEEDING DB WITH POKEMONS-------------------------#
 #############################################################################
 
-# Creates a 'graveler' pokemon with a high price, to compare with Gary's pokemon during demo day
+# Creates a 'graveler' pokemon + its owner with a high price, to compare with Gary's pokemon during demo day
+renter = User.create!(
+  email: Faker::Internet.email,
+  username: Faker::Name.first_name + Faker::Name.first_name,
+  password: '123456'
+)
+
 Pokemon.create!(
-  user_id: 20,
+  user_id: renter.id,
   name: 'graveler',
   description: 'Can break rocks better than you can!',
   location: 'Viridian town, near the river.',
@@ -276,7 +283,7 @@ image_url: "https://img.pokemondb.net/artwork/large/graveler.jpg"
     username: Faker::Name.first_name + Faker::Name.first_name,
     password: '123456'
   )
-  puts "Pokemon trainer #{pokemon_owner.username.cyan} was born!"
+  print "Pokemon owner #{pokemon_owner.username.light_cyan} signed up and started renting out their "
 
   species = valid_species_only
   pokemon = Pokemon.create!(
@@ -288,15 +295,21 @@ image_url: "https://img.pokemondb.net/artwork/large/graveler.jpg"
     price: rand(25..65),
     image_url: "https://img.pokemondb.net/artwork/large/#{species.downcase}.jpg"
   )
-  puts "#{pokemon_owner.username.cyan} just caught #{pokemon.name.light_yellow}!"
+  puts "#{pokemon.name.cyan} the #{pokemon.species.magenta}!"
   puts ''
   puts '--------------------------------------------------'.light_black
   puts ''
 end
 
-# Creates a 'graveler' pokemon with a far location, to compare with Gary's pokemon during demo day
+# Creates a 'graveler' pokemon and its owner with a far location, to compare with Gary's pokemon during demo day
+renter = User.create!(
+  email: Faker::Internet.email,
+  username: Faker::Name.first_name + Faker::Name.first_name,
+  password: '123456'
+)
+
 Pokemon.create!(
-  user_id: 18,
+  user_id: renter.id,
   name: 'graveler',
   description: 'Can be used as a wheel!',
   location: 'Nowherenearyou street.',
@@ -304,4 +317,157 @@ Pokemon.create!(
 image_url: "https://img.pokemondb.net/artwork/large/graveler.jpg"
 )
 
-puts "Finished catching pokemons :)"
+puts "Finished catching pokemons :)".light_green.blink
+
+SPECIES_FOR_FORM = [
+  "Abra",
+  "Aerodactyl",
+  "Alakazam",
+  "Arbok",
+  "Arcanine",
+  "Articuno",
+  "Beedrill",
+  "Bellsprout",
+  "Blastoise",
+  "Bulbasaur",
+  "Butterfree",
+  "Caterpie",
+  "Chansey",
+  "Charizard",
+  "Charmander",
+  "Charmeleon",
+  "Clefable",
+  "Clefairy",
+  "Cloyster",
+  "Cubone",
+  "Dewgong",
+  "Diglett",
+  "Ditto",
+  "Dodrio",
+  "Doduo",
+  "Dragonair",
+  "Dragonite",
+  "Dratini",
+  "Drowzee",
+  "Dugtrio",
+  "Eevee",
+  "Ekans",
+  "Electabuzz",
+  "Electrode",
+  "Exeggcute",
+  "Exeggutor",
+  "Farfetch'd",
+  "Fearow",
+  "Flareon",
+  "Gastly",
+  "Gengar",
+  "Geodude",
+  "Gloom",
+  "Golbat",
+  "Goldeen",
+  "Golduck",
+  "Golem",
+  "Graveler",
+  "Grimer",
+  "Growlithe",
+  "Gyarados",
+  "Haunter",
+  "Hitmonchan",
+  "Hitmonlee",
+  "Horsea",
+  "Hypno",
+  "Ivysaur",
+  "Jigglypuff",
+  "Jolteon",
+  "Jynx",
+  "Kabuto",
+  "Kabutops",
+  "Kadabra",
+  "Kakuna",
+  "Kangaskhan",
+  "Kingler",
+  "Koffing",
+  "Krabby",
+  "Lapras",
+  "Lickitung",
+  "Machamp",
+  "Machoke",
+  "Machop",
+  "Magikarp",
+  "Magmar",
+  "Magnemite",
+  "Magneton",
+  "Mankey",
+  "Marowak",
+  "Meowth",
+  "Metapod",
+  "Mew",
+  "Mewtwo",
+  "Moltres",
+  "Mr. Mime",
+  "Muk",
+  "Nidoking",
+  "Nidoqueen",
+  "Nidoran",
+  "Nidorina",
+  "Nidorino",
+  "Ninetales",
+  "Oddish",
+  "Omanyte",
+  "Omastar",
+  "Onix",
+  "Paras",
+  "Parasect",
+  "Persian",
+  "Pidgeot",
+  "Pidgeotto",
+  "Pidgey",
+  "Pikachu",
+  "Pinsir",
+  "Poliwag",
+  "Poliwhirl",
+  "Poliwrath",
+  "Ponyta",
+  "Porygon",
+  "Primeape",
+  "Psyduck",
+  "Raichu",
+  "Rapidash",
+  "Raticate",
+  "Rattata",
+  "Rhydon",
+  "Rhyhorn",
+  "Sandshrew",
+  "Sandslash",
+  "Scyther",
+  "Seadra",
+  "Seaking",
+  "Seel",
+  "Shellder",
+  "Slowbro",
+  "Slowpoke",
+  "Snorlax",
+  "Spearow",
+  "Squirtle",
+  "Starmie",
+  "Staryu",
+  "Tangela",
+  "Tauros",
+  "Tentacool",
+  "Tentacruel",
+  "Vaporeon",
+  "Venomoth",
+  "Venonat",
+  "Venusaur",
+  "Victreebel",
+  "Vileplume",
+  "Voltorb",
+  "Vulpix",
+  "Wartortle",
+  "Weedle",
+  "Weepinbell",
+  "Weezing",
+  "Wigglytuff",
+  "Zapdos",
+  "Zubat"
+]
