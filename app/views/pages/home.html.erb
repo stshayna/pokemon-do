@@ -9,19 +9,20 @@
 </div>
 
 <div class="container mt-5">
-  <h4 style="opacity: 0.8">Popular Pokémons</h4>
+  <h4 style="opacity: 0.8">Our latest Pokémons</h4>
   <p class="mb-4"></p>
   <div class="cards">
-    <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://img.pokemondb.net/artwork/large/jigglypuff.jpg); height: 300px">
-      Jigglypuff
-    </div>
-
-    <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://img.pokemondb.net/artwork/large/venusaur.jpg); height: 300px">
-      Venusaur
-    </div>
-
-    <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://img.pokemondb.net/artwork/large/persian.jpg); height: 300px">
-      Persian
+    <div id="recent-pokemons">
+     <% @recent_pokemons.each do |pokemon| %>
+      <div class="card" style="width: 18rem;">
+        <img src="<%= pokemon.image_url %>" alt="<%= pokemon.name %> picture">
+        <div class="card-body text-center">
+          <h4><%=pokemon.name%></h4>
+          <p><%=pokemon.description%></p>
+          <%= link_to 'View', pokemon_path(pokemon), class: 'btn btn-primary' %>
+        </div>
+      </div>
+    <% end %>
     </div>
   </div>
 </div>
