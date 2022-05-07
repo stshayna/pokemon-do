@@ -1,6 +1,6 @@
 class PokemonsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
-  before_action :find_pokemon, only: [:show, :edit, :update]
+  before_action :find_pokemon, only: [:show, :edit, :update, :destroy]
 
   def index
     if params[:query].present?
@@ -37,7 +37,10 @@ class PokemonsController < ApplicationController
     redirect_to pokemon_path(@pokemon)
   end
 
-  # add edit, update and destroy
+  def destroy
+    @pokemon.destroy
+    redirect_to my_pokemons_path
+  end
 
   private
 

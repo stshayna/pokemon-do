@@ -14,14 +14,14 @@
             </div>
             <div class="text-end">
               <h5>$<%= pokemon.price %> / day<h5>
-              <%= link_to "Edit", "#", class: "btn btn-sm btn-dark rounded" %>
-              <%= link_to "Delete", "#", class: "btn btn-sm btn-dark rounded" %>
+              <%= link_to "Edit", edit_pokemon_path(pokemon), class: "btn btn-sm btn-dark rounded" %>
+              <%= link_to "Delete", pokemon_path(pokemon), method: :delete, data: { confirm: "Are you sure you want to delete this Pokémon?" }, class: "btn btn-sm btn-dark rounded" %>
             </div>
           </div>
         </div>
       <% end %>
     <% else %>
-      <p class="text-muted">You have not listed any Pokémons. ☹️</p>
+      <p class="text-muted">You have not listed any Pokémons.</p>
     <% end %>
   </div>
 </div>
