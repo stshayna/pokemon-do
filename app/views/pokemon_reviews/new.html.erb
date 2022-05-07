@@ -2,8 +2,28 @@
     <h2>Leave a review for <%=@booking.pokemon.name%></h2>
     <img src=<%= @booking.pokemon.image_url %> alt="Pokemon" class="w-100"/>
     <p><strong>Owner:</strong> <%=@booking.pokemon.user.username.capitalize%></p>
+    <p><strong>Start date:</strong> <%= @booking.start_date %></p>
+    <p><strong>End date:</strong> <%= @booking.end_date %></p>
 
-    <%= f.input :content %>
-    <%= f.input :rating %>
-    <%= f.submit %>
+
+    <strong><%= f.input :content %></strong>
+    <div class="pb-3">
+      <p><strong>Rating</strong>
+      <abbr title="required">*</abbr>
+      <br />
+      <div class="rating">
+        <% (1..5).to_a.each do |i| %>
+          <input
+            type="radio"
+            name="rating"
+            value="<%= i %>"
+            id="<%= i %>"
+            <%= checked if @pokemon_review.rating && @pokemon_review.rating >= i %>
+          />
+          <label for="<%= i %>">☆</label>
+        <% end %>
+        <%= f.input :rating, :as => :hidden, :input_html => { :value => "0" } %>
+      </div>
+    </div>
+    <%= f.submit class: 'btn btn-primary' %>
 <% end %>

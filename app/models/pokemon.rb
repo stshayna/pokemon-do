@@ -12,6 +12,13 @@ class Pokemon < ApplicationRecord
   def self.recent(max = 3)
     limit(max).order(created_at: :desc)
   end
+
+  # added "pg_search" gem to filter the index by owner and pokemon's name/description
+  include PgSearch::Model
+  pg_search_scope :search_index,
+    against: %i[name description],
+    associated_against: { user: :username },
+    using: { tsearch: { prefix: true } }
 end
 
 # Validate uniqueness of pokemon later

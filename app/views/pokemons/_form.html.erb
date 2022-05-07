@@ -8,7 +8,7 @@
 
       <%= simple_form_for @pokemon do |f| %>
         <%= f.input :name %>
-        <%= f.select :species, collection: species_list %>
+        <%= f.input :species, collection: species_list, input_html: { data: { controller: 'select2' }} %>
         <%= f.input :description %>
         <%= f.input :location %>
         <%= f.input :price %>
