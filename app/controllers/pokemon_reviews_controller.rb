@@ -12,7 +12,7 @@ class PokemonReviewsController < ApplicationController
     if @pokemon_review.save
       redirect_to pokemon_path(@booking.pokemon)
     else
-      redirect_to my_bookings_history_path
+      render :new
     end
   end
 
