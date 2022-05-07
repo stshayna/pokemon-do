@@ -12,6 +12,7 @@ class PokemonsController < ApplicationController
 
   def show
     @booking = Booking.new
+    @pokemon_reviews = @pokemon.pokemon_reviews
   end
 
   def new

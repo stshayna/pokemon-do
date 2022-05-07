@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_many :bookings
   has_many :pokemons
+  has_many :pokemon_reviews
 
   validates_presence_of :email, :username, :password
 end

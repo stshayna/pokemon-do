@@ -1,0 +1,9 @@
+<%= simple_form_for [ @booking, @pokemon_review ] do |f| %>
+    <h2>Leave a review for <%=@booking.pokemon.name%></h2>
+    <img src=<%= @booking.pokemon.image_url %> alt="Pokemon" class="w-100"/>
+    <p><strong>Owner:</strong> <%=@booking.pokemon.user.username.capitalize%></p>
+
+    <%= f.input :content %>
+    <%= f.input :rating %>
+    <%= f.submit %>
+<% end %>
