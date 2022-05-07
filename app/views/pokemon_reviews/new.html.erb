@@ -10,12 +10,19 @@
       <p><strong>Rating</strong>
       <abbr title="required">*</abbr>
       <br />
-      <span id="rateMe"  class="empty-stars">
-        <% 5.times do |i| %>
-          <i class="far fa-star" id="star<%=i+1%>" %></i>
+      <div class="rating">
+        <% (1..5).to_a.each do |i| %>
+          <input
+            type="radio"
+            name="rating"
+            value="<%= i %>"
+            id="<%= i %>"
+            <%= checked if @pokemon_review.rating && @pokemon_review.rating >= i %>
+          />
+          <label for="<%= i %>">☆</label>
         <% end %>
-      </span>
-      <%= f.input :rating, :as => :hidden, :input_html => { :value => "0" } %>
+        <%= f.input :rating, :as => :hidden, :input_html => { :value => "0" } %>
+      </div>
     </div>
     <%= f.submit class: 'btn btn-primary' %>
 <% end %>

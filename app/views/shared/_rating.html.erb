@@ -1,8 +1,13 @@
 
-<h1 id="rateMe">hello</h1>
-
-<script>
-  const rating = document.querySelector('#rateMe');
-  // rating.mdbRate();
-  console.log({rating})
-</script>
+ <div class="rating">
+        <% (1..5).to_a.each do |i| %>
+          <input
+            type="radio"
+            name="rating"
+            value="<%= i %>"
+            id="<%= i %>"
+            <%= checked if @pokemon_review.rating && @pokemon_review.rating >= i %>
+          />
+          <label for="<%= i %>">☆</label>
+        <% end %>
+</div>
