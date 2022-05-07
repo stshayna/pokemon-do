@@ -283,7 +283,7 @@ image_url: "https://img.pokemondb.net/artwork/large/graveler.jpg"
     username: Faker::Name.first_name + Faker::Name.first_name,
     password: '123456'
   )
-  print "Pokemon owner #{pokemon_owner.username.light_cyan} signed up and started renting out their "
+  print "Pokemon owner #{pokemon_owner.username.light_cyan}(ID: #{pokemon_owner.id.to_s.light_cyan}) signed up and started renting out their "
 
   species = valid_species_only
   pokemon = Pokemon.create!(
@@ -295,7 +295,7 @@ image_url: "https://img.pokemondb.net/artwork/large/graveler.jpg"
     price: rand(25..65),
     image_url: "https://img.pokemondb.net/artwork/large/#{species.downcase}.jpg"
   )
-  puts "#{pokemon.name.cyan} the #{pokemon.species.magenta}!"
+  puts "#{pokemon.name.cyan} the #{pokemon.species.magenta}(ID: #{pokemon.id.to_s.magenta})!"
   puts ''
   puts '--------------------------------------------------'.light_black
   puts ''
@@ -319,6 +319,7 @@ image_url: "https://img.pokemondb.net/artwork/large/graveler.jpg"
 
 puts "Finished catching pokemons :)".light_green.blink
 
+# Will move this to a dedicated file in the future
 SPECIES_FOR_FORM = [
   "Abra",
   "Aerodactyl",
