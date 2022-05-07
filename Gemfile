@@ -3,6 +3,10 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.0.3'
 
+# Adds env. files for security when using API keys
+gem 'dotenv-rails', groups: [:development, :test]
+# Adds geocoder for maps
+gem 'geocoder'
 # Handles JSON files
 gem 'json'
 # Adds color to strings
@@ -43,7 +47,7 @@ gem 'simple_form', github: 'heartcombo/simple_form'
 group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
-  gem 'dotenv-rails'
+  # gem 'dotenv-rails' <-- don't think we need this since I call the gem above
 
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
