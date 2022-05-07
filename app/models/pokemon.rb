@@ -21,6 +21,13 @@ class Pokemon < ApplicationRecord
     end
     total / pokemon_reviews.length
   end
+
+  # added "pg_search" gem to filter the index by owner and pokemon's name/description
+  include PgSearch::Model
+  pg_search_scope :search_index,
+    against: %i[name description],
+    associated_against: { user: :username },
+    using: { tsearch: { prefix: true } }
 end
 
 # Validate uniqueness of pokemon later

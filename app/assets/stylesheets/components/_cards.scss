@@ -38,24 +38,25 @@
 
 .card-pokemon {
   background: $theme-light-green;
-  height: 324px;
+  // height: 324px;
+  padding: 12px;
   border: rgba(0, 0, 0, 0.6) 1px solid;
   img {
-    padding: 13px 13px 0;
+    margin: 13px 13px 0;
     height: 200px;
-    width: 100%;
+    width: 95%;
     object-fit: contain;
-
+    align-content: center;
   }
 }
 
 .white {
-  width: 304px; //WV just adjusted it
+  width: auto; //WV just adjusted it
   background-color: white;
-  height: 208px;
+  height: 216px;
   position: relative;
-  margin-left: 12px;
-  margin-top: 12px;
+  margin-bottom: 8px;
+  text-align: center;
 }
 
 
@@ -81,14 +82,14 @@
   }
 }
 
-//WV just add it below
-.card-pokemon-details .text-end{
-  position: absolute;
-  right: 16px;
-  top: 24px;
-  width: 112px;
-}
-//WV just add it up
+// //WV just add it below
+// .card-pokemon-details .text-end{
+//   position: absolute;
+//   right: 16px;
+//   top: 24px;
+//   width: 112px;
+// }
+// //WV just add it up
 
 
 .card-heading {
