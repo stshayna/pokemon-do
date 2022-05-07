@@ -1,4 +1,6 @@
-<% require_relative '../../../db/seeds' %>
+<% file_path = File.join(Rails.root, 'app', 'assets', 'species.json') %>
+<% file = File.read(file_path) %>
+<% species_list = JSON.parse(file) %>
 
 <div class="container">
   <div class="row justify-content-center">
@@ -6,7 +8,7 @@
 
       <%= simple_form_for @pokemon do |f| %>
         <%= f.input :name %>
-        <%= f.select :species, collection: SPECIES_FOR_FORM %>
+        <%= f.select :species, collection: species_list %>
         <%= f.input :description %>
         <%= f.input :location %>
         <%= f.input :price %>
