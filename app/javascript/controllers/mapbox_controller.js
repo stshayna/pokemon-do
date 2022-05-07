@@ -1,5 +1,5 @@
 import { Controller } from "@hotwired/stimulus";
-import mapboxgl from "!mapbox-gl";
+import mapboxgl from "mapbox-gl";
 
 export default class extends Controller {
   static values = {
@@ -20,8 +20,17 @@ export default class extends Controller {
 
   #addMarkersToMap() {
     this.markersValue.forEach((marker) => {
-      new mapboxgl.Marker()
+      // Create a HTML element for your custom marker
+      const customMarker = document.createElement("div")
+      customMarker.className = "marker"
+      customMarker.style.backgroundImage = `url('${marker.image_url}')`
+      customMarker.style.backgroundSize = "contain"
+      customMarker.style.width = "25px"
+      customMarker.style.height = "25px"
+      const popup = new mapboxgl.Popup().setHTML(marker.info_window)
+      new mapboxgl.Marker(customMarker)
         .setLngLat([ marker.lng, marker.lat ])
+        .setPopup(popup)
         .addTo(this.map);
     });
   };
@@ -32,3 +41,5 @@ export default class extends Controller {
     this.map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 0 });
   };
 };
+
+// Next add searching
