@@ -40,15 +40,7 @@
         <h3><%= @pokemon.name %>'s reviews</h3>
         <div class="rating">
           <% (1..5).to_a.each do |i| %>
-            <input
-              type="radio"
-              disabled="disabled"
-              name="rating"
-              value="<%= i %>"
-              id="<%= i %>"
-              <%= checked if @pokemon.average_rating >= i %>
-            />
-            <label for="<%= i %>">☆</label>
+            <%= @pokemon.average_rating && @pokemon.average_rating >= i ? '★' : '☆' %>
           <% end %>
         </div>
 
