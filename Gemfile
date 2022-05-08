@@ -3,6 +3,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.0.3'
 
+# Adds geocoder for maps
+gem 'geocoder'
 # Handles JSON files
 gem 'json'
 # Adds color to strings

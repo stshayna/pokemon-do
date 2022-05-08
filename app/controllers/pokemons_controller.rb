@@ -8,6 +8,18 @@ class PokemonsController < ApplicationController
     else
       @pokemons = Pokemon.all.order(id: :desc)
     end
+    # markers are used for the Geocoder gem scope filters. It will look at the latitude & longitude of the pokemon.
+    @markers = @pokemons.geocoded.map do |pokemon|
+      {
+        lat: pokemon.latitude,
+        lng: pokemon.longitude,
+        info_window: render_to_string(
+          partial: "info_window",
+          locals: { pokemon: pokemon }
+        ),
+        image_url: helpers.asset_url("pokemonball")
+      }
+    end
   end
 
   def show
