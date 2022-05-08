@@ -1,4 +1,4 @@
-# !!! CERTAIN POKEMONS DON'T HAVE PICTURES such as Mr.Mine and Nidoran !!!
+# !!! CERTAIN POKEMONS DON'T HAVE PICTURES!!!
 @bad_pokemon_species_for_api = ['nidoran', 'mr. mime', "farfetch'd"]
 
 # Prevents pokemon with no image from seeding
@@ -40,6 +40,7 @@ demo_owner = User.create!(
   username: 'Gary',
   password: '123456'
 )
+demo_owner_address = 'Montreal'
 puts "#{'✓'.green} Demo owner: #{demo_owner.username.light_cyan} is ready to rent out his pokemons:"
 puts '-'.light_black
 
@@ -51,9 +52,11 @@ puts '-'.light_black
     name: Faker::Creature::Dog.name,
     species: species,
     description: Faker::Games::Pokemon.move,
-    location: Faker::Address.full_address,
+    location: demo_owner_address,
+    # latitude: Faker::Address.latitude,
+    # longitude: Faker::Address.longitude,
     price: rand(25..65),
-  image_url: "https://img.pokemondb.net/artwork/large/#{species.downcase}.jpg"
+    image_url: "https://img.pokemondb.net/artwork/large/#{species.downcase}.jpg"
   )
 end
 
@@ -63,9 +66,11 @@ Pokemon.create!(
   name: Faker::Creature::Dog.name,
   species: 'Graveler',
   description: 'Great for demolition!',
-  location: 'Pallet town, near that bush.',
+  location: demo_owner_address,
+  # latitude: Faker::Address.latitude,
+  # longitude: Faker::Address.longitude,
   price: 24,
-image_url: "https://img.pokemondb.net/artwork/large/graveler.jpg"
+  image_url: "https://img.pokemondb.net/artwork/large/graveler.jpg"
 )
 
 #############################################################################
@@ -81,7 +86,9 @@ image_url: "https://img.pokemondb.net/artwork/large/graveler.jpg"
     name: Faker::Creature::Dog.name,
     species: species,
     description: Faker::Games::Pokemon.move,
-    location: Faker::Address.full_address,
+    location: demo_owner_address,
+    # latitude: Faker::Address.latitude,
+    # longitude: Faker::Address.longitude,
     price: rand(25..65),
     image_url: "https://img.pokemondb.net/artwork/large/#{species.downcase}.jpg"
   )
@@ -115,7 +122,9 @@ end
     name: Faker::Creature::Dog.name,
     species: species,
     description: Faker::Games::Pokemon.move,
-    location: Faker::Address.full_address,
+    location: 'montreal',
+    # latitude: Faker::Address.latitude,
+    # longitude: Faker::Address.longitude,
     price: rand(25..65),
     image_url: "https://img.pokemondb.net/artwork/large/#{species.downcase}.jpg"
   )
@@ -144,7 +153,9 @@ puts '-'.light_black
     name: Faker::Creature::Dog.name,
     species: species,
     description: Faker::Games::Pokemon.move,
-    location: Faker::Address.full_address,
+    location: demo_owner_address,
+    # latitude: Faker::Address.latitude,
+    # longitude: Faker::Address.longitude,
     price: rand(25..65),
     image_url: "https://img.pokemondb.net/artwork/large/#{species.downcase}.jpg"
   )
@@ -178,7 +189,9 @@ end
     name: Faker::Creature::Dog.name,
     species: species,
     description: Faker::Games::Pokemon.move,
-    location: Faker::Address.full_address,
+    location: 'montreal',
+    # latitude: Faker::Address.latitude,
+    # longitude: Faker::Address.longitude,
     price: rand(25..65),
     image_url: "https://img.pokemondb.net/artwork/large/#{species.downcase}.jpg"
   )
@@ -207,7 +220,9 @@ puts '-'.light_black
     name: Faker::Creature::Dog.name,
     species: species,
     description: Faker::Games::Pokemon.move,
-    location: Faker::Address.full_address,
+    location: demo_owner_address,
+    # latitude: Faker::Address.latitude,
+    # longitude: Faker::Address.longitude,
     price: rand(25..65),
     image_url: "https://img.pokemondb.net/artwork/large/#{species.downcase}.jpg"
   )
@@ -241,7 +256,9 @@ end
     name: Faker::Creature::Dog.name,
     species: species,
     description: Faker::Games::Pokemon.move,
-    location: Faker::Address.full_address,
+    location: 'montreal',
+    # latitude: Faker::Address.latitude,
+    # longitude: Faker::Address.longitude,
     price: rand(25..65),
     image_url: "https://img.pokemondb.net/artwork/large/#{species.downcase}.jpg"
   )
@@ -273,12 +290,14 @@ Pokemon.create!(
   name: 'graveler',
   description: 'Can break rocks better than you can!',
   location: 'Viridian town, near the river.',
+  # latitude: Faker::Address.latitude,
+  # longitude: Faker::Address.longitude,
   price: 74,
 image_url: "https://img.pokemondb.net/artwork/large/graveler.jpg"
 )
 
 # Seed database with x amount of pokemons and their owner.
-50.times do
+10.times do
   pokemon_owner = User.create!(
     email: Faker::Internet.email,
     username: Faker::Name.first_name + Faker::Name.first_name,
@@ -292,7 +311,9 @@ image_url: "https://img.pokemondb.net/artwork/large/graveler.jpg"
     name: Faker::Creature::Dog.name,
     species: species,
     description: Faker::Games::Pokemon.move,
-    location: Faker::Address.full_address,
+    location: 'montreal',
+    # latitude: Faker::Address.latitude,
+    # longitude: Faker::Address.longitude,
     price: rand(25..65),
     image_url: "https://img.pokemondb.net/artwork/large/#{species.downcase}.jpg"
   )
@@ -314,11 +335,11 @@ Pokemon.create!(
   name: 'graveler',
   description: 'Can be used as a wheel!',
   location: 'Nowherenearyou street.',
+  latitude: Faker::Address.latitude,
+  longitude: Faker::Address.longitude,
   price: 28,
 image_url: "https://img.pokemondb.net/artwork/large/graveler.jpg"
 )
-
-puts "Finished catching pokemons :)".light_green.blink
 
 Booking.all.each do |booking|
   review = PokemonReview.create!(
@@ -331,3 +352,6 @@ Booking.all.each do |booking|
 end
 
 puts "Adding review!"
+
+puts "Finished catching pokemons :)".light_green.blink
+
