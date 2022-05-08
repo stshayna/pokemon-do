@@ -29,12 +29,17 @@
         <div class="card-pokemon-details">
           <div class="mt-1">
             <h4><%= pokemon.name.capitalize %></h4>
-            <h6>Special skill: <%= pokemon.description %></h6>
+            <h6><%= pokemon.description %></h6>
             <p class="mb-0">Owned by <%= pokemon.user.username.capitalize %></p>
           </div>
 
           <div class="text-end">
             <h5>From $<%= pokemon.price %> / day<h5>
+            <div class="rating">
+              <% (1..5).to_a.each do |i| %>
+                <%= pokemon.average_rating && pokemon.average_rating >= i ? '★' : '☆' %>
+              <% end %>
+            </div>
             <%= link_to "View", pokemon_path(pokemon), class: "btn btn-sm btn-dark rounded" %>
           </div>
         </div>
