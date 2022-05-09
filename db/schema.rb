@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(version: 2022_05_07_143930) do
     t.date "end_date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "status", default: "Available"
+    t.string "status", default: "Pending"
     t.index ["pokemon_id"], name: "index_bookings_on_pokemon_id"
     t.index ["user_id"], name: "index_bookings_on_user_id"
   end
@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(version: 2022_05_07_143930) do
     t.text "description"
     t.string "location"
     t.integer "price"
+    t.string "status", default: "Available"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id", null: false
