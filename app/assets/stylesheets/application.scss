@@ -6,11 +6,9 @@
 // External libraries
 @import "bootstrap/scss/bootstrap";
 @import "font-awesome";
-<<<<<<< HEAD
 @import "mapbox-gl/dist/mapbox-gl";
-=======
+@import "@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder";
 @import 'select2/dist/css/select2';
->>>>>>> master
 
 // Your CSS partials
 @import "components/index";
