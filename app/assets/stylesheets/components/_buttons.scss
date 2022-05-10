@@ -13,13 +13,14 @@
 
 .card-pokemon-details .btn {
   position: absolute;
-  right: 265px;
-  top: -220px;
+  right: 5px;
+  top: -21px;
   font-size: 14px;
-  background-color: $theme-yellow;
+  font-weight: 600;
+  background: linear-gradient(rgb(225, 225, 225), $theme-yellow);
+  border: 1px solid rgba($color: #000000, $alpha: 0.7);
   transition: background 0.3s ease;
-  border: 1px solid rgba($color: #000000, $alpha: 0.4);
   &:hover {
-    background-color: $theme-beige;
+    background: linear-gradient(rgb(225, 225, 225), $theme-beige);
   }
 }

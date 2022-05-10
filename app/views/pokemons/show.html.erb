@@ -3,11 +3,11 @@
 
     <div class="col-12 col-lg-8">
       <img src=<%= @pokemon.image_url %> alt="Pokemon" class="w-100"/>
-      <h1 class="my-3"><%= @pokemon.name %></h1>
+      <h1 class="my-3"><%= @pokemon.name.capitalize %></h1>
       <p>Species: <%= @pokemon.species %></p>
-      <p>Location: <%= @pokemon.location %></p>
+      <p>Location: <%= @pokemon.location.capitalize  %></p>
       <p>Special skill: <%= @pokemon.description %></p>
-      <p>Price per day $<%= @pokemon.price %></p>
+      <p>Price per day: $<%= @pokemon.price %></p>
       <p>Owner: <%= @pokemon.user.username.capitalize %></p>
     </div>
 
