@@ -19,30 +19,31 @@
   <div class="cards pokemons">
     <% @pokemons.each do |pokemon| %>
       <div class="card-pokemon shadow rounded">
-      <% if pokemon.image_url.present? %>
-        <div class="white">
-          <img src="<%= pokemon.image_url %>" alt="<%= pokemon.name %> picture">
-        </div>
-      <% else %>
-        <img src= "https://images.unsplash.com/photo-1613771404721-1f92d799e49f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=869&q=80">
-      <% end %>
+        <% if pokemon.image_url.present? %>
+          <div class="white">
+            <img src="<%= pokemon.image_url %>" alt="<%= pokemon.name %> picture">
+          </div>
+        <% else %>
+          <img src= "https://images.unsplash.com/photo-1613771404721-1f92d799e49f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=869&q=80">
+        <% end %>
+
         <div class="card-pokemon-details">
           <div class="mt-1">
             <h4><%= pokemon.name.capitalize %></h4>
             <h6><%= pokemon.description %></h6>
             <p class="mb-0">Owned by <%= pokemon.user.username.capitalize %></p>
           </div>
-
           <div class="text-end">
-            <h5>From $<%= pokemon.price %> / day<h5>
+            <%= link_to "View", pokemon_path(pokemon), class: "btn" %>
+            <h5>$<%= pokemon.price %> / day<h5>
             <div class="rating">
               <% (1..5).to_a.each do |i| %>
                 <%= pokemon.average_rating && pokemon.average_rating >= i ? '★' : '☆' %>
               <% end %>
             </div>
-            <%= link_to "View", pokemon_path(pokemon), class: "btn btn-sm btn-dark rounded" %>
           </div>
         </div>
+
       </div>
     <% end %>
   </div>
