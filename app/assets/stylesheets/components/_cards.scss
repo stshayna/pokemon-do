@@ -107,11 +107,17 @@
   width: 48%;
   padding: 20px;
   border-radius: 25px;
+  margin: 8px;
   h5 {
     text-align: center;
     margin: 15px auto;
   }
 }
+
+.nav-link {
+  color: $theme-green;
+}
+
 .card-booking {
   overflow: hidden;
   height: 160px;
