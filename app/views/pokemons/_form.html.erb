@@ -10,10 +10,7 @@
         <%= f.input :name %>
         <%= f.input :species, collection: species_list, input_html: { data: { controller: 'select2' }} %>
         <%= f.input :description %>
-         <%= f.input :location,
-              input_html: { data: { geocoder_target: "location" } },
-              wrapper_html: { data: { controller: "geocoder", geocoder_api_key_value: ENV['MAPBOX_API_KEY'] },
-              class: "" } %> <%# d-none %>
+        <%= f.input :location %>
         <%= f.input :price %>
          <div class="btn btn-primary">
           <%= f.submit %>
