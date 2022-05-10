@@ -51,13 +51,23 @@
 }
 
 .white {
-  width: auto; //WV just adjusted it
+  width: auto;
   background-color: white;
   height: 216px;
   position: relative;
   margin-bottom: 8px;
   text-align: center;
 }
+
+.white-card {
+  // width: auto;
+  background-color: white;
+  height: auto;
+  position: relative;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
 
 .card-pokemon-details {
   display: flex;
@@ -84,15 +94,6 @@
     font-size: 14px;
   }
 }
-
-// //WV just add it below
-// .card-pokemon-details .text-end{
-//   position: absolute;
-//   right: 16px;
-//   top: 24px;
-//   width: 112px;
-// }
-// //WV just add it up
 
 
 .card-heading {
