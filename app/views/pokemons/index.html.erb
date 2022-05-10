@@ -34,7 +34,7 @@
             <p class="mb-0">Owned by <%= pokemon.user.username.capitalize %></p>
           </div>
           <div class="text-end">
-            <%= link_to "View", pokemon_path(pokemon), class: "btn btn-sm btn-outline-success rounded" %>
+            <%= link_to "View", pokemon_path(pokemon), class: "btn" %>
             <h5>$<%= pokemon.price %> / day<h5>
             <div class="rating">
               <% (1..5).to_a.each do |i| %>
