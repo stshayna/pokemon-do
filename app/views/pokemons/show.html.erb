@@ -38,7 +38,11 @@
         <h3><%= @pokemon.name %> hasn't received any reviews.</h3>
       <% else %>
         <h3><%= @pokemon.name %>'s reviews</h3>
-        <%# <%= render '/shared/rating' %>
+        <div class="rating">
+          <% (1..5).to_a.each do |i| %>
+            <%= @pokemon.average_rating && @pokemon.average_rating >= i ? '★' : '☆' %>
+          <% end %>
+        </div>
 
       <% end %>
       <% @pokemon_reviews.each do |p_review| %>
