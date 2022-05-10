@@ -24,3 +24,10 @@
     background: linear-gradient(rgb(225, 225, 225), $theme-beige);
   }
 }
+
+.back_button {
+  text-decoration: none;
+  border-radius: 8px;
+  background-color: #FAFDD6;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+}
