@@ -3,17 +3,21 @@
 <div class="container pt-3">
   <div class="row">
 
-    <div class="col-12 col-lg-8">
-      <img src=<%= @pokemon.image_url %> alt="Pokemon" class="w-100"/>
-      <h1 class="my-3"><%= @pokemon.name %></h1>
-      <p>Species: <%= @pokemon.species %></p>
-      <p>Location: <%= @pokemon.location %></p>
-      <p>Special skill: <%= @pokemon.description %></p>
-      <p>Price per day $<%= @pokemon.price %></p>
-      <p>Owner: <%= @pokemon.user.username.capitalize %></p>
+    <div class="col-12 col-lg-6">
+      <div class="card px-5 py-3 text-center bg-light">
+        <h1 class="my-3"><%= @pokemon.name %></h1>
+        <img src=<%= @pokemon.image_url %> alt="Pokemon" class="w-80"/>
+        <h2><strong>Price per day:</strong> <%= @pokemon.price %>$</h2>
+        <div class="text-left mt-3">
+          <p><strong>Species:</strong> <%= @pokemon.species %></p>
+          <p><strong>Location:</strong> <%= @pokemon.location %></p>
+          <p><strong>Special skill:</strong> <%= @pokemon.description %></p>
+          <p><strong>Belongs to:</strong> <%= @pokemon.user.username.capitalize %></p>
+        </div>
+      </div>
     </div>
 
-    <div class="col-12 col-lg-4">
+    <div class="col-12 col-lg-6 text-center pb-3">
       <div class="border p-4 rounded">
        <p><b>Status</b> : <% if @pokemon.status %> Available </p>
           <% else %>
@@ -31,29 +35,36 @@
           <p>You can't rent your own Pokemon!</p>
           <%= link_to 'See all Pokemon', pokemons_path, class: 'btn btn-primary' %>
         <% end %>
-
       </div>
 
-      <% if (@pokemon_reviews.blank?) %>
-        <h3><%= @pokemon.name %> hasn't received any reviews.</h3>
-      <% else %>
-        <h3><%= @pokemon.name %>'s reviews</h3>
-        <div class="rating">
-          <% (1..5).to_a.each do |i| %>
-            <%= @pokemon.average_rating && @pokemon.average_rating >= i ? '★' : '☆' %>
-          <% end %>
-        </div>
+      <br>
 
-      <% end %>
-      <% @pokemon_reviews.each do |p_review| %>
-              <%= p_review.booking.user.username.capitalize %>
-              <%= p_review.created_at.to_s.split(' ')[0] %>
-              <%= p_review.content %>
+      <div class="p-3 bg-light">
+        <% if (@pokemon_reviews.blank?) %>
+          <h3><%= @pokemon.name %> hasn't received any reviews.</h3>
+        <% else %>
+          <h3><%= @pokemon.name %>'s reviews</h3>
+          <div class="rating">
+            <% (1..5).to_a.each do |i| %>
+              <%= @pokemon.average_rating && @pokemon.average_rating >= i ? '★' : '☆' %>
+            <% end %>
+            <p>(<%= @pokemon.pokemon_reviews.length %> reviews)</p>
+          </div>
         <% end %>
 
+        <br>
+
+        <div class="card w-100 text-left review">
+            <% @pokemon_reviews.each do |p_review| %>
+              <h6><strong><%= p_review.booking.user.username.capitalize %></strong> - <span class="text-muted"><%= p_review.created_at.to_s.split(' ')[0] %></span></h6>
+              <p><%= p_review.content %></p>
+
+            <% end %>
+          </div>
+        </div>
+      </div>
     </div>
-    <div>
-     <%= link_to "Back", pokemons_path %>
+    <%= link_to "Back", pokemons_path %>
     </div>
   </div>
 </div>

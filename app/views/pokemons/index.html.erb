@@ -36,11 +36,11 @@
           <div class="text-end">
             <%= link_to "View", pokemon_path(pokemon), class: "btn" %>
             <h5>$<%= pokemon.price %> / day<h5>
-            <div class="rating">
+            <strong>Rating:</strong>
               <% (1..5).to_a.each do |i| %>
                 <%= pokemon.average_rating && pokemon.average_rating >= i ? '★' : '☆' %>
               <% end %>
-            </div>
+              (<%= pokemon.pokemon_reviews.length %>)
           </div>
         </div>
 
