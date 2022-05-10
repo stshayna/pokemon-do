@@ -51,7 +51,7 @@
 }
 
 .white {
-  width: auto; //WV just adjusted it
+  width: auto;
   background-color: white;
   height: 216px;
   position: relative;
@@ -59,9 +59,19 @@
   text-align: center;
 }
 
+.white-card {
+  // width: auto;
+  background-color: white;
+  height: auto;
+  position: relative;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+
 .card-pokemon-details {
   display: flex;
-  position: relative; //WV just added it
+  position: relative;
   justify-content: space-between;
   align-items: flex-end;
   z-index: 0;
@@ -84,15 +94,6 @@
     font-size: 14px;
   }
 }
-
-// //WV just add it below
-// .card-pokemon-details .text-end{
-//   position: absolute;
-//   right: 16px;
-//   top: 24px;
-//   width: 112px;
-// }
-// //WV just add it up
 
 
 .card-heading {
@@ -117,7 +118,7 @@
 
 .card-booking {
   overflow: hidden;
-  height: 160px;
+  height: 180px;
   background: white;
   display: flex;
   align-items: center;
@@ -132,8 +133,8 @@
   }
 
   .card-booking-img {
-    height: 80%;
-    width: 120px;
+    height: 40%;
+    width: 60px;
     object-fit: contain;
     margin-left: 10px;
   }
@@ -153,6 +154,16 @@
       margin: 0;
       margin-top: 1px;
     }
+  }
+
+  .write-review {
+    background-color: #E6BA95;
+    font-size: 12px;
+    border-radius: 8px;
+    margin-right: 8px;
+    padding: 8px;
+    text-decoration: none;
+    color: white;
   }
 
   .card-booking-status {
