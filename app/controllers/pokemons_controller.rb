@@ -19,7 +19,7 @@ class PokemonsController < ApplicationController
           partial: "info_window",
           locals: { pokemon: pokemon }
         ),
-        image_url: helpers.asset_url("pokemonball")
+        image_url: helpers.asset_url("pokeball")
       }
     end
   end

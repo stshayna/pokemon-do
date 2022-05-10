@@ -117,7 +117,7 @@
 
 .card-booking {
   overflow: hidden;
-  height: 160px;
+  height: 180px;
   background: white;
   display: flex;
   align-items: center;
@@ -132,8 +132,8 @@
   }
 
   .card-booking-img {
-    height: 80%;
-    width: 120px;
+    height: 40%;
+    width: 60px;
     object-fit: contain;
     margin-left: 10px;
   }
@@ -153,6 +153,16 @@
       margin: 0;
       margin-top: 1px;
     }
+  }
+
+  .write-review {
+    background-color: #E6BA95;
+    font-size: 12px;
+    border-radius: 8px;
+    margin-right: 8px;
+    padding: 8px;
+    text-decoration: none;
+    color: white;
   }
 
   .card-booking-status {
