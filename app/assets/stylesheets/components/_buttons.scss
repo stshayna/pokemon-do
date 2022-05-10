@@ -10,3 +10,16 @@
   // background: #E4E9BE;
   color: white;
 }
+
+.card-pokemon-details .btn {
+  position: absolute;
+  right: 265px;
+  top: -220px;
+  font-size: 14px;
+  background-color: $theme-yellow;
+  transition: background 0.3s ease;
+  border: 1px solid rgba($color: #000000, $alpha: 0.4);
+  &:hover {
+    background-color: $theme-beige;
+  }
+}
