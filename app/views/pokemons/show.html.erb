@@ -1,57 +1,61 @@
 <div class="container pt-5 my-5">
   <div class="row">
 
-    <div class="col-12 col-lg-8">
-      <img src=<%= @pokemon.image_url %> alt="Pokemon" class="w-100"/>
-      <h1 class="my-3"><%= @pokemon.name.capitalize %></h1>
-      <p>Species: <%= @pokemon.species %></p>
-      <p>Location: <%= @pokemon.location.capitalize  %></p>
-      <p>Special skill: <%= @pokemon.description %></p>
-      <p>Price per day: $<%= @pokemon.price %></p>
-      <p>Owner: <%= @pokemon.user.username.capitalize %></p>
+    <div class="col-12 col-lg-7">
+      <div class="show-card border shadow animate__animated">
+        <h2><%= @pokemon.name.capitalize %></h2>
+        <div class="badges d-flex justify-content-around py-3">
+          <p><%= @pokemon.species %></p>
+          <p>★ <%= @pokemon.average_rating ? @pokemon.average_rating : "0" %></p>
+          <p><%= pluralize(@pokemon_reviews.count, 'review') %></p>
+          <p><i class="fa-solid fa-map-pin"></i> <%= @pokemon.location.capitalize %></p>
+        </div>
+        <img src=<%= @pokemon.image_url %> alt="Pokemon">
+        <p><i class="fa-solid fa-screwdriver-wrench fa-lg"></i> <%= @pokemon.description %></p>
+        <p><i class="fa-solid fa-dollar-sign fa-lg"></i> <%= @pokemon.price %> CAD<span> day</span></p>
+        <p><i class="fa-regular fa-id-card fa-lg"></i> <%= @pokemon.user.username.capitalize %></p>
+      </div>
     </div>
 
-    <div class="col-12 col-lg-4">
-      <div class="border p-4 rounded">
+    <div class="col-12 col-lg-5">
+      <div class="booking border shadow">
        <p><b>Status</b> : <% if @pokemon.status %> Available </p>
           <% else %>
-            Not available
+            <p>Not available</p>
           <% end %>
-        <h2>Book Me</h2>
+        <h4>Book This Pokémon</h4>
 
         <% if current_user.id != @pokemon.user_id  %>
           <%= simple_form_for [@pokemon, @booking] do |f| %>
-            <%= f.input :start_date %>
-            <%= f.input :end_date %>
+            <p><%= f.input :start_date %></p>
+            <p><%= f.input :end_date %></p>
             <%= f.submit class: 'btn-submit-movie mt-3' %>
           <% end %>
         <% else %>
-          <p>You can't rent your own Pokemon!</p>
-          <%= link_to 'See all Pokemon', pokemons_path, class: 'btn btn-primary' %>
+          <p>You can't rent your own Pokémon!</p>
         <% end %>
-
       </div>
 
-      <% if (@pokemon_reviews.blank?) %>
-        <h3><%= @pokemon.name %> hasn't received any reviews.</h3>
-      <% else %>
-        <h3><%= @pokemon.name %>'s reviews</h3>
-        <div class="rating">
-          <% (1..5).to_a.each do |i| %>
-            <%= @pokemon.average_rating && @pokemon.average_rating >= i ? '★' : '☆' %>
+      <div class="reviews my-5">
+        <h4><% (1..5).to_a.each do |i| %>
+              <%= @pokemon.average_rating && @pokemon.average_rating >= i ? '★' : '☆' %>
+            <% end %>
+            (<%= pluralize(@pokemon_reviews.count, "Review") %>)
+        </h4>
+        <div class="review-details my-3 shadow">
+          <% if (@pokemon_reviews.blank?) %>
+            <p><%= @pokemon.name %> hasn't received any reviews.</p>
+          <% else %>
+            <% @pokemon_reviews.each_with_index do |p_review, i| %>
+              <p><i class="fa-solid fa-comment"></i> <%= p_review.content %> -</p>
+              <p><%= p_review.booking.user.username.capitalize %> (<%= p_review.created_at.to_s.split(' ')[0] %>)</p>
+            <% end %>
           <% end %>
         </div>
-
-      <% end %>
-      <% @pokemon_reviews.each do |p_review| %>
-              <%= p_review.booking.user.username.capitalize %>
-              <%= p_review.created_at.to_s.split(' ')[0] %>
-              <%= p_review.content %>
-        <% end %>
-
-    </div>
-    <div>
-     <%= link_to "Back", pokemons_path %>
+        <div>
+          <%= link_to "Back", pokemons_path %>
+        </div>
+      </div>
     </div>
   </div>
 </div>
