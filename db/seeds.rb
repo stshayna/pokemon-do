@@ -340,18 +340,33 @@ Pokemon.create!(
   price: 28,
 image_url: "https://img.pokemondb.net/artwork/large/graveler.jpg"
 )
+puts "Finished catching pokemons :)".light_green.blink
 
+puts 'Creating one review per Pokemon booked'.light_blue
+
+reviews = [
+  {
+    content: "I don't get the hype about that Pokemon. Kinda sucks!",
+    rating: 1
+  },
+  {
+    content: 'Meh. Not the best, but not the worst either.',
+    rating: 3
+  },
+  {
+    content: 'Da BEST Pokemon to ever walk this earth!',
+    rating: 5
+  }
+]
 Booking.all.each do |booking|
-  review = PokemonReview.create!(
-    content: ['Da BEST Pokémon ever!', 'Worst Pokémon to exist. They should go extinct!', 'Meh. Not my favorite, but they are ok'].sample,
-    rating: Faker::Number.between(from: 0, to: 5),
+  review_details = reviews.sample
+  review = PokemonReview.new(
+    content: review_details[:content],
+    rating: review_details[:rating],
     booking: booking,
     user: booking.user
   )
   review.save!
 end
 
-puts "Adding review!"
-
-puts "Finished catching pokemons :)".light_green.blink
-
+puts "Adding review!".light_blue.blink

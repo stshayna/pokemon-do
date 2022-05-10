@@ -5,8 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :bookings
-  has_many :pokemons
-  has_many :pokemon_reviews
+  has_many :pokemons, dependent: :destroy
+  has_many :pokemon_reviews, through: :bookings
 
   validates_presence_of :email, :username, :password
 end
