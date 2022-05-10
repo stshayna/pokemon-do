@@ -1,12 +1,12 @@
-# !!! CERTAIN POKEMONS DON'T HAVE PICTURES!!!
-@bad_pokemon_species_for_api = ['nidoran', 'mr. mime', "farfetch'd"]
+# List of pokemon species to sample from
+species_file_path = File.join(Rails.root, 'app', 'assets', 'species.json')
+species_file = File.read(species_file_path)
+species_list = JSON.parse(species_file)
 
-# Prevents pokemon with no image from seeding
-def valid_species_only
-  name = Faker::Games::Pokemon.name
-  name = Faker::Games::Pokemon.name while @bad_pokemon_species_for_api.include?(name.downcase)
-  return name
-end
+# List of montreal areas to sample from
+cities_file_path = File.join(Rails.root, 'app', 'assets', 'cities.json')
+cities_file = File.read(cities_file_path)
+cities_list = JSON.parse(cities_file)
 
 # Clears screen and wipes database
 system('clear')
@@ -40,13 +40,13 @@ demo_owner = User.create!(
   username: 'Gary',
   password: '123456'
 )
-demo_owner_address = 'Montreal'
+demo_owner_address = '1925 brookdale dorval'
 puts "#{'✓'.green} Demo owner: #{demo_owner.username.light_cyan} is ready to rent out his pokemons:"
 puts '-'.light_black
 
 # Creates x amount of pokemon for demo_user Gary (to own) with no bookings.
 3.times do
-  species = valid_species_only
+  species = species_list.sample
   Pokemon.create!(
     user_id: demo_owner.id,
     name: Faker::Creature::Dog.name,
@@ -80,7 +80,7 @@ Pokemon.create!(
 # Creates x amount of current bookings. Each booking will have a generated renter and pokemon.
 # The owner of the pokemons in the bookings will be Gary, the demo owner user.
 3.times do
-  species = valid_species_only
+  species = species_list.sample
   pokemon = Pokemon.create!(
     user_id: demo_owner.id,
     name: Faker::Creature::Dog.name,
@@ -116,13 +116,13 @@ end
     password: '123456'
   )
 
-  species = valid_species_only
+  species = species_list.sample
   pokemon = Pokemon.create!(
     user_id: renter.id,
     name: Faker::Creature::Dog.name,
     species: species,
     description: Faker::Games::Pokemon.move,
-    location: 'montreal',
+    location: cities_list.sample,
     # latitude: Faker::Address.latitude,
     # longitude: Faker::Address.longitude,
     price: rand(25..65),
@@ -147,7 +147,7 @@ puts '-'.light_black
 # Creates x amount of upcoming bookings. Each booking will have a generated renter and pokemon.
 # The owner of the pokemons in the bookings will be Gary, the demo owner user.
 3.times do
-  species = valid_species_only
+  species = species_list.sample
   pokemon = Pokemon.create!(
     user_id: demo_owner.id,
     name: Faker::Creature::Dog.name,
@@ -183,13 +183,13 @@ end
     password: '123456'
   )
 
-  species = valid_species_only
+  species = species_list.sample
   pokemon = Pokemon.create!(
     user_id: renter.id,
     name: Faker::Creature::Dog.name,
     species: species,
     description: Faker::Games::Pokemon.move,
-    location: 'montreal',
+    location: cities_list.sample,
     # latitude: Faker::Address.latitude,
     # longitude: Faker::Address.longitude,
     price: rand(25..65),
@@ -214,7 +214,7 @@ puts '-'.light_black
 # Creates x amount of past bookings. Each booking will have a generated renter and pokemon.
 # The owner of the pokemons in the bookings will be Gary, the demo owner user.
 5.times do
-  species = valid_species_only
+  species = species_list.sample
   pokemon = Pokemon.create!(
     user_id: demo_owner.id,
     name: Faker::Creature::Dog.name,
@@ -250,13 +250,13 @@ end
     password: '123456'
   )
 
-  species = valid_species_only
+  species = species_list.sample
   pokemon = Pokemon.create!(
     user_id: renter.id,
     name: Faker::Creature::Dog.name,
     species: species,
     description: Faker::Games::Pokemon.move,
-    location: 'montreal',
+    location: cities_list.sample,
     # latitude: Faker::Address.latitude,
     # longitude: Faker::Address.longitude,
     price: rand(25..65),
@@ -289,15 +289,16 @@ Pokemon.create!(
   user_id: renter.id,
   name: 'graveler',
   description: 'Can break rocks better than you can!',
-  location: 'Viridian town, near the river.',
+  location: cities_list.sample,
+  species: species_list.sample,
   # latitude: Faker::Address.latitude,
   # longitude: Faker::Address.longitude,
   price: 74,
-image_url: "https://img.pokemondb.net/artwork/large/graveler.jpg"
+  image_url: "https://img.pokemondb.net/artwork/large/graveler.jpg"
 )
 
 # Seed database with x amount of pokemons and their owner.
-10.times do
+50.times do
   pokemon_owner = User.create!(
     email: Faker::Internet.email,
     username: Faker::Name.first_name + Faker::Name.first_name,
@@ -305,13 +306,13 @@ image_url: "https://img.pokemondb.net/artwork/large/graveler.jpg"
   )
   print "Pokemon owner #{pokemon_owner.username.light_cyan}(ID: #{pokemon_owner.id.to_s.light_cyan}) signed up and started renting out their "
 
-  species = valid_species_only
+  species = species_list.sample
   pokemon = Pokemon.create!(
     user_id: pokemon_owner.id,
     name: Faker::Creature::Dog.name,
     species: species,
     description: Faker::Games::Pokemon.move,
-    location: 'montreal',
+    location: cities_list.sample,
     # latitude: Faker::Address.latitude,
     # longitude: Faker::Address.longitude,
     price: rand(25..65),
@@ -334,11 +335,12 @@ Pokemon.create!(
   user_id: renter.id,
   name: 'graveler',
   description: 'Can be used as a wheel!',
-  location: 'Nowherenearyou street.',
+  location: cities_list.sample,
+  species: species_list.sample,
   latitude: Faker::Address.latitude,
   longitude: Faker::Address.longitude,
   price: 28,
-image_url: "https://img.pokemondb.net/artwork/large/graveler.jpg"
+  image_url: "https://img.pokemondb.net/artwork/large/graveler.jpg"
 )
 
 Booking.all.each do |booking|
@@ -355,3 +357,12 @@ puts "Adding review!"
 
 puts "Finished catching pokemons :)".light_green.blink
 
+# Certain pokemon don't have pictures with the API we use, this method is commented out because it is no longer used.
+# @bad_pokemon_species_for_api = ['nidoran', 'mr. mime', "farfetch'd"]
+
+# Prevents pokemon with no image from seeding
+# def valid_species_only
+#   name = Faker::Games::Pokemon.name
+#   name = Faker::Games::Pokemon.name while @bad_pokemon_species_for_api.include?(name.downcase)
+#   return name
+# end
