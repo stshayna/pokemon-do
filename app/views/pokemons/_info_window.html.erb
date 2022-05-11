@@ -1,4 +1,4 @@
-<h3><%= pokemon.name %></h3>
+<h3><%= link_to pokemon.name, pokemon_path(pokemon) %></h3>
 <img src="<%= pokemon.image_url %>" alt="<%= pokemon.name %> picture">
-<p><%= "Species:#{pokemon.species}" %>
-<p><%= "Owner:#{pokemon.user.username}" %>
+<p><strong><%= "Species: " %></strong><%= "#{pokemon.species}" %>
+<p><strong><%= "Owner: " %></strong><%= "#{pokemon.user.username}" %>
