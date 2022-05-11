@@ -1,0 +1,34 @@
+#map {
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  right: 0;
+  flex: 0 0 40%;
+}
+.content {
+  display: flex;
+}
+#map .mapboxgl-popup-close-button {
+  background-color: white !important;
+}
+
+#map .mapboxgl-popup-content {
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+  padding: 0px !important;
+  img {
+    height: 80px;
+  }
+  p {
+    margin-bottom: 1px !important;
+  }
+}
+#map .mapboxgl-popup {
+  max-width: 200px;
+}
+#gmap_map {
+  flex: 0 0 450px;
+  height: 100vh;
+  position: sticky !important;
+  top: 0 !important;
+}
