@@ -26,8 +26,8 @@
 
         <% if current_user.id != @pokemon.user_id  %>
           <%= simple_form_for [@pokemon, @booking] do |f| %>
-            <p><%= f.input :start_date %></p>
-            <p><%= f.input :end_date %></p>
+            <%= f.input :start_date, as: :date , html5: true %>
+            <%= f.input :end_date, as: :date , html5: true %>
             <%= f.submit class: 'btn-submit-movie mt-3' %>
           <% end %>
         <% else %>
