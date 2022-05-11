@@ -4,7 +4,7 @@
       <div class="show-card border shadow animate__animated">
         <h2><%= @pokemon.name.capitalize %></h2>
         <div class="badges d-flex justify-content-around py-3">
-          <p>Species: %= @pokemon.species %></p>
+          <strong><p>Species:</strong> <%= @pokemon.species %></p>
           <p>★ <%= @pokemon.average_rating ? @pokemon.average_rating : "0" %></p>
           <p><%= pluralize(@pokemon_reviews.count, 'review') %></p>
           <p><i class="fa-solid fa-map-pin"></i> <%= @pokemon.location.capitalize %></p>
