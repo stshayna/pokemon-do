@@ -362,13 +362,12 @@ reviews = [
 ]
 Booking.all.each do |booking|
   review_details = reviews.sample
-  review = PokemonReview.new(
+  PokemonReview.create!(
     content: review_details[:content],
     rating: review_details[:rating],
     booking: booking,
     user: booking.user
   )
-  review.save!
 end
 
 puts "Adding review!".light_blue.blink
