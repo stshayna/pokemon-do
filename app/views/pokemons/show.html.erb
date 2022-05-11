@@ -3,16 +3,14 @@
     <div class="col-12 col-lg-7">
       <div class="show-card border shadow animate__animated">
         <h2><%= @pokemon.name.capitalize %></h2>
-        <div class="badges d-flex justify-content-around py-3">
-          <strong><p>Species:</strong> <%= @pokemon.species %></p>
-          <p>★ <%= @pokemon.average_rating ? @pokemon.average_rating : "0" %></p>
-          <p><%= pluralize(@pokemon_reviews.count, 'review') %></p>
-          <p><i class="fa-solid fa-map-pin"></i> <%= @pokemon.location.capitalize %></p>
+        <div class="badges py-3">
+          <p><strong>Species:</strong> <%= @pokemon.species %></p>
+          <p><i class="fa-regular fa-id-card fa-lg"></i> <%= @pokemon.user.username.capitalize %></p>
+          <p><i class="fa-solid fa-dollar-sign fa-lg"></i> <%= @pokemon.price %> / day</p>
         </div>
         <img src=<%= @pokemon.image_url %> alt="Pokemon">
         <p><i class="fa-solid fa-screwdriver-wrench fa-lg"></i> <%= @pokemon.description %></p>
-        <p><i class="fa-solid fa-dollar-sign fa-lg"></i> <%= @pokemon.price %> CAD<span> day</span></p>
-        <p><i class="fa-regular fa-id-card fa-lg"></i> <%= @pokemon.user.username.capitalize %></p>
+        <p><i class="fa-solid fa-map-pin"></i> <%= @pokemon.location.capitalize %></p>
       </div>
     </div>
 
@@ -43,10 +41,10 @@
         </h4>
         <div class="review-details my-3 shadow">
           <% if (@pokemon_reviews.blank?) %>
-            <p><%= @pokemon.name %> hasn't received any reviews.</p>
+            <p><%= @pokemon.name.capitalize %> hasn't received any reviews.</p>
           <% else %>
             <% @pokemon_reviews.each_with_index do |p_review, i| %>
-              <p><%= p_review.booking.user.username.capitalize %> - <span class="text-muted"><%= p_review.created_at.to_s.split(' ')[0] %></span></p>
+              <p class="text-center mb-1"><%= p_review.booking.user.username.capitalize %> - <span class="text-muted"><%= p_review.created_at.to_s.split(' ')[0] %></span></p>
               <p><i class="fa-solid fa-comment"></i> <%= p_review.content %></p>
             <% end %>
           <% end %>
