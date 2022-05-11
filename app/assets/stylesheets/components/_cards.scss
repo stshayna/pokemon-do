@@ -4,6 +4,14 @@
   grid-gap: 16px;
   // height: 300px;
   margin-bottom: 50px;
+}
+
+.cards-pokemons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 16px;
+  // height: 300px;
+  margin-bottom: 50px;
   &.pokemons {
     grid-gap: 28px;
   }
