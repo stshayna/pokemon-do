@@ -6,20 +6,20 @@
       <% @owner_pokemons.each do |pokemon| %>
         <div class="card-pokemon shadow rounded">
 
-          <div class="white-card">
+          <div class="white-card shadow">
             <%= image_tag pokemon.image_url, alt: pokemon.name, class: "card-pokemon-img rounded-top" %>
           </div>
 
           <%# <img src= "https://images.unsplash.com/photo-1605979399824-542335ee35d5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80" alt=""> %>
-          <div class="card-pokemon-details p-3">
-            <div class="mt-1">
+          <div class="card-pokemon-details">
+            <div>
               <h4><%= pokemon.name %></h4>
-              <%# <p>Special skill:  pokemon.description </p> %>
+              <p><%= pokemon.description %></p>
             </div>
             <div class="text-end">
-              <h5>$<%= pokemon.price %> / day<h5>
-              <%= link_to "Edit", edit_pokemon_path(pokemon), class: "btn btn-sm btn-dark rounded" %>
-              <%= link_to "Delete", pokemon_path(pokemon), method: :delete, data: { confirm: "Are you sure you want to delete this Pokémon?" }, class: "btn btn-sm btn-dark rounded" %>
+              <%= link_to "Edit", edit_pokemon_path(pokemon), class: "my-pokemons-button" %>
+              <%= link_to "Delete", pokemon_path(pokemon), method: :delete, data: { confirm: "Are you sure you want to delete this Pokémon?" }, class: "my-pokemons-button" %>
+              <h5 class="">$<%= pokemon.price %> / day<h5>
             </div>
           </div>
         </div>

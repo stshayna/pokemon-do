@@ -26,6 +26,25 @@
   color: black;
   &:hover {
     background: linear-gradient(rgb(225, 225, 225), $theme-beige);
+    color: black;
+  }
+}
+
+.my-pokemons-button {
+  font-size: 14px;
+  font-weight: 600;
+  background: linear-gradient(rgb(225, 225, 225), $theme-yellow);
+  border: 1px solid rgba($color: #000000, $alpha: 0.7);
+  transition: background 0.3s ease;
+  text-decoration: none;
+  padding: 3px 10px;
+  border-radius: 5px;
+  color: black;
+  display: inline-block;
+  margin: 3px auto 10px;
+  &:hover {
+    background: linear-gradient(rgb(225, 225, 225), $theme-beige);
+    color: black;
   }
 }
 
