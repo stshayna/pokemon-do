@@ -58,7 +58,11 @@ class PokemonsController < ApplicationController
     end
   end
 
-  def edit; end
+  def edit
+    # This is needed to update the picture, but it only works after you try twice...?
+    @pokemon.image_url = "https://img.pokemondb.net/artwork/large/#{@pokemon.species.downcase}.jpg"
+    @pokemon.save!
+  end
 
   def update
     @pokemon.update(pokemon_params)
