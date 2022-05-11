@@ -37,7 +37,7 @@
         <h4><% (1..5).to_a.each do |i| %>
               <%= @pokemon.average_rating && @pokemon.average_rating >= i ? '★' : '☆' %>
             <% end %>
-            (<%= pluralize(@pokemon_reviews.count, "Review") %>)
+            (<%= pluralize(@pokemon.pokemon_reviews.count, "Review") %>)
         </h4>
         <div class="review-details my-3 shadow">
           <% if (@pokemon_reviews.blank?) %>

@@ -1,7 +1,7 @@
 .cards {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 16px;
+  grid-gap: 18px;
   // height: 300px;
   margin-bottom: 50px;
 }
@@ -9,7 +9,7 @@
 .cards-pokemons {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-gap: 16px;
+  grid-gap: 18px;
   // height: 300px;
   margin-bottom: 50px;
   &.pokemons {
@@ -47,7 +47,7 @@
 .card-pokemon {
   background: $theme-light-green;
   // height: 324px;
-  padding: 12px;
+  padding: 14px;
   border: rgba(0, 0, 0, 0.6) 1px solid;
   img {
     margin: 13px 13px 0;
@@ -91,15 +91,15 @@
   p {
     opacity: 0.6;
     font-size: smaller;
+    margin: 0;
   }
   h5 {
     font-size: 14px;
     margin: 0;
-    margin-top: 8px;
   }
   h6 {
     margin-bottom: 5px;
-    font-size: 14px;
+    font-size: 15px;
   }
 }
 
@@ -258,6 +258,9 @@
   .cards {
     grid-template-columns: 1fr;
   }
+  .cards-pokemons {
+    grid-template-columns: 1fr;
+  }
 }
 
 // Small devices (landscape phones, 576px and up)
@@ -265,11 +268,17 @@
   .cards {
     grid-template-columns: 1fr;
   }
+  .cards-pokemons {
+    grid-template-columns: 1fr;
+  }
 }
 
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) {
   .cards {
+    grid-template-columns: 1fr 1fr;
+  }
+  .cards-pokemons {
     grid-template-columns: 1fr 1fr;
   }
 }

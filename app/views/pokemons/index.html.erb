@@ -17,7 +17,7 @@
         <% @pokemons.each do |pokemon| %>
           <div class="card-pokemon shadow rounded">
             <% if pokemon.image_url.present? %>
-              <div class="white">
+              <div class="white shadow">
                 <img src="<%= pokemon.image_url %>" alt="<%= pokemon.name %> picture">
               </div>
             <% else %>
@@ -32,7 +32,7 @@
               </div>
               <div class="text-end">
                 <%= link_to "View", pokemon_path(pokemon), class: "button" %>
-                <h5>$<%= pokemon.price %> / day<h5>
+                <h5 class="mb-2">$<%= pokemon.price %> / day<h5>
                   <% (1..5).to_a.each do |i| %>
                     <%= pokemon.average_rating && pokemon.average_rating >= i ? '★' : '☆' %>
                   <% end %>
