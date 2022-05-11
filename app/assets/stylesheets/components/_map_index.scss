@@ -6,13 +6,10 @@
 .content {
   display: flex;
 }
-// .cards {
-//   flex-grow: 1;
-//   display: grid;
-//   grid-template-columns: 1fr 1fr 1fr;
-//   grid-gap: 16px;
-//   padding: 16px;
-// }
+
+.row {
+  margin-bottom: 16px;
+}
 
 #map {
   height: 100vh;

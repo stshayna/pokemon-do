@@ -25,8 +25,22 @@ class PokemonsController < ApplicationController
   end
 
   def show
+    @pokemons = Pokemon.all
     @booking = Booking.new
     @pokemon_reviews = @pokemon.pokemon_reviews
+
+    # For the map
+    @markers = @pokemons.geocoded.map do |pokemon|
+      {
+        lat: @pokemon.latitude,
+        lng: @pokemon.longitude,
+        info_window: render_to_string(
+          partial: "info_window",
+          locals: { pokemon: pokemon }
+        ),
+        image_url: helpers.asset_url("pokeball")
+      }
+    end
   end
 
   def new

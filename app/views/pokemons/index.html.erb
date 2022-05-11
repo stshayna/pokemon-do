@@ -12,6 +12,7 @@
 
   <div class="container-index-and-map">
     <div class="cards pokemons">
+
       <% @pokemons.each do |pokemon| %>
         <div class="card-pokemon shadow rounded">
           <% if pokemon.image_url.present? %>
@@ -46,15 +47,15 @@
   <!--- Map ---->
 
     <%# Geocoder map %>
-      <div
-        id="map"
-        style="width: 50%;
-        height: 600px;"
+    <div
+      id="map"
+      style="width: 50%;
+      height: 600px;"
 
-          data-controller="mapbox"
-          data-mapbox-markers-value="<%= @markers.to_json %>"
-          data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
-        >
-      </div>
+        data-controller="mapbox"
+        data-mapbox-markers-value="<%= @markers.to_json %>"
+        data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
+      >
     </div>
+  </div>
 </div>
