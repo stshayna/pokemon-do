@@ -4,7 +4,7 @@
       <div class="show-card border shadow animate__animated">
         <h2><%= @pokemon.name.capitalize %></h2>
         <div class="badges d-flex justify-content-around py-3">
-          <p>Species: %= @pokemon.species %></p>
+          <strong><p>Species:</strong> <%= @pokemon.species %></p>
           <p>★ <%= @pokemon.average_rating ? @pokemon.average_rating : "0" %></p>
           <p><%= pluralize(@pokemon_reviews.count, 'review') %></p>
           <p><i class="fa-solid fa-map-pin"></i> <%= @pokemon.location.capitalize %></p>
@@ -26,8 +26,8 @@
 
         <% if current_user.id != @pokemon.user_id  %>
           <%= simple_form_for [@pokemon, @booking] do |f| %>
-            <p><%= f.input :start_date %></p>
-            <p><%= f.input :end_date %></p>
+            <%= f.input :start_date, as: :date , html5: true %>
+            <%= f.input :end_date, as: :date , html5: true %>
             <%= f.submit class: 'btn-submit-movie mt-3' %>
           <% end %>
         <% else %>
