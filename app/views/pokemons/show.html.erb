@@ -34,7 +34,7 @@
           <p>You can't rent your own Pokémon!</p>
         <% end %>
       </div>
-      
+
       <div class="reviews my-5">
         <h4><% (1..5).to_a.each do |i| %>
               <%= @pokemon.average_rating && @pokemon.average_rating >= i ? '★' : '☆' %>
@@ -56,5 +56,16 @@
         </div>
       </div>
     </div>
+  </div>
+  <%# Geocoder map %>
+  <div
+    id="map"
+    style="width: 100%;
+    height: 400px;"
+
+      data-controller="mapbox"
+      data-mapbox-markers-value="<%= @markers.to_json %>"
+      data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
+    >
   </div>
 </div>
