@@ -53,24 +53,20 @@ puts '-'.light_black
     species: species,
     description: Faker::Games::Pokemon.move,
     location: demo_owner_address,
-    # latitude: Faker::Address.latitude,
-    # longitude: Faker::Address.longitude,
     price: rand(25..65),
     image_url: "https://img.pokemondb.net/artwork/large/#{species.downcase}.jpg"
   )
 end
 
-# Creates specific pokemon to make a booking with duriong demo, owner is Gary (pokemon_id: 5)
+# Creates specific pokemon to make a booking with during demo, owner is Gary (pokemon_id: 5)
 Pokemon.create!(
   user_id: demo_owner.id,
   name: Faker::Creature::Dog.name,
-  species: 'Graveler',
-  description: 'Great for demolition!',
+  species: 'machamp',
+  description: 'Great for heavy lifting and building!',
   location: demo_owner_address,
-  # latitude: Faker::Address.latitude,
-  # longitude: Faker::Address.longitude,
-  price: 24,
-  image_url: "https://img.pokemondb.net/artwork/large/graveler.jpg"
+  price: 25,
+  image_url: "https://img.pokemondb.net/artwork/large/machamp.jpg"
 )
 
 #############################################################################
@@ -87,8 +83,6 @@ Pokemon.create!(
     species: species,
     description: Faker::Games::Pokemon.move,
     location: demo_owner_address,
-    # latitude: Faker::Address.latitude,
-    # longitude: Faker::Address.longitude,
     price: rand(25..65),
     image_url: "https://img.pokemondb.net/artwork/large/#{species.downcase}.jpg"
   )
@@ -123,8 +117,6 @@ end
     species: species,
     description: Faker::Games::Pokemon.move,
     location: cities_list.sample,
-    # latitude: Faker::Address.latitude,
-    # longitude: Faker::Address.longitude,
     price: rand(25..65),
     image_url: "https://img.pokemondb.net/artwork/large/#{species.downcase}.jpg"
   )
@@ -154,8 +146,6 @@ puts '-'.light_black
     species: species,
     description: Faker::Games::Pokemon.move,
     location: demo_owner_address,
-    # latitude: Faker::Address.latitude,
-    # longitude: Faker::Address.longitude,
     price: rand(25..65),
     image_url: "https://img.pokemondb.net/artwork/large/#{species.downcase}.jpg"
   )
@@ -190,8 +180,6 @@ end
     species: species,
     description: Faker::Games::Pokemon.move,
     location: cities_list.sample,
-    # latitude: Faker::Address.latitude,
-    # longitude: Faker::Address.longitude,
     price: rand(25..65),
     image_url: "https://img.pokemondb.net/artwork/large/#{species.downcase}.jpg"
   )
@@ -221,8 +209,6 @@ puts '-'.light_black
     species: species,
     description: Faker::Games::Pokemon.move,
     location: demo_owner_address,
-    # latitude: Faker::Address.latitude,
-    # longitude: Faker::Address.longitude,
     price: rand(25..65),
     image_url: "https://img.pokemondb.net/artwork/large/#{species.downcase}.jpg"
   )
@@ -257,8 +243,6 @@ end
     species: species,
     description: Faker::Games::Pokemon.move,
     location: cities_list.sample,
-    # latitude: Faker::Address.latitude,
-    # longitude: Faker::Address.longitude,
     price: rand(25..65),
     image_url: "https://img.pokemondb.net/artwork/large/#{species.downcase}.jpg"
   )
@@ -278,7 +262,7 @@ puts '-'.light_black
 #--------------------------SEEDING DB WITH POKEMONS-------------------------#
 #############################################################################
 
-# Creates a 'graveler' pokemon + its owner with a high price, to compare with Gary's pokemon during demo day
+# Creates a 'machamp' pokemon + its owner with a high price, to compare with Gary's pokemon during demo day
 renter = User.create!(
   email: Faker::Internet.email,
   username: Faker::Name.first_name + Faker::Name.first_name,
@@ -287,18 +271,16 @@ renter = User.create!(
 
 Pokemon.create!(
   user_id: renter.id,
-  name: 'graveler',
+  name: 'Muscles',
   description: 'Can break rocks better than you can!',
   location: cities_list.sample,
-  species: species_list.sample,
-  # latitude: Faker::Address.latitude,
-  # longitude: Faker::Address.longitude,
-  price: 74,
-  image_url: "https://img.pokemondb.net/artwork/large/graveler.jpg"
+  species: 'machamp',
+  price: 99,
+  image_url: "https://img.pokemondb.net/artwork/large/machamp.jpg"
 )
 
 # Seed database with x amount of pokemons and their owner.
-50.times do
+10.times do
   pokemon_owner = User.create!(
     email: Faker::Internet.email,
     username: Faker::Name.first_name + Faker::Name.first_name,
@@ -313,18 +295,16 @@ Pokemon.create!(
     species: species,
     description: Faker::Games::Pokemon.move,
     location: cities_list.sample,
-    # latitude: Faker::Address.latitude,
-    # longitude: Faker::Address.longitude,
     price: rand(25..65),
     image_url: "https://img.pokemondb.net/artwork/large/#{species.downcase}.jpg"
   )
   puts "#{pokemon.name.cyan} the #{pokemon.species.magenta}(ID: #{pokemon.id.to_s.magenta})!"
   puts ''
-  puts '--------------------------------------------------'.light_black
+  puts '----------------------------------------------------------------------------------------------------'.light_black
   puts ''
 end
 
-# Creates a 'graveler' pokemon and its owner with a far location, to compare with Gary's pokemon during demo day
+# Creates a 'machamp' pokemon and its owner with a far location, to compare with Gary's pokemon during demo day
 renter = User.create!(
   email: Faker::Internet.email,
   username: Faker::Name.first_name + Faker::Name.first_name,
@@ -333,42 +313,73 @@ renter = User.create!(
 
 Pokemon.create!(
   user_id: renter.id,
-  name: 'graveler',
-  description: 'Can be used as a wheel!',
-  location: cities_list.sample,
-  species: species_list.sample,
-  latitude: Faker::Address.latitude,
-  longitude: Faker::Address.longitude,
-  price: 28,
-  image_url: "https://img.pokemondb.net/artwork/large/graveler.jpg"
+  name: 'Goliath',
+  description: 'Has strong arms for heavy lifting',
+  location: 'Montreal, Olympic stadium',
+  species: 'Machamp',
+  price: 31,
+  image_url: "https://img.pokemondb.net/artwork/large/machamp.jpg"
 )
-puts "Finished catching pokemons :)".light_green.blink
 
-puts 'Creating one review per Pokemon booked'.light_blue
+puts 'Creating reviews for each pokemon booked'.light_blue
 
+# Reviews to sample from for each booking (tied to pokemon)
 reviews = [
   {
     content: "I don't get the hype about that Pokemon. Kinda sucks!",
     rating: 1
   },
   {
+    content: "Didn't help me at all, would not recommend!",
+    rating: 1
+  },
+  {
+    content: "I had a lot of difficulties with this pokemon, I'd be careful.",
+    rating: 2
+  },
+  {
+    content: "At first the pokemon was ok, but that didn't last very long at all.",
+    rating: 2
+  },
+  {
     content: 'Meh. Not the best, but not the worst either.',
     rating: 3
   },
   {
+    content: "The pokemon was OKAY I guess, but I probably won't rent it again",
+    rating: 3
+  },
+  {
+    content: "Awesome pokemon! It took a while for it to get comfortable around me though.",
+    rating: 4
+  },
+  {
+    content: "The only thing stopping me from rating 5 stars, is that it pooped in my house once.",
+    rating: 4
+  },
+  {
     content: 'Da BEST Pokemon to ever walk this earth!',
+    rating: 5
+  },
+  {
+    content: 'Fantastic pokemon, I would definitely recommend and rent again!',
     rating: 5
   }
 ]
+
+# Seeds reviews for each booking (tied to pokemon)
 Booking.all.each do |booking|
   review_details = reviews.sample
-  review = PokemonReview.new(
+  review = PokemonReview.create!(
     content: review_details[:content],
     rating: review_details[:rating],
     booking: booking,
     user: booking.user
   )
-  review.save!
+  puts "#{booking.user.username.cyan} rated #{review.booking.pokemon.name.magenta} #{review.rating.to_s.yellow} stars!"
+  puts ''
+  puts '-------------------------------'.light_black
+  puts ''
 end
 
-puts "Adding review!".light_blue.blink
+puts "Finished catching and preparing pokemons :)".light_green
