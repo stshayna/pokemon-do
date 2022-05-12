@@ -473,4 +473,29 @@ Booking.all.each do |booking|
   end
 end
 
+# Makes a booking so we can leave a review as Gary, who RENTED the pokemon
+renter = User.create!(
+  email: Faker::Internet.email,
+  username: Faker::Name.first_name + Faker::Name.first_name,
+  password: '123456'
+)
+
+species = avoid_duplicate_cuties
+pokemon = Pokemon.create!(
+  user_id: renter.id,
+  name: Faker::Creature::Dog.name,
+  species: species,
+  description: 'Greatest pokemon, does literally everything!',
+  location: 'Montreal, Lasalle',
+  price: rand(65),
+  image_url: "https://img.pokemondb.net/artwork/large/#{species.downcase}.jpg"
+)
+
+booking = Booking.create!(
+  pokemon_id: pokemon.id,
+  user_id: demo_owner.id,
+  start_date: Faker::Date.between(from: 15.days.ago, to: 10.days.ago),
+  end_date: Faker::Date.between(from: 3.days.ago, to: 2.days.ago)
+)
+
 puts "Finished catching and preparing pokemons :)".light_green
