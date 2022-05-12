@@ -159,15 +159,6 @@
     border-radius: 10px;
   }
 }
-// //WV just add it below
-// .card-pokemon-details .text-end{
-//   position: absolute;
-//   right: 16px;
-//   top: 24px;
-//   width: 112px;
-// }
-// //WV just add it up
-
 
 .card-heading {
   opacity: 0.7;
@@ -189,8 +180,13 @@
   color: $theme-green;
 }
 
+.nav-link:hover {
+  color: black;
+}
+
 .card-booking {
   overflow: hidden;
+  position: relative;
   height: 180px;
   background: white;
   display: flex;
@@ -208,12 +204,15 @@
   .card-booking-img {
     height: 40%;
     width: 60px;
+    position: absolute;
     object-fit: contain;
-    margin-left: 10px;
+    margin-left: 16px;
   }
 
   .card-booking-info {
     padding: 10px;
+    margin-left: 84px;
+    margin-top: -20px;
     flex-grow: 1;
     h2 {
       font-size: 18px;
@@ -229,14 +228,36 @@
     }
   }
 
-  .write-review {
+  .review {
     background-color: #E6BA95;
+    color: black;
+    text-decoration: none;
+    position: absolute;
     font-size: 12px;
     border-radius: 8px;
     margin-right: 8px;
-    padding: 8px;
+    margin-top: 120px;
+    margin-left: 95px;
+    padding-left: 13px;
+    width: 120px;
+    :hover {
+      color: white;
+      text-decoration: none;
+    }
+  }
+
+  a:link{
+    text-decoration: none!important;
+    color: black;
+  }
+
+  a:visited {
     text-decoration: none;
-    color: white;
+    color: black;
+  }
+
+  .write-a-review {
+    color: black;
   }
 
   .card-booking-status {
