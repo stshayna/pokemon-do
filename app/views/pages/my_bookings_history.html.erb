@@ -177,7 +177,9 @@
 
                           <div class="review">
                           <% if booking.pokemon_reviews.blank? %>
-                            <%= link_to 'Write a review', new_booking_pokemon_review_path(booking), class: "write" %>
+                            <div class="write">
+                              <%= link_to 'Write a review', new_booking_pokemon_review_path(booking), class: "text-white" %>
+                            </div>
                           <% else %>
                             <%= link_to 'See my review', pokemon_path(booking.pokemon) %>
                           <% end %>
