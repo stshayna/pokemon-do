@@ -44,7 +44,13 @@
             <p><%= @pokemon.name.capitalize %> hasn't received any reviews.</p>
           <% else %>
             <% @pokemon_reviews.each_with_index do |p_review, i| %>
-              <p class="text-center mb-1"><%= p_review.booking.user.username.capitalize %> - <span class="text-muted"><%= p_review.created_at.to_s.split(' ')[0] %></span></p>
+              <p class="text-center mb-1">
+                <%= p_review.booking.user.username.capitalize %> -
+                <% (1..5).to_a.each do |i| %>
+                  <%= p_review.rating >= i ? '★' : '☆' %>
+                <% end %>
+                <span class="text-muted"><%= p_review.created_at.to_s.split(' ')[0] %>   </span>
+              </p>
               <p><i class="fa-solid fa-comment"></i> <%= p_review.content %></p>
             <% end %>
           <% end %>

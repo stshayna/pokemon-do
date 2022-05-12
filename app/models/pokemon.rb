@@ -26,7 +26,7 @@ class Pokemon < ApplicationRecord
   # added "pg_search" gem to filter the index by owner and pokemon's name/description
   include PgSearch::Model
   pg_search_scope :search_index,
-    against: %i[name description],
+    against: %i[name description location species],
     associated_against: { user: :username },
     using: { tsearch: { prefix: true } }
 end
