@@ -201,7 +201,7 @@
   background: white;
   display: flex;
   align-items: center;
-  width: 99.5%;
+  width: auto;
   margin-bottom: 8px;
   border-radius: 20px;
   &.from-renter {
@@ -221,7 +221,7 @@
 
   .card-booking-info {
     padding: 10px;
-    margin-left: 84px;
+    margin-left: 72px;
     margin-top: -20px;
     flex-grow: 1;
     h2 {
@@ -256,10 +256,8 @@
       text-decoration: none;
     }
     .write {
-      color: red;
-    }
-    .write:hover {
-      font-size: 14px;
+      background-color: red;
+      border-radius: 8px;
     }
   }
 
