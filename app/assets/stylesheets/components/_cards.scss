@@ -49,12 +49,22 @@
   // height: 324px;
   padding: 14px;
   border: rgba(0, 0, 0, 0.6) 1px solid;
+  position: relative;
   img {
     margin: 13px 13px 0;
     height: 200px;
     width: 95%;
     object-fit: contain;
     align-content: center;
+  }
+  .text-end {
+    position: absolute;
+    margin-left: 207px;
+  }
+  .text-end-index {
+    text-align: end;
+    position: absolute;
+    margin-left: 220px;
   }
 }
 
@@ -169,7 +179,7 @@
   width: 48%;
   padding: 20px;
   border-radius: 25px;
-  margin: 8px;
+  margin: 5px;
   h5 {
     text-align: center;
     margin: 15px auto;
@@ -246,6 +256,25 @@
     }
   }
 
+  .booking-actions {
+    background-color: $theme-light-green;
+    color: black;
+    text-decoration: none;
+    position: absolute;
+    font-size: 12px;
+    border-radius: 8px;
+    // margin-right: 8px;
+    margin-top: 54px;
+    margin-left: -200px;
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 120px;
+    :hover {
+      color: white;
+      text-decoration: none;
+    }
+  }
+
   a:link{
     text-decoration: none!important;
     color: black;
@@ -262,6 +291,7 @@
 
   .card-booking-status {
     margin-right: 15px;
+    position: relative;
     .status {
       text-decoration: none;
       font-size: small;
