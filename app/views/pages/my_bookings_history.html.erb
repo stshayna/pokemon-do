@@ -2,8 +2,8 @@
 
   <nav>
     <div class="nav nav-tabs" id="nav-tab" role="tablist">
-      <button class="nav-link active" id="nav-owner-tab" data-bs-toggle="tab" data-bs-target="#nav-owner" type="button" role="tab" aria-controls="nav-owner" aria-selected="true">As Owner</button>
-      <button class="nav-link" id="nav-renter-tab" data-bs-toggle="tab" data-bs-target="#nav-renter" type="button" role="tab" aria-controls="nav-renter" aria-selected="false">As Renter</button>
+      <button class="nav-link active" id="nav-owner-tab" data-bs-toggle="tab" data-bs-target="#nav-owner" type="button" role="tab" aria-controls="nav-owner" aria-selected="true">As an  owner</button>
+      <button class="nav-link" id="nav-renter-tab" data-bs-toggle="tab" data-bs-target="#nav-renter" type="button" role="tab" aria-controls="nav-renter" aria-selected="false">As a renter</button>
     </div>
   </nav>
 
@@ -23,10 +23,10 @@
                 <div class="d-flex justify-content-between my-4">
                   <!-- Upcoming bookings from renters to owners-->
                           <div class="card-bookings">
-                    <h5>Your Upcoming Bookings</h5>
+                    <h5>Upcoming Bookings</h5>
                     <% if @bookings[:upcoming][:to].present? %>
                       <% @bookings[:upcoming][:to].each do |booking| %>
-                        <div class="card-booking shadow to-owner">
+                        <div class="card-booking shadow to-renter">
                           <%= image_tag booking.pokemon.image_url, class: "card-booking-img" %>
                           <div class="card-booking-info">
                             <h2><%= booking.pokemon.name %></h2>
@@ -54,11 +54,9 @@
                     <% end %>
                   </div>
 
-
-
                   <!-- present bookings from owners to renters-->
                   <div class="card-bookings">
-                    <h5>Your Present Bookings</h5>
+                    <h5>Present Bookings</h5>
                     <% if @bookings[:present][:to].present? %>
                       <% @bookings[:present][:to].each do |booking| %>
                         <div class="card-booking shadow to-renter">
@@ -80,7 +78,7 @@
 
                   <!-- present bookings from owners to renters-->
                   <div class="card-bookings">
-                    <h5>Your Past Bookings</h5>
+                    <h5>Past Bookings</h5>
                     <% if @bookings[:past][:to].present? %>
                       <% @bookings[:past][:to].each do |booking| %>
                         <div class="card-booking shadow to-renter">
@@ -122,7 +120,7 @@
                 <div class="d-flex justify-content-between my-4">
                   <!-- present bookings from owners to renters-->
                    <div class="card-bookings">
-                    <h5>Your Upcoming Bookings</h5>
+                    <h5>Upcoming Bookings</h5>
                     <% if @bookings[:upcoming][:from].present? %>
                       <% @bookings[:upcoming][:from].each do |booking| %>
                         <div class="card-booking shadow from-renter">
@@ -144,7 +142,7 @@
 
 
                   <div class="card-bookings">
-                    <h5>Your Present Bookings</h5>
+                    <h5>Present Bookings</h5>
                     <% if @bookings[:present][:from].present? %>
                       <% @bookings[:present][:from].each do |booking| %>
                         <div class="card-booking shadow from-renter">
@@ -164,7 +162,7 @@
                   </div>
 
                   <div class="card-bookings">
-                    <h5>Your Past Bookings</h5>
+                    <h5>Past Bookings</h5>
                     <% if @bookings[:past][:from].present? %>
                       <% @bookings[:past][:from].each do |booking| %>
                         <div class="card-booking shadow from-renter">
@@ -176,11 +174,15 @@
                             <p>To: <%= booking.end_date %></p>
                             <p>Total cost: $ <%= (booking.end_date - booking.start_date).to_i * booking.pokemon.price %></p>
                           </div>
+
+                          <div class="review">
                           <% if booking.pokemon_reviews.blank? %>
-                            <%= link_to 'Write a review', new_booking_pokemon_review_path(booking), class:'btn btn-primary' %>
+                            <%= link_to 'Write a review', new_booking_pokemon_review_path(booking) %>
                           <% else %>
-                            <%= link_to 'See your review', pokemon_path(booking.pokemon), class:'btn btn-info' %>
+                            <%= link_to 'See your review', pokemon_path(booking.pokemon) %>
                           <% end %>
+                          </div>
+
                         </div>
                       <% end %>
                     <% else %>
