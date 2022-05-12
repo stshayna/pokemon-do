@@ -243,16 +243,23 @@
     color: black;
     text-decoration: none;
     position: absolute;
-    font-size: 12px;
+    font-size: 13px;
     border-radius: 8px;
     margin-right: 8px;
     margin-top: 120px;
     margin-left: 95px;
-    padding-left: 13px;
+    // padding-left: 13px;
+    text-align: center;
     width: 120px;
     :hover {
       color: white;
       text-decoration: none;
+    }
+    .write {
+      color: red;
+    }
+    .write:hover {
+      font-size: 14px;
     }
   }
 

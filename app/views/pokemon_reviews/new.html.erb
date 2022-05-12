@@ -1,29 +1,41 @@
-<%= simple_form_for [ @booking, @pokemon_review ] do |f| %>
-    <h2>Leave a review for <%=@booking.pokemon.name%></h2>
-    <img src=<%= @booking.pokemon.image_url %> alt="Pokemon" class="w-100"/>
-    <p><strong>Owner:</strong> <%=@booking.pokemon.user.username.capitalize%></p>
-    <p><strong>Start date:</strong> <%= @booking.start_date %></p>
-    <p><strong>End date:</strong> <%= @booking.end_date %></p>
-
-
-    <strong><%= f.input :content %></strong>
-    <div class="pb-3">
-      <p><strong>Rating</strong>
-      <abbr title="required">*</abbr>
-      <br />
-      <div class="rating">
-        <% (1..5).to_a.each do |i| %>
-          <input
-            type="radio"
-            name="rating"
-            value="<%= i %>"
-            id="<%= i %>"
-            <%= checked if @pokemon_review.rating && @pokemon_review.rating >= i %>
-          />
-          <label for="<%= i %>">☆</label>
-        <% end %>
-        <%= f.input :rating, :as => :hidden, :input_html => { :value => "0" } %>
-      </div>
+<div class="container d-flex justify-content-center my-5">
+  <div class="show-card border shadow animate__animated my-4">
+    <h2><%= @booking.pokemon.name.capitalize %></h2>
+    <div class="badges py-3">
+      <p><strong>Species:</strong> <%= @booking.pokemon.species %></p>
+      <p><i class="fa-regular fa-id-card fa-lg"></i> <%= @booking.pokemon.user.username.capitalize %></p>
+      <p><i class="fa-solid fa-dollar-sign fa-lg"></i> <%= @booking.pokemon.price %> / day</p>
     </div>
-    <%= f.submit class: 'btn btn-primary' %>
-<% end %>
+    <img src=<%= @booking.pokemon.image_url %> alt="Pokemon" class="shadow">
+    <p><i class="fa-solid fa-screwdriver-wrench fa-lg"></i> <%= @booking.pokemon.description %></p>
+    <p><i class="fa-solid fa-map-pin"></i> <%= @booking.pokemon.location.capitalize %></p>
+    <p class="text-center">----------------------------------------------</p>
+    <%= simple_form_for [ @booking, @pokemon_review ] do |f| %>
+        <h2 class="text-center mb-4 py-1">Leave a review for <%=@booking.pokemon.name%></h2>
+        <p><strong>Start date:</strong> <%= @booking.start_date %></p>
+        <p><strong>End date:</strong> <%= @booking.end_date %></p>
+
+
+        <strong><%= f.input :content %></strong>
+        <div class="pb-3">
+          <p><strong>Rating</strong>
+          <abbr title="required">*</abbr>
+          <br />
+          <div class="rating">
+            <% (1..5).to_a.each do |i| %>
+              <input
+                type="radio"
+                name="rating"
+                value="<%= i %>"
+                id="<%= i %>"
+                <%= checked if @pokemon_review.rating && @pokemon_review.rating >= i %>
+              />
+              <label for="<%= i %>">☆</label>
+            <% end %>
+            <%= f.input :rating, :as => :hidden, :input_html => { :value => "0" } %>
+          </div>
+        </div>
+        <%= f.submit class: "btn btn-dark" %>
+    <% end %>
+  </div>
+</div>

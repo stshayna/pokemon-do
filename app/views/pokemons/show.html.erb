@@ -8,7 +8,7 @@
           <p><i class="fa-regular fa-id-card fa-lg"></i> <%= @pokemon.user.username.capitalize %></p>
           <p><i class="fa-solid fa-dollar-sign fa-lg"></i> <%= @pokemon.price %> / day</p>
         </div>
-        <img src=<%= @pokemon.image_url %> alt="Pokemon">
+        <img src=<%= @pokemon.image_url %> alt="Pokemon" class="shadow">
         <p><i class="fa-solid fa-screwdriver-wrench fa-lg"></i> <%= @pokemon.description %></p>
         <p><i class="fa-solid fa-map-pin"></i> <%= @pokemon.location.capitalize %></p>
       </div>
