@@ -19,7 +19,7 @@ class PokemonsController < ApplicationController
           partial: "info_window",
           locals: { pokemon: pokemon }
         ),
-        image_url: helpers.asset_url("pokeball")
+        image_url: helpers.asset_url("pokeball.png")
       }
     end
   end
@@ -38,7 +38,7 @@ class PokemonsController < ApplicationController
           partial: "info_window",
           locals: { pokemon: pokemon }
         ),
-        image_url: helpers.asset_url("pokeball")
+        image_url: helpers.asset_url("pokeball.png")
       }
     end
   end
