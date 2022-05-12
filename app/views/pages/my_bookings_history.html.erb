@@ -38,7 +38,7 @@
                           </div>
                           <div class="card-booking-status">
                             <% if booking.status == "Pending" %>
-                              <span>
+                              <span class="booking-actions">
                                 <%= link_to "Approve", booking_accept_path(booking),
                                             method: :patch, class: "status approve" %> /
                                 <%= link_to "Refuse", booking_reject_path(booking),
@@ -127,7 +127,7 @@
                           <%= image_tag booking.pokemon.image_url, class: "card-booking-img" %>
                           <div class="card-booking-info">
                             <h2><%= booking.pokemon.name %></h2>
-                            <p>Rented from: <%= booking.pokemon.user.username %></p>
+                            <p>Owner: <%= booking.pokemon.user.username %></p>
                             <p>From: <%= booking.start_date %></p>
                             <p>To: <%= booking.end_date %></p>
                             <p>Total cost: $ <%= (booking.end_date - booking.start_date).to_i * booking.pokemon.price %></p>
@@ -149,7 +149,7 @@
                           <%= image_tag booking.pokemon.image_url, class: "card-booking-img" %>
                           <div class="card-booking-info">
                             <h2><%= booking.pokemon.name %></h2>
-                            <p>Rented from: <%= booking.pokemon.user.username %></p>
+                            <p>Owner: <%= booking.pokemon.user.username %></p>
                             <p>From: <%= booking.start_date %></p>
                             <p>To: <%= booking.end_date %></p>
                             <p>Total cost: $ <%= (booking.end_date - booking.start_date).to_i * booking.pokemon.price %></p>
@@ -169,7 +169,7 @@
                           <%= image_tag booking.pokemon.image_url, class: "card-booking-img" %>
                           <div class="card-booking-info">
                             <h2><%= booking.pokemon.name %></h2>
-                            <p>Rented from: <%= booking.pokemon.user.username %></p>
+                            <p>Owner: <%= booking.pokemon.user.username %></p>
                             <p>From: <%= booking.start_date %></p>
                             <p>To: <%= booking.end_date %></p>
                             <p>Total cost: $ <%= (booking.end_date - booking.start_date).to_i * booking.pokemon.price %></p>
