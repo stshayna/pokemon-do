@@ -485,7 +485,7 @@ pokemon = Pokemon.create!(
   user_id: renter.id,
   name: Faker::Creature::Dog.name,
   species: species,
-  description: 'Greatest pokemon, does literally everything!',
+  description: 'Greatest pokemon!',
   location: 'Montreal, Lasalle',
   price: rand(65),
   image_url: "https://img.pokemondb.net/artwork/large/#{species.downcase}.jpg"
