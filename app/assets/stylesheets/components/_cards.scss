@@ -230,13 +230,13 @@
     background-color: #E6BA95;
     color: black;
     text-decoration: none;
-    position: absolute;
+    // position: absolute;
     font-size: 13px;
     border-radius: 8px;
     margin-right: 8px;
-    margin-top: 120px;
-    margin-left: 95px;
-    // padding-left: 13px;
+    // margin-top: 120px;removed for better responsiveness (margin issues in different screen sizes)
+    // margin-left: 95px; removed for better responsiveness (margin issues in different screen sizes)
+    // padding-left: 13px; removed for better responsiveness (margin issues in different screen sizes)
     text-align: center;
     width: 120px;
     :hover {

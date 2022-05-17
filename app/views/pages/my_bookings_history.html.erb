@@ -109,10 +109,10 @@
               <!-- We should create a tab to switch from bookings as a owner to bookings as a renter-->
               <div>
                 <h2 class="text-center">Booking requests made</h2>
-                <div class="d-flex justify-content-between my-4">
+                <div class="row">
                   <!-- present bookings from owners to renters-->
 
-                   <div class="card-bookings">
+                   <div class="card-bookings col-12 col-xl-4 border shadow">
                     <h5>Upcoming Bookings</h5>
                     <% if @bookings[:upcoming][:from].present? %>
                       <% @bookings[:upcoming][:from].each do |booking| %>
@@ -134,7 +134,7 @@
                   </div>
 
 
-                  <div class="card-bookings">
+                  <div class="card-bookings col-12 col-xl-4 border shadow">
                     <h5>Present Bookings</h5>
                     <% if @bookings[:present][:from].present? %>
                       <% @bookings[:present][:from].each do |booking| %>
@@ -154,7 +154,7 @@
                     <% end %>
                   </div>
 
-                  <div class="card-bookings">
+                  <div class="card-bookings col-12 col-xl-4 border shadow">
                     <h5>Past Bookings</h5>
                     <% if @bookings[:past][:from].present? %>
                       <% @bookings[:past][:from].each do |booking| %>
@@ -166,17 +166,17 @@
                             <p>From: <%= booking.start_date %></p>
                             <p>To: <%= booking.end_date %></p>
                             <p>Total cost: $ <%= (booking.end_date - booking.start_date).to_i * booking.pokemon.price %></p>
+                            <div class="review mt-1">
+                            <% if booking.pokemon_reviews.blank? %>
+                              <div class="write">
+                                <%= link_to 'Write a review', new_booking_pokemon_review_path(booking), class: "text-white" %>
+                              </div>
+                            <% else %>
+                              <%= link_to 'See my review', pokemon_path(booking.pokemon) %>
+                            <% end %>
+                            </div>
                           </div>
 
-                          <div class="review">
-                          <% if booking.pokemon_reviews.blank? %>
-                            <div class="write">
-                              <%= link_to 'Write a review', new_booking_pokemon_review_path(booking), class: "text-white" %>
-                            </div>
-                          <% else %>
-                            <%= link_to 'See my review', pokemon_path(booking.pokemon) %>
-                          <% end %>
-                          </div>
 
                         </div>
                       <% end %>
