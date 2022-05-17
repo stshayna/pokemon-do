@@ -1,7 +1,7 @@
 <div class="container py-5">
   <h3 class="card-heading ps-1 pt-4 pb-3">My Pokémons (<%= @owner_pokemons.count %>)</h3>
 
-  <div class="cards pokemons">
+  <div class="cards">
     <% if @owner_pokemons.exists? %>
       <% @owner_pokemons.each do |pokemon| %>
         <div class="card-pokemon shadow rounded">

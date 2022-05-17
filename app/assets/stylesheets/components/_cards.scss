@@ -49,7 +49,6 @@
   // height: 324px;
   padding: 14px;
   border: rgba(0, 0, 0, 0.6) 1px solid;
-  position: relative;
   img {
     margin: 13px 13px 0;
     height: 200px;
@@ -57,22 +56,12 @@
     object-fit: contain;
     align-content: center;
   }
-  .text-end {
-    position: absolute;
-    margin-left: 260px;
-  }
-  .text-end-index {
-    text-align: end;
-    position: absolute;
-    margin-left: 280px;
-  }
 }
 
 .white {
   width: auto;
   background-color: white;
   height: 216px;
-  position: relative;
   margin-bottom: 8px;
   text-align: center;
 }
@@ -100,7 +89,7 @@
   }
   p {
     opacity: 0.6;
-    font-size: smaller;
+    font-size: 12px;
     margin: 0;
   }
   h5 {
@@ -176,10 +165,10 @@
 }
 .card-bookings {
   background: rgba(255, 255, 255, 0.785);
-  width: 48%;
+  // width: 48%; replaced by bootstrap "row" and "col-12" / "col-md-4"
   padding: 20px;
   border-radius: 25px;
-  margin: 5px;
+  margin-bottom: 16px;
   h5 {
     text-align: center;
     margin: 15px auto;
@@ -212,8 +201,8 @@
   }
 
   .card-booking-img {
-    height: 40%;
-    width: 60px;
+    height: 60%;
+    width: 85px;
     position: absolute;
     object-fit: contain;
     margin-left: 16px;
@@ -221,8 +210,7 @@
 
   .card-booking-info {
     padding: 10px;
-    margin-left: 72px;
-    margin-top: -20px;
+    margin-left: 110px;
     flex-grow: 1;
     h2 {
       font-size: 18px;
@@ -265,14 +253,13 @@
     background-color: $theme-light-green;
     color: black;
     text-decoration: none;
-    position: absolute;
+    // position: absolute; removed for better responsiveness (margin issues in different screen sizes)
     font-size: 12px;
     border-radius: 8px;
-    // margin-right: 8px;
-    margin-top: 54px;
-    margin-left: -200px;
-    padding-left: 5px;
-    padding-right: 5px;
+    // margin-right: 8px; removed for better responsiveness (margin issues in different screen sizes)
+    // margin-top: 54px; removed for better responsiveness (margin issues in different screen sizes)
+    // margin-left: -200px; removed for better responsiveness (margin issues in different screen sizes)
+    padding: 1px 10px;
     width: 120px;
     :hover {
       color: white;
