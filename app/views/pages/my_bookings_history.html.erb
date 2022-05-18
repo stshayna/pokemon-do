@@ -10,19 +10,16 @@
 
   <div class="tab-content" id="nav-tabContent">
     <div class="tab-pane fade show active" id="nav-owner" role="tabpanel" aria-labelledby="nav-owner-tab">
-
       <div class="tab-content" id="nav-tabContent">
         <div class="tab-pane fade show active" id="nav-owner" role="tabpanel" aria-labelledby="nav-owner-tab">
-
           <div class="my-5">
-
             <div class="container my-5 pt-4">
               <!-- We should create a tab to switch from bookings as a owner to bookings as a renter-->
-              <div>
-                <h2 class="text-center">Booking requests received</h2>
-                <div class="d-flex justify-content-between my-4">
-                  <!-- Upcoming bookings from renters to owners-->
-                          <div class="card-bookings">
+              <h2 class="text-center">Booking requests received</h2>
+              <div class="my-4">
+                <!-- Upcoming bookings from renters to owners-->
+                <div class="row">
+                  <div class="card-bookings col-12 col-xl-4 border shadow">
                     <h5>Upcoming Bookings</h5>
                     <% if @bookings[:upcoming][:to].present? %>
                       <% @bookings[:upcoming][:to].each do |booking| %>
@@ -35,17 +32,17 @@
                             <p>To: <%= booking.end_date %></p>
                             <p>Total cost: $ <%= (booking.end_date - booking.start_date).to_i * booking.pokemon.price %></p>
                             <p>Booking status: <span class="fst-italic"><%= booking.status %></span></p>
-                          </div>
-                          <div class="card-booking-status">
-                            <% if booking.status == "Pending" %>
-                              <span class="booking-actions">
-                                <%= link_to "Approve", booking_accept_path(booking),
-                                            method: :patch, class: "status approve" %> /
-                                <%= link_to "Refuse", booking_reject_path(booking),
-                                            method: :patch,
-                                            data: { confirm: "Are you sure you want to refuse this booking ❌ ?"}, class: "status refuse" %>
-                              </span>
-                            <% end %>
+                            <div class="card-booking-status">
+                              <% if booking.status == "Pending" %>
+                                <span class="booking-actions">
+                                  <%= link_to "Approve", booking_accept_path(booking),
+                                              method: :patch, class: "status approve" %> /
+                                  <%= link_to "Refuse", booking_reject_path(booking),
+                                              method: :patch,
+                                              data: { confirm: "Are you sure you want to refuse this booking ❌ ?"}, class: "status refuse" %>
+                                </span>
+                              <% end %>
+                            </div>
                           </div>
                         </div>
                       <% end %>
@@ -55,7 +52,7 @@
                   </div>
 
                   <!-- present bookings from owners to renters-->
-                  <div class="card-bookings">
+                  <div class="card-bookings col-12 col-xl-4 border shadow">
                     <h5>Present Bookings</h5>
                     <% if @bookings[:present][:to].present? %>
                       <% @bookings[:present][:to].each do |booking| %>
@@ -71,13 +68,12 @@
                         </div>
                       <% end %>
                     <% else %>
-                    <p>None of your Pokémon(s) is booked at the moment.</p>
+                      <p>None of your Pokémon(s) is booked at the moment.</p>
                     <% end %>
                   </div>
 
-
                   <!-- present bookings from owners to renters-->
-                  <div class="card-bookings">
+                  <div class="card-bookings col-12 col-xl-4 border shadow">
                     <h5>Past Bookings</h5>
                     <% if @bookings[:past][:to].present? %>
                       <% @bookings[:past][:to].each do |booking| %>
@@ -106,20 +102,17 @@
 
 
     <div class="tab-pane fade" id="nav-renter" role="tabpanel" aria-labelledby="nav-renter-tab">
-
-
       <div class="tab-content" id="nav-tabContent">
         <div class="tab-pane fade show active" id="nav-renter" role="tabpanel" aria-labelledby="nav-renter-tab">
-
           <div class="my-5">
-
             <div class="container my-5 pt-4">
               <!-- We should create a tab to switch from bookings as a owner to bookings as a renter-->
               <div>
                 <h2 class="text-center">Booking requests made</h2>
-                <div class="d-flex justify-content-between my-4">
+                <div class="row">
                   <!-- present bookings from owners to renters-->
-                   <div class="card-bookings">
+
+                   <div class="card-bookings col-12 col-xl-4 border shadow">
                     <h5>Upcoming Bookings</h5>
                     <% if @bookings[:upcoming][:from].present? %>
                       <% @bookings[:upcoming][:from].each do |booking| %>
@@ -141,7 +134,7 @@
                   </div>
 
 
-                  <div class="card-bookings">
+                  <div class="card-bookings col-12 col-xl-4 border shadow">
                     <h5>Present Bookings</h5>
                     <% if @bookings[:present][:from].present? %>
                       <% @bookings[:present][:from].each do |booking| %>
@@ -161,7 +154,7 @@
                     <% end %>
                   </div>
 
-                  <div class="card-bookings">
+                  <div class="card-bookings col-12 col-xl-4 border shadow">
                     <h5>Past Bookings</h5>
                     <% if @bookings[:past][:from].present? %>
                       <% @bookings[:past][:from].each do |booking| %>
@@ -173,17 +166,17 @@
                             <p>From: <%= booking.start_date %></p>
                             <p>To: <%= booking.end_date %></p>
                             <p>Total cost: $ <%= (booking.end_date - booking.start_date).to_i * booking.pokemon.price %></p>
+                            <div class="review mt-1">
+                            <% if booking.pokemon_reviews.blank? %>
+                              <div class="write">
+                                <%= link_to 'Write a review', new_booking_pokemon_review_path(booking), class: "text-white" %>
+                              </div>
+                            <% else %>
+                              <%= link_to 'See my review', pokemon_path(booking.pokemon) %>
+                            <% end %>
+                            </div>
                           </div>
 
-                          <div class="review">
-                          <% if booking.pokemon_reviews.blank? %>
-                            <div class="write">
-                              <%= link_to 'Write a review', new_booking_pokemon_review_path(booking), class: "text-white" %>
-                            </div>
-                          <% else %>
-                            <%= link_to 'See my review', pokemon_path(booking.pokemon) %>
-                          <% end %>
-                          </div>
 
                         </div>
                       <% end %>
